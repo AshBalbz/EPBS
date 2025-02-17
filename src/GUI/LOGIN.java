@@ -41,6 +41,8 @@ public class LOGIN extends javax.swing.JFrame {
         unf = new javax.swing.JTextField();
         sps = new javax.swing.JCheckBox();
         psf = new javax.swing.JPasswordField();
+        role = new javax.swing.JComboBox<>();
+        acc_type = new javax.swing.JLabel();
         new_user = new javax.swing.JLabel();
         register = new javax.swing.JLabel();
         Balbz_logo = new javax.swing.JLabel();
@@ -62,13 +64,13 @@ public class LOGIN extends javax.swing.JFrame {
         System_Name.setForeground(new java.awt.Color(250, 249, 190));
         System_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         System_Name.setText("Event Photography Booking System");
-        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 440, 40));
+        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 460, 40));
 
         user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         user.setForeground(new java.awt.Color(255, 255, 240));
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         user.setText("Username");
-        LOGIN.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 249, -1, 30));
+        LOGIN.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 30));
 
         unf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         unf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -77,7 +79,7 @@ public class LOGIN extends javax.swing.JFrame {
                 unfActionPerformed(evt);
             }
         });
-        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 240, 40));
+        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 200, 30));
 
         sps.setBackground(new java.awt.Color(255, 255, 255));
         sps.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,11 +93,26 @@ public class LOGIN extends javax.swing.JFrame {
                 spsActionPerformed(evt);
             }
         });
-        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 40, 20));
+        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 40, 20));
 
         psf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         psf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 240, 40));
+        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 200, 30));
+
+        role.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
+        role.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleActionPerformed(evt);
+            }
+        });
+        LOGIN.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 100, 40));
+
+        acc_type.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        acc_type.setForeground(new java.awt.Color(255, 255, 240));
+        acc_type.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc_type.setText("Role");
+        LOGIN.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 339, 100, 10));
 
         new_user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         new_user.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,7 +146,7 @@ public class LOGIN extends javax.swing.JFrame {
         Register.setForeground(new java.awt.Color(255, 255, 240));
         Register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Register.setText("Password");
-        LOGIN.add(Register, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 339, -1, 30));
+        LOGIN.add(Register, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 30));
 
         login.setBackground(new java.awt.Color(153, 153, 153));
         login.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -162,7 +179,7 @@ public class LOGIN extends javax.swing.JFrame {
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 60, 30));
+        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 60, 30));
 
         exit.setBackground(new java.awt.Color(240, 240, 190));
         exit.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -195,7 +212,7 @@ public class LOGIN extends javax.swing.JFrame {
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 60, 30));
+        LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 60, 30));
 
         BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/G1.png"))); // NOI18N
         LOGIN.add(BG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -283,6 +300,10 @@ public class LOGIN extends javax.swing.JFrame {
         REGISTRATION reg = new REGISTRATION();
         reg.setVisible(true);    }//GEN-LAST:event_registerMouseClicked
 
+    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
+
+    }//GEN-LAST:event_roleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -330,12 +351,14 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JPanel Login;
     private javax.swing.JLabel Register;
     private javax.swing.JLabel System_Name;
+    private javax.swing.JLabel acc_type;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel login;
     private javax.swing.JLabel new_user;
     private javax.swing.JPasswordField psf;
     private javax.swing.JLabel register;
+    private javax.swing.JComboBox<String> role;
     private javax.swing.JCheckBox sps;
     private javax.swing.JTextField unf;
     private javax.swing.JLabel user;

@@ -40,7 +40,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
         acc_type = new javax.swing.JLabel();
-        efield1 = new javax.swing.JTextField();
+        pfield = new javax.swing.JTextField();
         email1 = new javax.swing.JLabel();
         createpass = new javax.swing.JPasswordField();
         pass1 = new javax.swing.JLabel();
@@ -126,14 +126,14 @@ public class REGISTRATION extends javax.swing.JFrame {
         acc_type.setText("Role");
         jPanel2.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 100, -1));
 
-        efield1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        efield1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        efield1.addActionListener(new java.awt.event.ActionListener() {
+        pfield.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        pfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                efield1ActionPerformed(evt);
+                pfieldActionPerformed(evt);
             }
         });
-        jPanel2.add(efield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 40));
+        jPanel2.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 40));
 
         email1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         email1.setForeground(new java.awt.Color(255, 255, 240));
@@ -307,29 +307,53 @@ public class REGISTRATION extends javax.swing.JFrame {
         String email = efield.getText().trim();
         String pass1 = new String(createpass.getPassword()).trim();
         String pass2 = new String(confirmpass.getPassword()).trim();
+        String contact = pfield.getText().trim();
 
-        // Validate empty fields
-        if (name.isEmpty() || email.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Fields cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    // Validate empty fields
+    if (name.isEmpty() || email.isEmpty() || pass1.isEmpty() || pass2.isEmpty() || contact.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fields cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        // Validate password match
-        if (!pass1.equals(pass2)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    // Validate email format
+    String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    if (!email.matches(emailRegex)) {
+        JOptionPane.showMessageDialog(this, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        // Proceed to the next step (e.g., saving to the database)
-            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    // Validate contact number (only digits allowed)
+    if (!contact.matches("\\d+")) {
+        JOptionPane.showMessageDialog(this, "Contact number must contain only numbers!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
+    // Validate password match
+    if (!pass1.equals(pass2)) {
+        JOptionPane.showMessageDialog(this, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
+    // Validate password strength
+    String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$";
+    if (!pass1.matches(passwordRegex)) {
+        JOptionPane.showMessageDialog(null, "Password must be at least 8 characters and include:\n"
+                + "- One uppercase letter\n"
+                + "- One lowercase letter\n"
+                + "- One number\n"
+                + "- One special character (@#$%^&+=!)", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Proceed to the next step (e.g., saving to the database)
+    JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_sign_upMouseClicked
 
-    private void efield1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efield1ActionPerformed
+    private void pfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_efield1ActionPerformed
+    }//GEN-LAST:event_pfieldActionPerformed
 
     private void sign_inMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_inMouseClicked
         LOGIN log = new LOGIN();
@@ -381,7 +405,6 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JPasswordField createpass;
     private javax.swing.JTextField efield;
-    private javax.swing.JTextField efield1;
     private javax.swing.JLabel email;
     private javax.swing.JLabel email1;
     private javax.swing.JLabel icon;
@@ -390,6 +413,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JTextField nfield;
     private javax.swing.JLabel pass1;
     private javax.swing.JLabel pass2;
+    private javax.swing.JTextField pfield;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JLabel sign_in;
     private javax.swing.JButton sign_up;
