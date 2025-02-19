@@ -7,6 +7,14 @@ package GUI;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import ADMINISTRATION.ADMIN_PANEL;
+import STAFF.STAFF_PANEL;
+import config.connectDB;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 /**
  *
@@ -37,14 +45,15 @@ public class LOGIN extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         LOGIN = new javax.swing.JPanel();
         System_Name = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
         unf = new javax.swing.JTextField();
         sps = new javax.swing.JCheckBox();
         psf = new javax.swing.JPasswordField();
         role = new javax.swing.JComboBox<>();
         acc_type = new javax.swing.JLabel();
+        Click = new javax.swing.JLabel();
         new_user = new javax.swing.JLabel();
-        register = new javax.swing.JLabel();
         Balbz_logo = new javax.swing.JLabel();
         Event_icon = new javax.swing.JLabel();
         Register = new javax.swing.JLabel();
@@ -60,17 +69,23 @@ public class LOGIN extends javax.swing.JFrame {
 
         LOGIN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
+        System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 22)); // NOI18N
         System_Name.setForeground(new java.awt.Color(250, 249, 190));
         System_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        System_Name.setText("Event Photography Booking System");
-        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 460, 40));
+        System_Name.setText("System");
+        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 800, 40));
+
+        Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 22)); // NOI18N
+        Name.setForeground(new java.awt.Color(250, 249, 190));
+        Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name.setText("Event Photography Booking ");
+        LOGIN.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 40));
 
         user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         user.setForeground(new java.awt.Color(255, 255, 240));
         user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         user.setText("Username");
-        LOGIN.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 30));
+        LOGIN.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 800, 30));
 
         unf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         unf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -79,7 +94,7 @@ public class LOGIN extends javax.swing.JFrame {
                 unfActionPerformed(evt);
             }
         });
-        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 200, 30));
+        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 220, 30));
 
         sps.setBackground(new java.awt.Color(255, 255, 255));
         sps.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,11 +108,16 @@ public class LOGIN extends javax.swing.JFrame {
                 spsActionPerformed(evt);
             }
         });
-        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 40, 20));
+        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 30, 30));
 
         psf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         psf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 200, 30));
+        psf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psfActionPerformed(evt);
+            }
+        });
+        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 220, 30));
 
         role.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
@@ -106,13 +126,23 @@ public class LOGIN extends javax.swing.JFrame {
                 roleActionPerformed(evt);
             }
         });
-        LOGIN.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 100, 40));
+        LOGIN.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 100, -1));
 
         acc_type.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         acc_type.setForeground(new java.awt.Color(255, 255, 240));
         acc_type.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_type.setText("Role");
-        LOGIN.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 339, 100, 10));
+        LOGIN.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 100, 20));
+
+        Click.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        Click.setForeground(new java.awt.Color(255, 255, 0));
+        Click.setText("Click here to register");
+        Click.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickMouseClicked(evt);
+            }
+        });
+        LOGIN.add(Click, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 150, 30));
 
         new_user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         new_user.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,17 +153,6 @@ public class LOGIN extends javax.swing.JFrame {
             }
         });
         LOGIN.add(new_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 80, 30));
-
-        register.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        register.setForeground(new java.awt.Color(255, 255, 0));
-        register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        register.setText("Click here to Register");
-        register.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registerMouseClicked(evt);
-            }
-        });
-        LOGIN.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, 30));
 
         Balbz_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logo1.png"))); // NOI18N
         LOGIN.add(Balbz_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
@@ -146,7 +165,7 @@ public class LOGIN extends javax.swing.JFrame {
         Register.setForeground(new java.awt.Color(255, 255, 240));
         Register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Register.setText("Password");
-        LOGIN.add(Register, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 30));
+        LOGIN.add(Register, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 300, 800, 30));
 
         login.setBackground(new java.awt.Color(153, 153, 153));
         login.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -174,12 +193,12 @@ public class LOGIN extends javax.swing.JFrame {
         );
         LoginLayout.setVerticalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(LoginLayout.createSequentialGroup()
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 60, 30));
+        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 60, 20));
 
         exit.setBackground(new java.awt.Color(240, 240, 190));
         exit.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -207,12 +226,12 @@ public class LOGIN extends javax.swing.JFrame {
         );
         ExitLayout.setVerticalGroup(
             ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ExitLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ExitLayout.createSequentialGroup()
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 60, 30));
+        LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 60, 20));
 
         BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/G1.png"))); // NOI18N
         LOGIN.add(BG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -252,25 +271,69 @@ public class LOGIN extends javax.swing.JFrame {
     }//GEN-LAST:event_new_userMouseClicked
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-      String username = unf.getText();
-      String password = new String(psf.getPassword());
-
-    if (username.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Fields cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    if (username.equals("admin") && password.equals("pass123")) {
-        JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
         
-        // Open the Dashboard panel
-        DASHBOARD dashboard = new DASHBOARD();
-        dashboard.setVisible(true);
-        
-        // Close the current login window
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+        String username = unf.getText();
+        String password = new String(psf.getPassword());
+        String acc = role.getSelectedItem().toString();
+
+        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Username and password cannot be empty.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return; // Exit early
+        }
+
+        connectDB con = new connectDB();
+        Connection cn = con.getConnection(); // Get database connection
+
+        String sql = "SELECT password, role FROM user WHERE username = ?";
+
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, username); // Set username parameter
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) { // If user exists
+                String storedPassword = rs.getString("password");
+                String roleFromDB = rs.getString("role");
+
+                // **Check if password matches**
+                if (storedPassword.equals(password)) {  
+
+                    // **Check if role matches the selected role**
+                    if (roleFromDB.equalsIgnoreCase(acc)) {  
+                        JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                        // **Role-based redirection**
+                        if ("Admin".equalsIgnoreCase(roleFromDB)) {
+                            ADMIN_PANEL admin = new ADMIN_PANEL();
+                            admin.setVisible(true);
+                            this.dispose();
+                        } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
+                            STAFF_PANEL staff = new STAFF_PANEL();
+                            staff.setVisible(true);
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Invalid role!", "Login Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect role selection!", "Login Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect password.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Username not found.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            // Close resources
+            rs.close();
+            pst.close();
+            cn.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     }//GEN-LAST:event_loginMouseClicked
@@ -296,13 +359,19 @@ public class LOGIN extends javax.swing.JFrame {
          exit.setBackground(hoverColor);         
      }//GEN-LAST:event_exitMouseExited
 
-    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
-        REGISTRATION reg = new REGISTRATION();
-        reg.setVisible(true);    }//GEN-LAST:event_registerMouseClicked
-
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
 
     }//GEN-LAST:event_roleActionPerformed
+
+    private void psfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_psfActionPerformed
+
+    private void ClickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickMouseClicked
+       REGISTRATION reg = new REGISTRATION();
+       reg.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_ClickMouseClicked
 
     /**
      * @param args the command line arguments
@@ -345,10 +414,12 @@ public class LOGIN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG1;
     private javax.swing.JLabel Balbz_logo;
+    private javax.swing.JLabel Click;
     private javax.swing.JLabel Event_icon;
     private javax.swing.JPanel Exit;
     private javax.swing.JPanel LOGIN;
     private javax.swing.JPanel Login;
+    private javax.swing.JLabel Name;
     private javax.swing.JLabel Register;
     private javax.swing.JLabel System_Name;
     private javax.swing.JLabel acc_type;
@@ -357,7 +428,6 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JLabel login;
     private javax.swing.JLabel new_user;
     private javax.swing.JPasswordField psf;
-    private javax.swing.JLabel register;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JCheckBox sps;
     private javax.swing.JTextField unf;
