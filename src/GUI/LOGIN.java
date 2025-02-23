@@ -44,19 +44,19 @@ public class LOGIN extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         LOGIN = new javax.swing.JPanel();
-        System_Name = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
-        user = new javax.swing.JLabel();
+        System_Name = new javax.swing.JLabel();
         unf = new javax.swing.JTextField();
+        u_icon = new javax.swing.JLabel();
         sps = new javax.swing.JCheckBox();
         psf = new javax.swing.JPasswordField();
+        p_icon = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
         acc_type = new javax.swing.JLabel();
-        Click = new javax.swing.JLabel();
         new_user = new javax.swing.JLabel();
         Balbz_logo = new javax.swing.JLabel();
         Event_icon = new javax.swing.JLabel();
-        Register = new javax.swing.JLabel();
+        Click = new javax.swing.JLabel();
         Login = new javax.swing.JPanel();
         login = new javax.swing.JLabel();
         Exit = new javax.swing.JPanel();
@@ -69,34 +69,40 @@ public class LOGIN extends javax.swing.JFrame {
 
         LOGIN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 22)); // NOI18N
-        System_Name.setForeground(new java.awt.Color(250, 249, 190));
-        System_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        System_Name.setText("System");
-        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 800, 40));
-
         Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 22)); // NOI18N
-        Name.setForeground(new java.awt.Color(250, 249, 190));
+        Name.setForeground(new java.awt.Color(255, 255, 153));
         Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name.setText("Event Photography Booking ");
         LOGIN.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 40));
 
-        user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        user.setForeground(new java.awt.Color(255, 255, 240));
-        user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        user.setText("Username");
-        LOGIN.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 800, 30));
+        System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 22)); // NOI18N
+        System_Name.setForeground(new java.awt.Color(255, 255, 153));
+        System_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        System_Name.setText("System");
+        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 800, 40));
 
-        unf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        unf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        unf.setBackground(new java.awt.Color(240, 240, 240));
+        unf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        unf.setForeground(new java.awt.Color(153, 153, 153));
+        unf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                unfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                unfFocusLost(evt);
+            }
+        });
         unf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unfActionPerformed(evt);
             }
         });
-        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 220, 30));
+        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 220, 30));
 
-        sps.setBackground(new java.awt.Color(255, 255, 255));
+        u_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        u_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/user.png"))); // NOI18N
+        LOGIN.add(u_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 30, 30));
+
         sps.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sps.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -108,16 +114,28 @@ public class LOGIN extends javax.swing.JFrame {
                 spsActionPerformed(evt);
             }
         });
-        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 30, 30));
+        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 30, 30));
 
-        psf.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        psf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        psf.setBackground(new java.awt.Color(240, 240, 240));
+        psf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        psf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                psfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                psfFocusLost(evt);
+            }
+        });
         psf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 psfActionPerformed(evt);
             }
         });
-        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 220, 30));
+        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 220, 30));
+
+        p_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        p_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/padlock.png"))); // NOI18N
+        LOGIN.add(p_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 30, 30));
 
         role.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
@@ -126,23 +144,13 @@ public class LOGIN extends javax.swing.JFrame {
                 roleActionPerformed(evt);
             }
         });
-        LOGIN.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 100, -1));
+        LOGIN.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 100, -1));
 
         acc_type.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         acc_type.setForeground(new java.awt.Color(255, 255, 240));
         acc_type.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_type.setText("Role");
-        LOGIN.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 100, 20));
-
-        Click.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        Click.setForeground(new java.awt.Color(255, 255, 0));
-        Click.setText("Click here to register");
-        Click.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ClickMouseClicked(evt);
-            }
-        });
-        LOGIN.add(Click, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 150, 30));
+        LOGIN.add(acc_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 100, 20));
 
         new_user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         new_user.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,11 +169,21 @@ public class LOGIN extends javax.swing.JFrame {
         Event_icon.setText("jLabel2");
         LOGIN.add(Event_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 70, 70));
 
-        Register.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        Register.setForeground(new java.awt.Color(255, 255, 240));
-        Register.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Register.setText("Password");
-        LOGIN.add(Register, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 300, 800, 30));
+        Click.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        Click.setForeground(new java.awt.Color(255, 255, 0));
+        Click.setText("Click here to register");
+        Click.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ClickMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ClickMouseExited(evt);
+            }
+        });
+        LOGIN.add(Click, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 150, 30));
 
         login.setBackground(new java.awt.Color(153, 153, 153));
         login.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -195,7 +213,7 @@ public class LOGIN extends javax.swing.JFrame {
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoginLayout.createSequentialGroup()
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 60, 20));
@@ -228,7 +246,7 @@ public class LOGIN extends javax.swing.JFrame {
             ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ExitLayout.createSequentialGroup()
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 60, 20));
@@ -248,11 +266,8 @@ public class LOGIN extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void unfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unfActionPerformed
 
     private void spsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spsActionPerformed
         // TODO add your handling code here:
@@ -276,6 +291,7 @@ public class LOGIN extends javax.swing.JFrame {
         String password = new String(psf.getPassword());
         String acc = role.getSelectedItem().toString();
 
+        
         if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Username and password cannot be empty.", "Validation Error", JOptionPane.WARNING_MESSAGE);
             return; // Exit early
@@ -373,6 +389,48 @@ public class LOGIN extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_ClickMouseClicked
 
+    private void ClickMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickMouseEntered
+       Click.setForeground(new Color(231,231,198));
+    }//GEN-LAST:event_ClickMouseEntered
+
+    private void psfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusGained
+        if (new String(psf.getPassword()).equals(" Enter password...")) {
+            psf.setText("");
+            psf.setEchoChar('•'); // Mask password
+            psf.setForeground(Color.BLACK);              
+        }
+    }//GEN-LAST:event_psfFocusGained
+
+    private void psfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusLost
+        if (new String(psf.getPassword()).isEmpty()) {
+            psf.setText(" Enter password...");
+            psf.setEchoChar((char) 0); // Show text instead of masked chars
+            psf.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_psfFocusLost
+
+    private void unfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unfActionPerformed
+
+    private void unfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusGained
+        if(unf.getText().equals(" Enter username...")){
+            unf.setText("");
+            unf.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_unfFocusGained
+
+    private void unfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusLost
+        if(unf.getText().isEmpty()){
+            unf.setText(" Enter username...");
+            unf.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_unfFocusLost
+
+    private void ClickMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickMouseExited
+        Click.setForeground(new Color(255,255,0));
+    }//GEN-LAST:event_ClickMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -420,17 +478,17 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JPanel LOGIN;
     private javax.swing.JPanel Login;
     private javax.swing.JLabel Name;
-    private javax.swing.JLabel Register;
     private javax.swing.JLabel System_Name;
     private javax.swing.JLabel acc_type;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel login;
     private javax.swing.JLabel new_user;
+    private javax.swing.JLabel p_icon;
     private javax.swing.JPasswordField psf;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JCheckBox sps;
+    private javax.swing.JLabel u_icon;
     private javax.swing.JTextField unf;
-    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

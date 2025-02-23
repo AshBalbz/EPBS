@@ -56,6 +56,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         sign_up = new javax.swing.JButton();
         acc = new javax.swing.JLabel();
         sign_in = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         BG2 = new javax.swing.JLabel();
 
         System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
@@ -261,6 +262,10 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(sign_in, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 190, 30));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/user.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 30, 30));
+
         BG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/G2.png"))); // NOI18N
         jPanel2.add(BG2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
@@ -464,6 +469,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel email;
     private javax.swing.JLabel email1;
     private javax.swing.JLabel icon;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel name;
     private javax.swing.JTextField nfield;
