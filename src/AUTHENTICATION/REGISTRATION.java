@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -56,12 +57,10 @@ public class REGISTRATION extends javax.swing.JFrame {
         efield = new javax.swing.JTextField();
         pfield = new javax.swing.JTextField();
         ufield = new javax.swing.JTextField();
+        showPass = new javax.swing.JLabel();
+        showPass1 = new javax.swing.JLabel();
         createpass = new javax.swing.JPasswordField();
-        sps1 = new javax.swing.JCheckBox();
-        sp1 = new javax.swing.JLabel();
         confirmpass = new javax.swing.JPasswordField();
-        sp2 = new javax.swing.JLabel();
-        sps2 = new javax.swing.JCheckBox();
         sign_up = new javax.swing.JButton();
         acc = new javax.swing.JLabel();
         sign_in = new javax.swing.JLabel();
@@ -110,7 +109,7 @@ public class REGISTRATION extends javax.swing.JFrame {
 
         pass2_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pass2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/padlock.png"))); // NOI18N
-        jPanel2.add(pass2_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 30, 30));
+        jPanel2.add(pass2_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 30, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/setting.png"))); // NOI18N
@@ -206,6 +205,22 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(ufield, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 220, 30));
 
+        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hidden.png"))); // NOI18N
+        showPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPassMouseClicked(evt);
+            }
+        });
+        jPanel2.add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 40, 30));
+
+        showPass1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hidden.png"))); // NOI18N
+        showPass1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPass1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(showPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 30, 30));
+
         createpass.setBackground(new java.awt.Color(240, 240, 240));
         createpass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         createpass.setForeground(new java.awt.Color(153, 153, 153));
@@ -226,26 +241,6 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(createpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 220, 30));
 
-        sps1.setBackground(new java.awt.Color(24, 24, 24));
-        sps1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sps1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sps1MouseClicked(evt);
-            }
-        });
-        sps1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sps1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(sps1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 20, 30));
-
-        sp1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        sp1.setForeground(new java.awt.Color(255, 255, 240));
-        sp1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sp1.setText("Show Password");
-        jPanel2.add(sp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 120, 30));
-
         confirmpass.setBackground(new java.awt.Color(240, 240, 240));
         confirmpass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         confirmpass.setForeground(new java.awt.Color(153, 153, 153));
@@ -264,27 +259,7 @@ public class REGISTRATION extends javax.swing.JFrame {
                 confirmpassActionPerformed(evt);
             }
         });
-        jPanel2.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 220, 30));
-
-        sp2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        sp2.setForeground(new java.awt.Color(255, 255, 240));
-        sp2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sp2.setText("Show Password");
-        jPanel2.add(sp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 120, 30));
-
-        sps2.setBackground(new java.awt.Color(24, 24, 24));
-        sps2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sps2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sps2MouseClicked(evt);
-            }
-        });
-        sps2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sps2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(sps2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 20, 30));
+        jPanel2.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 220, 30));
 
         sign_up.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         sign_up.setText("Sign Up");
@@ -304,7 +279,7 @@ public class REGISTRATION extends javax.swing.JFrame {
                 sign_upActionPerformed(evt);
             }
         });
-        jPanel2.add(sign_up, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
+        jPanel2.add(sign_up, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
 
         acc.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         acc.setForeground(new java.awt.Color(255, 255, 240));
@@ -340,37 +315,15 @@ public class REGISTRATION extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
     }//GEN-LAST:event_roleActionPerformed
 
-    private void sps1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sps1MouseClicked
-        if (sps1.isSelected()) {
-            createpass.setEchoChar((char) 0);  // Show password
-        } else {
-            createpass.setEchoChar('*');  // Hide password
-        }      }//GEN-LAST:event_sps1MouseClicked
-
-    private void sps1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sps1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sps1ActionPerformed
-
     private void sign_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sign_upActionPerformed
-
-    private void sps2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sps2MouseClicked
-        if (sps2.isSelected()) {
-            confirmpass.setEchoChar((char) 0);  // Show password
-        } else {
-            confirmpass.setEchoChar('*');  // Hide password
-        }   
-    }//GEN-LAST:event_sps2MouseClicked
-
-    private void sps2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sps2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sps2ActionPerformed
 
     private void sign_upMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upMouseClicked
         String name = nfield.getText().trim();
@@ -380,6 +333,12 @@ public class REGISTRATION extends javax.swing.JFrame {
         String pass1 = new String(createpass.getPassword()).trim();
         String pass2 = new String(confirmpass.getPassword()).trim();
         String roleSelected = (role.getSelectedItem() != null) ? role.getSelectedItem().toString() : "";
+        
+        // **Now that all fields are filled, reset borders**
+        JComponent[] fields = {nfield, efield, pfield, ufield, createpass, confirmpass};
+        for (JComponent field : fields) {
+            field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
 
         // **Check if all fields are empty**
         if (name.isEmpty() || email.isEmpty() || contact.isEmpty() || username.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
@@ -391,37 +350,37 @@ public class REGISTRATION extends javax.swing.JFrame {
         boolean hasError = false;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (name.isEmpty()) {
+        if (name.isEmpty() || name.equals("Enter full name...")) {
             errorMsg.append("Full Name cannot be empty!\n");
             nfield.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
         }
 
-        if (email.isEmpty()) {
+        if (email.isEmpty() || email.equals("Enter email...")) {
             errorMsg.append("Email cannot be empty!\n");
             efield.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
         }
 
-        if (contact.isEmpty()) {
+        if (contact.isEmpty() || contact.equals("Enter phone number...")) {
             errorMsg.append("Contact Number cannot be empty!\n");
             pfield.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
         }
 
-        if (username.isEmpty()) {
+        if (username.isEmpty() || username.equals("Enter username...")) {
             errorMsg.append("Username cannot be empty!\n");
             ufield.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
         }
 
-        if (pass1.isEmpty()) {
+        if (pass1.isEmpty() || pass1.equals("Create password...")) {
             errorMsg.append("Password cannot be empty!\n");
             createpass.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
         }
 
-        if (pass2.isEmpty()) {
+        if (pass2.isEmpty() || pass2.equals("Confirm password...")) {
             errorMsg.append("Confirm Password cannot be empty!\n");
             confirmpass.setBorder(new LineBorder(Color.RED, 2));
             hasError = true;
@@ -438,110 +397,103 @@ public class REGISTRATION extends javax.swing.JFrame {
             return;
         }
 
-        // **Now that all fields are filled, reset borders**
-        JComponent[] fields = {nfield, efield, pfield, ufield, createpass, confirmpass};
-        for (JComponent field : fields) {
-            field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        // **VALIDATE ONLY IF FIELDS ARE FILLED**
+
+        // Validate email format (only if it's not empty)
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            JOptionPane.showMessageDialog(null, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
+            efield.setBorder(new LineBorder(Color.RED, 2));
+            return;
         }
 
-
-    // **VALIDATE ONLY IF FIELDS ARE FILLED**
-
-    // Validate email format (only if it's not empty)
-    if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
-        JOptionPane.showMessageDialog(null, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
-        efield.setBorder(new LineBorder(Color.RED, 2));
-        return;
-    }
-
-    // Validate contact number format (only if it's not empty)
-    if (!contact.matches("\\d{10,15}")) {
-        JOptionPane.showMessageDialog(null, "Contact number must be between 10 to 15 digits!", "Error", JOptionPane.ERROR_MESSAGE);
-        pfield.setBorder(new LineBorder(Color.RED, 2));
-        return;
-    }
-
-    // Validate password match
-    if (!pass1.equals(pass2)) {
-        JOptionPane.showMessageDialog(null, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
-        createpass.setBorder(new LineBorder(Color.RED, 2));
-        confirmpass.setBorder(new LineBorder(Color.RED, 2));
-        return;
-    }
-
-    // Validate password strength
-    if (!pass1.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}$")) {
-        JOptionPane.showMessageDialog(null, "Password must be at least 8 characters and include:\n"
-                + "- One uppercase letter\n"
-                + "- One lowercase letter\n"
-                + "- One number\n"
-                + "- One special character (@#$%^&*()_+-=[]{};':\"\\|,.<>/?)",
-                "Error", JOptionPane.ERROR_MESSAGE);
-        createpass.setBorder(new LineBorder(Color.RED, 2));
-        return;
-    }
-
-    // Database Connection
-    connectDB con = new connectDB();
-    Connection cn = con.getConnection(); 
-
-    if (cn == null) {
-        JOptionPane.showMessageDialog(null, "Database connection failed!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        // **Check if email already exists**
-        String checkEmailSql = "SELECT COUNT(*) FROM user WHERE email = ?";
-        try (PreparedStatement emailPst = cn.prepareStatement(checkEmailSql)) {
-            emailPst.setString(1, email);
-            ResultSet rsEmail = emailPst.executeQuery();
-            if (rsEmail.next() && rsEmail.getInt(1) > 0) {
-                JOptionPane.showMessageDialog(null, "Email already exists!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        // Validate contact number format (only if it's not empty)
+        if (!contact.matches("\\d{10,15}")) {
+            JOptionPane.showMessageDialog(null, "Contact number must be between 10 to 15 digits!", "Error", JOptionPane.ERROR_MESSAGE);
+            pfield.setBorder(new LineBorder(Color.RED, 2));
+            return;
         }
 
-        // **Check if username already exists**
-        String checkUsernameSql = "SELECT COUNT(*) FROM user WHERE username = ?";
-        try (PreparedStatement usernamePst = cn.prepareStatement(checkUsernameSql)) {
-            usernamePst.setString(1, username);
-            ResultSet rsUsername = usernamePst.executeQuery();
-            if (rsUsername.next() && rsUsername.getInt(1) > 0) {
-                JOptionPane.showMessageDialog(null, "Username already exists!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        // Validate password match
+        if (!pass1.equals(pass2)) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
+            createpass.setBorder(new LineBorder(Color.RED, 2));
+            confirmpass.setBorder(new LineBorder(Color.RED, 2));
+            return;
         }
 
-        // **Insert Data Securely**
-        String insertSql = "INSERT INTO user (u_fname, email, contact, username, password, role) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement pst = cn.prepareStatement(insertSql)) {
-            pst.setString(1, name);
-            pst.setString(2, email);
-            pst.setString(3, contact);
-            pst.setString(4, username);
-            pst.setString(5, pass1); // TODO: Hash password before saving
-            pst.setString(6, roleSelected);
-
-            int result = pst.executeUpdate();
-            if (result == 1) {
-                JOptionPane.showMessageDialog(null, "Registered Successfully!");
-                new LOGIN().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        // Validate password strength
+        if (!pass1.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}$")) {
+            JOptionPane.showMessageDialog(null, "Password must be at least 8 characters and include:\n"
+                    + "- One uppercase letter\n"
+                    + "- One lowercase letter\n"
+                    + "- One number\n"
+                    + "- One special character (@#$%^&*()_+-=[]{};':\"\\|,.<>/?)",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            createpass.setBorder(new LineBorder(Color.RED, 2));
+            return;
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    } finally {
+
+        // Database Connection
+        connectDB con = new connectDB();
+        Connection cn = con.getConnection(); 
+
+        if (cn == null) {
+            JOptionPane.showMessageDialog(null, "Database connection failed!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
-            if (cn != null) cn.close(); // Ensure connection is closed
-        } catch (SQLException ex) {
-            Logger.getLogger(REGISTRATION.class.getName()).log(Level.SEVERE, null, ex);
+            // **Check if email already exists**
+            String checkEmailSql = "SELECT COUNT(*) FROM user WHERE email = ?";
+            try (PreparedStatement emailPst = cn.prepareStatement(checkEmailSql)) {
+                emailPst.setString(1, email);
+                ResultSet rsEmail = emailPst.executeQuery();
+                if (rsEmail.next() && rsEmail.getInt(1) > 0) {
+                    JOptionPane.showMessageDialog(null, "Email already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            // **Check if username already exists**
+            String checkUsernameSql = "SELECT COUNT(*) FROM user WHERE username = ?";
+            try (PreparedStatement usernamePst = cn.prepareStatement(checkUsernameSql)) {
+                usernamePst.setString(1, username);
+                ResultSet rsUsername = usernamePst.executeQuery();
+                if (rsUsername.next() && rsUsername.getInt(1) > 0) {
+                    JOptionPane.showMessageDialog(null, "Username already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            // **Insert Data Securely**
+            String insertSql = "INSERT INTO user (u_fname, email, contact, username, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pst = cn.prepareStatement(insertSql)) {
+                pst.setString(1, name);
+                pst.setString(2, email);
+                pst.setString(3, contact);
+                pst.setString(4, username);
+                pst.setString(5, pass1); // TODO: Hash password before saving
+                pst.setString(6, roleSelected);
+
+                int result = pst.executeUpdate();
+                if (result == 1) {
+                    JOptionPane.showMessageDialog(null, "Registered Successfully!");
+                    new LOGIN().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (cn != null) cn.close(); // Ensure connection is closed
+            } catch (SQLException ex) {
+                Logger.getLogger(REGISTRATION.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-      
+
    
 
 
@@ -673,6 +625,42 @@ public class REGISTRATION extends javax.swing.JFrame {
     private void confirmpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmpassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmpassActionPerformed
+    
+    boolean pass_visible = false;
+    private void showPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMouseClicked
+        pass_visible = !pass_visible;
+        String currentText = createpass.getText().trim();
+
+        if (pass_visible) {
+            if (!currentText.equals("Create password...")) {
+                createpass.setEchoChar((char) 0);
+            }
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/view.png")));
+        } else {
+            if (!currentText.equals("Create password...")) {
+                createpass.setEchoChar('•');
+            }
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
+        }
+    }//GEN-LAST:event_showPassMouseClicked
+    
+    boolean pass_visible1 = false;
+    private void showPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPass1MouseClicked
+        pass_visible1 = !pass_visible1;
+        String currentText = confirmpass.getText().trim();
+
+        if (pass_visible1) {
+            if (!currentText.equals("Confirm password...")) {
+                confirmpass.setEchoChar((char) 0);
+            }
+            showPass1.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/view.png")));
+        } else {
+            if (!currentText.equals("Confirm password...")) {
+                confirmpass.setEchoChar('•');
+            }
+            showPass1.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
+        }
+    }//GEN-LAST:event_showPass1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -729,12 +717,10 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel pass2_icon;
     private javax.swing.JTextField pfield;
     private javax.swing.JComboBox<String> role;
+    private javax.swing.JLabel showPass;
+    private javax.swing.JLabel showPass1;
     private javax.swing.JLabel sign_in;
     private javax.swing.JButton sign_up;
-    private javax.swing.JLabel sp1;
-    private javax.swing.JLabel sp2;
-    private javax.swing.JCheckBox sps1;
-    private javax.swing.JCheckBox sps2;
     private javax.swing.JLabel u_icon;
     private javax.swing.JTextField ufield;
     // End of variables declaration//GEN-END:variables
