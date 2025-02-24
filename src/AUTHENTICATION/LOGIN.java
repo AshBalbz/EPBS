@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -52,7 +53,7 @@ public class LOGIN extends javax.swing.JFrame {
         System_Name = new javax.swing.JLabel();
         unf = new javax.swing.JTextField();
         u_icon = new javax.swing.JLabel();
-        sps = new javax.swing.JCheckBox();
+        show_pass = new javax.swing.JLabel();
         psf = new javax.swing.JPasswordField();
         p_icon = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
@@ -109,18 +110,14 @@ public class LOGIN extends javax.swing.JFrame {
         u_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/user.png"))); // NOI18N
         LOGIN.add(u_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 30, 30));
 
-        sps.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sps.addMouseListener(new java.awt.event.MouseAdapter() {
+        show_pass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hidden.png"))); // NOI18N
+        show_pass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                spsMouseClicked(evt);
+                show_passMouseClicked(evt);
             }
         });
-        sps.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                spsActionPerformed(evt);
-            }
-        });
-        LOGIN.add(sps, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 30, 30));
+        LOGIN.add(show_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 30, 30));
 
         psf.setBackground(new java.awt.Color(255, 255, 250));
         psf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
@@ -278,17 +275,6 @@ public class LOGIN extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void spsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spsActionPerformed
-
-    private void spsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spsMouseClicked
-        if (sps.isSelected()) {
-            psf.setEchoChar((char) 0);  // Show password
-        } else {
-            psf.setEchoChar('*');  // Hide password
-        }    }//GEN-LAST:event_spsMouseClicked
 
     private void new_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_userMouseClicked
        
@@ -456,6 +442,28 @@ public class LOGIN extends javax.swing.JFrame {
         Click.setForeground(new Color(255,255,0));
     }//GEN-LAST:event_ClickMouseExited
 
+    
+    private boolean pass_visible = false;
+    private void show_passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_passMouseClicked
+        
+        pass_visible = !pass_visible;
+        String currentText = psf.getText().trim();
+
+        if (pass_visible) {
+            if (!currentText.equals("Enter password...")) {
+                psf.setEchoChar((char) 0);
+            }
+            show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/view.png")));
+        } else {
+            if (!currentText.equals("Enter password...")) {
+                psf.setEchoChar('•');
+            }
+            show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
+        }
+     
+
+    }//GEN-LAST:event_show_passMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -512,7 +520,7 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JPasswordField psf;
     private javax.swing.JLabel r_icon;
     private javax.swing.JComboBox<String> role;
-    private javax.swing.JCheckBox sps;
+    private javax.swing.JLabel show_pass;
     private javax.swing.JLabel u_icon;
     private javax.swing.JTextField unf;
     // End of variables declaration//GEN-END:variables
