@@ -129,6 +129,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         nfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         nfield.setForeground(new java.awt.Color(153, 153, 153));
         nfield.setText(" Enter full name...");
+        nfield.setToolTipText("");
         nfield.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -466,7 +467,7 @@ public class REGISTRATION extends javax.swing.JFrame {
             }
 
             // **Insert Data Securely**
-            String insertSql = "INSERT INTO user (u_fname, email, contact, username, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+            String insertSql = "INSERT INTO user (u_fname, email, contact, username, password, role, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pst = cn.prepareStatement(insertSql)) {
                 pst.setString(1, name);
                 pst.setString(2, email);
@@ -474,6 +475,7 @@ public class REGISTRATION extends javax.swing.JFrame {
                 pst.setString(4, username);
                 pst.setString(5, pass1); // TODO: Hash password before saving
                 pst.setString(6, roleSelected);
+                pst.setString(7, "Inactive");
 
                 int result = pst.executeUpdate();
                 if (result == 1) {

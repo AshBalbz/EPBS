@@ -307,7 +307,7 @@ public class LOGIN extends javax.swing.JFrame {
         connectDB con = new connectDB();
         Connection cn = con.getConnection(); // Get database connection
 
-        String sql = "SELECT password, role FROM user WHERE username = ?";
+        String sql = "SELECT password, role, status FROM user WHERE username = ?";
 
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -317,14 +317,18 @@ public class LOGIN extends javax.swing.JFrame {
             if (rs.next()) { // If user exists
                 String storedPassword = rs.getString("password");
                 String roleFromDB = rs.getString("role");
+                String stat = rs.getString("status");
 
                 // **Check if password matches**
                 if (storedPassword.equals(password)) {  
 
-                    // **Check if role matches the selected role**
-                    if (roleFromDB.equalsIgnoreCase(acc)) {  
+                    if("Inactive".equalsIgnoreCase(stat)){
+                        JOptionPane.showMessageDialog(this, "Your account is not active yet. Contact admin", "Login Error", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else if (roleFromDB.equalsIgnoreCase(acc)) {  
                         JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
+                     
                         // **Role-based redirection**
                         if ("Admin".equalsIgnoreCase(roleFromDB)) {
                             ADMIN_PANEL admin = new ADMIN_PANEL();
@@ -347,7 +351,7 @@ public class LOGIN extends javax.swing.JFrame {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Username not found.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Inactive Account.", "Login Error", JOptionPane.ERROR_MESSAGE);
             }
 
             // Close resources
@@ -450,12 +454,12 @@ public class LOGIN extends javax.swing.JFrame {
         String currentText = psf.getText().trim();
 
         if (pass_visible) {
-            if (!currentText.equals("Enter password...")) {
+            if (!currentText.equals(" Enter password...")) {
                 psf.setEchoChar((char) 0);
             }
             show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/view.png")));
         } else {
-            if (!currentText.equals("Enter password...")) {
+            if (!currentText.equals(" Enter password...")) {
                 psf.setEchoChar('•');
             }
             show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
