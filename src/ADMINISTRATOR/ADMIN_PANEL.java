@@ -5,6 +5,8 @@
  */
 package ADMINISTRATOR;
 
+import AUTHENTICATION.LOGIN;
+
 /**
  *
  * @author mikel
@@ -26,30 +28,48 @@ public class ADMIN_PANEL extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        User = new javax.swing.JLabel();
+        Dashboard = new javax.swing.JLabel();
+        LOGOUT = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/multiple-users-silhouette.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        User.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/multiple-users-silhouette.png"))); // NOI18N
+        User.setText("jLabel3");
+        User.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                UserMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 40, -1));
+        jPanel1.add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 40, -1));
 
-        jLabel2.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel2.setText("Admin Dashboard");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        Dashboard.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
+        Dashboard.setForeground(new java.awt.Color(255, 255, 204));
+        Dashboard.setText("Admin Dashboard");
+        jPanel1.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/G3.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        LOGOUT.setBackground(new java.awt.Color(255, 255, 255));
+        LOGOUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGOUTMouseClicked(evt);
+            }
+        });
+        LOGOUT.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("LOGOUT");
+        LOGOUT.add(jLabel1);
+        jLabel1.setBounds(0, 10, 90, 19);
+
+        jPanel1.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, 90, 40));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/G3.png"))); // NOI18N
+        jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,11 +85,17 @@ public class ADMIN_PANEL extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void UserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserMouseClicked
         USERS_FORM user = new USERS_FORM();
         user.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_UserMouseClicked
+
+    private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LOGOUTMouseClicked
+        LOGIN log = new LOGIN();
+        log.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LOGOUTMouseClicked
 
     /**
      * @param args the command line arguments
@@ -108,9 +134,11 @@ public class ADMIN_PANEL extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel Dashboard;
+    private javax.swing.JPanel LOGOUT;
+    private javax.swing.JLabel User;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

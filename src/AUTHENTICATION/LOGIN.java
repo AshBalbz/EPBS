@@ -301,7 +301,6 @@ public class LOGIN extends javax.swing.JFrame {
             return; // Exit early
         }
 
-// Proceed if validation passes
 
 
         connectDB con = new connectDB();
@@ -351,7 +350,7 @@ public class LOGIN extends javax.swing.JFrame {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Inactive Account.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Username and password is incorrect. Try again!", "Login Error", JOptionPane.ERROR_MESSAGE);
             }
 
             // Close resources

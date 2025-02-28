@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AUTHENTICATION;
 
 import java.awt.Color;
@@ -19,15 +15,10 @@ import javax.swing.JComponent;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
-/**
- *
- * @author mikel
- */
+
 public class REGISTRATION extends javax.swing.JFrame {
 
-    /**
-     * Creates new form REGISTRATION
-     */
+    
     public REGISTRATION() {
         initComponents();
     }
@@ -139,6 +130,20 @@ public class REGISTRATION extends javax.swing.JFrame {
                 nfieldFocusLost(evt);
             }
         });
+        nfield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nfieldMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nfieldMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nfieldMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                nfieldMouseReleased(evt);
+            }
+        });
         nfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nfieldActionPerformed(evt);
@@ -157,6 +162,11 @@ public class REGISTRATION extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 efieldFocusLost(evt);
+            }
+        });
+        efield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                efieldMousePressed(evt);
             }
         });
         efield.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +189,11 @@ public class REGISTRATION extends javax.swing.JFrame {
                 pfieldFocusLost(evt);
             }
         });
+        pfield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pfieldMousePressed(evt);
+            }
+        });
         pfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pfieldActionPerformed(evt);
@@ -197,6 +212,11 @@ public class REGISTRATION extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ufieldFocusLost(evt);
+            }
+        });
+        ufield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ufieldMousePressed(evt);
             }
         });
         ufield.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +255,11 @@ public class REGISTRATION extends javax.swing.JFrame {
                 createpassFocusLost(evt);
             }
         });
+        createpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                createpassMousePressed(evt);
+            }
+        });
         createpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createpassActionPerformed(evt);
@@ -253,6 +278,11 @@ public class REGISTRATION extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 confirmpassFocusLost(evt);
+            }
+        });
+        confirmpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                confirmpassMousePressed(evt);
             }
         });
         confirmpass.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +326,12 @@ public class REGISTRATION extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sign_inMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sign_inMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                sign_inMouseExited(evt);
+            }
         });
         jPanel2.add(sign_in, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 190, 30));
 
@@ -323,7 +359,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     }//GEN-LAST:event_roleActionPerformed
 
     private void sign_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_sign_upActionPerformed
 
     private void sign_upMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upMouseClicked
@@ -335,19 +371,16 @@ public class REGISTRATION extends javax.swing.JFrame {
         String pass2 = new String(confirmpass.getPassword()).trim();
         String roleSelected = (role.getSelectedItem() != null) ? role.getSelectedItem().toString() : "";
         
-        // **Now that all fields are filled, reset borders**
         JComponent[] fields = {nfield, efield, pfield, ufield, createpass, confirmpass};
         for (JComponent field : fields) {
             field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
 
-        // **Check if all fields are empty**
         if (name.isEmpty() || email.isEmpty() || contact.isEmpty() || username.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // **Check for missing individual fields**
         boolean hasError = false;
         StringBuilder errorMsg = new StringBuilder();
 
@@ -387,29 +420,25 @@ public class REGISTRATION extends javax.swing.JFrame {
             hasError = true;
         }
 
-        if (roleSelected.isEmpty()) { // If role selection is required
+        if (roleSelected.isEmpty()) { 
             errorMsg.append("Please select a role!\n");
             hasError = true;
         }
 
-        // **Show errors before proceeding**
         if (hasError) {
             JOptionPane.showMessageDialog(null, errorMsg.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // **VALIDATE ONLY IF FIELDS ARE FILLED**
 
-        // Validate email format (only if it's not empty)
         if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
             JOptionPane.showMessageDialog(null, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
             efield.setBorder(new LineBorder(Color.RED, 2));
             return;
         }
 
-        // Validate contact number format (only if it's not empty)
         if (!contact.matches("\\d{10,15}")) {
-            JOptionPane.showMessageDialog(null, "Contact number must be between 10 to 15 digits!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Contact number must be between 10 to 15 digits. It should be number only!", "Error", JOptionPane.ERROR_MESSAGE);
             pfield.setBorder(new LineBorder(Color.RED, 2));
             return;
         }
@@ -663,6 +692,51 @@ public class REGISTRATION extends javax.swing.JFrame {
             showPass1.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
         }
     }//GEN-LAST:event_showPass1MouseClicked
+
+    private void sign_inMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_inMouseEntered
+            sign_in.setForeground(new Color(231,231,198));
+
+    }//GEN-LAST:event_sign_inMouseEntered
+
+    private void sign_inMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_inMouseExited
+            sign_in.setForeground(new Color(255,255,0));
+    }//GEN-LAST:event_sign_inMouseExited
+
+    private void nfieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nfieldMouseEntered
+           
+    }//GEN-LAST:event_nfieldMouseEntered
+
+    private void nfieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nfieldMousePressed
+        nfield.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_nfieldMousePressed
+
+    private void nfieldMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nfieldMouseReleased
+        
+    }//GEN-LAST:event_nfieldMouseReleased
+
+    private void nfieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nfieldMouseExited
+        
+    }//GEN-LAST:event_nfieldMouseExited
+
+    private void efieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_efieldMousePressed
+        efield.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_efieldMousePressed
+
+    private void pfieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pfieldMousePressed
+        pfield.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_pfieldMousePressed
+
+    private void ufieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufieldMousePressed
+        ufield.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_ufieldMousePressed
+
+    private void createpassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createpassMousePressed
+        createpass.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_createpassMousePressed
+
+    private void confirmpassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmpassMousePressed
+        confirmpass.setBorder(new LineBorder(Color.BLACK, 1));
+    }//GEN-LAST:event_confirmpassMousePressed
 
     /**
      * @param args the command line arguments
