@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -30,38 +31,75 @@ public class LOGIN extends javax.swing.JFrame {
 
     public LOGIN() {
         initComponents();
+        
+        unf.setBackground(new java.awt.Color(0, 0, 0, 1));
+        psf.setBackground(new java.awt.Color(0, 0, 0, 1));
     }
     
-    private void resetBorder(JTextField field) {
-        field.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(new Color(19,122,127), 1),
-            new EmptyBorder(0, 5, 0, 0) 
-        ));
-    }
+   
     
-    public void setInvalidBorder(JTextField field) {
-        field.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(Color.RED, 1), 
-            new EmptyBorder(0, 5, 0, 0) 
-        ));
-    }
+        public void setTitledBorder(JComponent component, String title, Color color) {
+              TitledBorder titledBorder = BorderFactory.createTitledBorder(
+                  BorderFactory.createLineBorder(color, 1),  // Use given color
+                  title,  
+                  TitledBorder.LEFT,  
+                  TitledBorder.TOP,  
+                  new Font("Franklin Gothic Medium", Font.PLAIN, 16),  
+                  color  // Title text color
+              );
+
+              component.setBorder(BorderFactory.createCompoundBorder(titledBorder, new EmptyBorder(0, 5, 0, 0)));
+
+              // Make text field background fully transparent
+              if (component instanceof JTextField) {
+                  JTextField textField = (JTextField) component;
+                  textField.setOpaque(false); // Remove background fill
+                  textField.setBackground(new Color(0, 0, 0, 0)); // Ensure full transparency
+                  textField.setCaretColor(Color.WHITE); // Ensure cursor is visible
+                  textField.setForeground(Color.decode("#F5E196"));
+          }
+            }
+
+          public void setInvalidTitledBorder(JComponent component, String title) {
+              TitledBorder titledBorder = BorderFactory.createTitledBorder(
+                  BorderFactory.createLineBorder(new Color(255, 105, 97)),  // Red border for invalid input
+                  title,
+                  TitledBorder.LEFT,
+                  TitledBorder.TOP,
+                  new Font("Franklin Gothic Medium", Font.PLAIN, 16),
+                  new Color(255, 105, 97) // Red text color for the title
+              );
+
+              component.setBorder(BorderFactory.createCompoundBorder(titledBorder, new EmptyBorder(0, 5, 0, 0)));
+
+              // Make text field background fully transparent
+              if (component instanceof JTextField) {
+                  JTextField textField = (JTextField) component;
+                  textField.setOpaque(false); 
+                  textField.setBackground(new Color(0, 0, 0, 0)); 
+                  textField.setCaretColor(Color.WHITE); // Make sure cursor is visible
+                  textField.setForeground(new Color(255, 105, 97));
+              }
+          }
     
     
-    
-    private void displayError(JLabel field, String message) {
-        field.setText(message);
-        field.setForeground(java.awt.Color.RED);
+            private void displayError(JLabel field, String message) {
+                field.setText(message);
+                field.setForeground(new Color(255, 105, 97));
     }
   
 
        private Color hoverColor = new Color(180, 180, 180); // Grayish color on hover
        private Color defaultColor = new Color(255, 255, 255); // Default white color
      
+       
+       
     static String status;
     static String type;
     
     public static boolean loginAcc(String username, String password){
         connectDB con = new connectDB();
+        
   
         try {
             String query = "SELECT * FROM user WHERE username = '" + username + "'";
@@ -111,18 +149,16 @@ public class LOGIN extends javax.swing.JFrame {
         System_Name = new javax.swing.JLabel();
         username_error = new javax.swing.JLabel();
         u_icon = new javax.swing.JLabel();
-        show_pass = new javax.swing.JLabel();
-        unf = new javax.swing.JTextField();
         password_error = new javax.swing.JLabel();
-        psf = new javax.swing.JPasswordField();
         p_icon = new javax.swing.JLabel();
         new_user = new javax.swing.JLabel();
         Click = new javax.swing.JLabel();
         error = new javax.swing.JLabel();
         Login = new javax.swing.JPanel();
         login = new javax.swing.JLabel();
-        Exit = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
+        unf = new javax.swing.JTextField();
+        showPass = new javax.swing.JLabel();
+        psf = new javax.swing.JPasswordField();
         BG1 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -131,80 +167,39 @@ public class LOGIN extends javax.swing.JFrame {
 
         LOGIN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/logo1.png"))); // NOI18N
-        LOGIN.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+        LOGIN.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 840, -1));
 
         Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 25)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 153));
         Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name.setText("Event Photography Booking ");
-        LOGIN.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 800, 40));
+        LOGIN.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 840, 40));
 
         System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 25)); // NOI18N
         System_Name.setForeground(new java.awt.Color(255, 255, 153));
         System_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         System_Name.setText("System");
-        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 800, 40));
+        LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 840, 40));
 
         username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         username_error.setForeground(new java.awt.Color(255, 51, 51));
         username_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LOGIN.add(username_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 120, 20));
+        LOGIN.add(username_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 280, 20));
 
         u_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         u_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/user.png"))); // NOI18N
-        LOGIN.add(u_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 40, 40));
-
-        show_pass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hidden.png"))); // NOI18N
-        show_pass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                show_passMouseClicked(evt);
-            }
-        });
-        LOGIN.add(show_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 40, 40));
-
-        unf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        unf.setForeground(new java.awt.Color(153, 153, 153));
-        unf.setText("Enter username...");
-        unf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                unfFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                unfFocusLost(evt);
-            }
-        });
-        unf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unfActionPerformed(evt);
-            }
-        });
-        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 270, 40));
+        LOGIN.add(u_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 40, 50));
 
         password_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         password_error.setForeground(new java.awt.Color(255, 51, 51));
         password_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LOGIN.add(password_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 130, 20));
-
-        psf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        psf.setForeground(new java.awt.Color(153, 153, 153));
-        psf.setText("Enter password...");
-        psf.setToolTipText("");
-        psf.setEchoChar('\u0000');
-        psf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                psfFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                psfFocusLost(evt);
-            }
-        });
-        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 270, 40));
+        LOGIN.add(password_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 280, 20));
 
         p_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/padlock.png"))); // NOI18N
-        LOGIN.add(p_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 40, 40));
+        LOGIN.add(p_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 40, 50));
 
         new_user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         new_user.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,7 +209,7 @@ public class LOGIN extends javax.swing.JFrame {
                 new_userMouseClicked(evt);
             }
         });
-        LOGIN.add(new_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 620, 80, 30));
+        LOGIN.add(new_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, 80, 30));
 
         Click.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         Click.setForeground(new java.awt.Color(255, 255, 0));
@@ -230,11 +225,11 @@ public class LOGIN extends javax.swing.JFrame {
                 ClickMouseExited(evt);
             }
         });
-        LOGIN.add(Click, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 620, 150, 30));
+        LOGIN.add(Click, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, 150, 30));
 
         error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         error.setForeground(new java.awt.Color(255, 51, 51));
-        LOGIN.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 446, 270, 20));
+        LOGIN.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 500, 270, 20));
 
         Login.setLayout(new java.awt.BorderLayout());
 
@@ -257,30 +252,60 @@ public class LOGIN extends javax.swing.JFrame {
         });
         Login.add(login, java.awt.BorderLayout.CENTER);
 
-        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 90, 30));
+        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 90, 30));
 
-        Exit.setLayout(new java.awt.BorderLayout());
-
-        exit.setBackground(new java.awt.Color(240, 240, 190));
-        exit.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit.setText("Exit");
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
+        unf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        unf.setForeground(new java.awt.Color(153, 153, 153));
+        unf.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Username", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        unf.setCaretColor(new java.awt.Color(240, 240, 240));
+        unf.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        unf.setOpaque(false);
+        unf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                unfFocusGained(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitMouseExited(evt);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                unfFocusLost(evt);
             }
         });
-        Exit.add(exit, java.awt.BorderLayout.CENTER);
+        unf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unfActionPerformed(evt);
+            }
+        });
+        LOGIN.add(unf, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 280, 60));
 
-        LOGIN.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 90, 30));
+        showPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hide_password.png"))); // NOI18N
+        showPass.setToolTipText("");
+        showPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPassMouseClicked(evt);
+            }
+        });
+        LOGIN.add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 40, 50));
 
-        BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/1.png"))); // NOI18N
+        psf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        psf.setForeground(new java.awt.Color(153, 153, 153));
+        psf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        psf.setEchoChar('\u0000');
+        psf.setOpaque(false);
+        psf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                psfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                psfFocusLost(evt);
+            }
+        });
+        psf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psfActionPerformed(evt);
+            }
+        });
+        LOGIN.add(psf, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 280, 60));
+
+        BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
         BG1.setAutoscrolls(true);
         LOGIN.add(BG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -306,54 +331,37 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
       
-        displayError(error, "");
-        boolean valid = true;
+    boolean valid = true;
 
         String username = unf.getText().trim();
         String password = new String(psf.getPassword()).trim();
 
-        // Default border (White)
-        TitledBorder defaultBorder = BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(Color.WHITE, 1),
-            ""
-          
-        );
-
-        // Error border (Red with "Field Required" title)
-        TitledBorder errorBorder = BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(Color.RED, 2),
-            "Field Required",
-            TitledBorder.RIGHT, TitledBorder.TOP,
-            new Font("Franklin Gothic Medium", Font.PLAIN, 16),
-            Color.RED
-        );
-
-        if (username.isEmpty() || username.equals("Enter username...")) {
-            unf.setBorder(errorBorder);
-            displayError(username_error, "Field Required!");
+        if (username.isEmpty()) {
+            setInvalidTitledBorder(unf, "Username");
+            displayError(username_error, "Field cannot be empty!");
             valid = false;
-        } else {
-            unf.setBorder(defaultBorder);  // Reset to default
         }
 
-        if (password.isEmpty() || password.equals("Enter password...")) {
-            psf.setBorder(errorBorder);
-            displayError(password_error, "Field Required!");
+        if (password.isEmpty()) {
+            setInvalidTitledBorder(psf, "Password");
+            displayError(password_error, "Field cannot be empty!");
             valid = false;
-        } else {
-            psf.setBorder(defaultBorder);  // Reset to default
         }
 
-        if (!valid) return; // Stop execution if validation fails
-    
-    
-    connectDB con = new connectDB();
-    Connection cn = con.getConnection();
-            
-            
-     String hashedPassword = Util.hashPassword(password);
+        if (!valid) {
+            return;
+        }
+
+        connectDB con = new connectDB();
+        Connection cn = con.getConnection();
         
-                if (loginAcc(username, password)) {
+        if (!con.fieldExists("username", username)){
+            setInvalidTitledBorder(unf, "Username");
+            displayError(username_error, "Invalid Username!");
+            return;
+        } 
+
+       if (loginAcc(username, password)) {
             
             Session sess = Session.getInstance();
             String roleFromDB = sess.getRole();
@@ -366,18 +374,21 @@ public class LOGIN extends javax.swing.JFrame {
 
                
                 if ("Admin".equalsIgnoreCase(roleFromDB)) {
-                    Admin_Dashboard admin = new  Admin_Dashboard();
+                    Admin_Dashboard admin = new Admin_Dashboard();
                     admin.setVisible(true);
                 } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
-                    Staff_Dashboard staff = new Staff_Dashboard();
+                    Admin_Dashboard staff = new Admin_Dashboard();
                     staff.setVisible(true);
                 }
 
                 this.dispose();
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Error", JOptionPane.ERROR_MESSAGE);
-        } 
+        } else{
+            setInvalidTitledBorder(psf, "Password");
+            displayError(password_error, "Password Incorrect!");
+        }   
+
+
 
     }//GEN-LAST:event_loginMouseClicked
 
@@ -390,21 +401,6 @@ public class LOGIN extends javax.swing.JFrame {
          login.setOpaque(true); // Ensure background change is visible
          login.setBorder(BorderFactory.createLineBorder(Color. BLACK, 1));
          login.setBackground(hoverColor);    }//GEN-LAST:event_loginMouseExited
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
-
-    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-         exit.setBackground(defaultColor);
-         exit.setBorder(BorderFactory.createLineBorder(Color. YELLOW, 1));
-    }//GEN-LAST:event_exitMouseEntered
-
-    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-         exit.setOpaque(true); // Ensure background change is visible
-         exit.setBackground(hoverColor); 
-         exit.setBorder(BorderFactory.createLineBorder(Color. BLACK, 1));
-     }//GEN-LAST:event_exitMouseExited
 
     private void ClickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickMouseClicked
        REGISTRATION reg = new REGISTRATION();
@@ -422,69 +418,54 @@ public class LOGIN extends javax.swing.JFrame {
 
     
     private boolean pass_visible = false;
-    private void show_passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_passMouseClicked
-        
+    private void unfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusGained
+        unf.setForeground(Color.WHITE);
+        setTitledBorder(unf, "Username", Color.decode("#F5E196"));
+    }//GEN-LAST:event_unfFocusGained
+
+    private void unfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusLost
+        displayError(username_error, "");
+        setTitledBorder(unf, "Username", Color.WHITE);
+        unf.setForeground(Color.WHITE);
+    }//GEN-LAST:event_unfFocusLost
+
+    private void unfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unfActionPerformed
+
+    private void psfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusGained
+        psf.setEchoChar('•'); // Mask password
+        psf.setForeground(Color.WHITE);
+        setTitledBorder(psf, "Password", Color.decode("#F5E196"));
+    }//GEN-LAST:event_psfFocusGained
+
+    private void psfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusLost
+
+        setTitledBorder(psf, "Password", Color.WHITE);
+        psf.setForeground(Color.WHITE);
+        displayError(password_error, "");
+    }//GEN-LAST:event_psfFocusLost
+
+    private void psfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_psfActionPerformed
+
+    private void showPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMouseClicked
         pass_visible = !pass_visible;
         String currentText = psf.getText().trim();
 
         if (pass_visible) {
-            if (!currentText.equals(" Enter password...")) {
+            if (!currentText.equals("")) {
                 psf.setEchoChar((char) 0);
             }
-            show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/view.png")));
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/show_password.png")));
         } else {
-            if (!currentText.equals(" Enter password...")) {
+            if (!currentText.equals("")) {
                 psf.setEchoChar('•');
             }
-            show_pass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hidden.png")));
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hide_password.png")));
         }
-     
-
-    }//GEN-LAST:event_show_passMouseClicked
-
-    private void unfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusGained
-        if(unf.getText().equals("Enter username...")){
-            unf.setText("");
-            unf.setForeground(Color.BLACK);
-            unf.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 1));
-
-        }
-    }//GEN-LAST:event_unfFocusGained
-
-    private void unfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unfFocusLost
-        if(unf.getText().isEmpty()){
-            unf.setText("Enter username...");
-            unf.setForeground(Color.GRAY);
-            unf.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        }
-        displayError(username_error, "");
-        resetBorder(unf);
-    }//GEN-LAST:event_unfFocusLost
-
-    private void psfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusGained
-       if (new String(psf.getPassword()).equals("Enter password...")) {
-            psf.setText("");
-            psf.setEchoChar('•'); // Mask password
-            psf.setForeground(Color.BLACK);           
-            psf.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 1));
-
-        }   
-    }//GEN-LAST:event_psfFocusGained
-
-    private void psfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psfFocusLost
-        if (new String(psf.getPassword()).isEmpty()) {
-            psf.setText("Enter password...");
-            psf.setEchoChar((char) 0); // Show text instead of masked chars
-            psf.setForeground(Color.GRAY);
-            psf.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        }
-        displayError(password_error, "");
-        resetBorder(psf);
-    }//GEN-LAST:event_psfFocusLost
-
-    private void unfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unfActionPerformed
-         // TODO add your handling code here:
-    }//GEN-LAST:event_unfActionPerformed
+    }//GEN-LAST:event_showPassMouseClicked
 
     /**
      * @param args the command line arguments
@@ -527,13 +508,11 @@ public class LOGIN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG1;
     private javax.swing.JLabel Click;
-    private javax.swing.JPanel Exit;
     private javax.swing.JPanel LOGIN;
     private javax.swing.JPanel Login;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel System_Name;
     private javax.swing.JLabel error;
-    private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel login;
@@ -541,9 +520,9 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JLabel p_icon;
     private javax.swing.JLabel password_error;
     private javax.swing.JPasswordField psf;
-    private javax.swing.JLabel show_pass;
+    private javax.swing.JLabel showPass;
     private javax.swing.JLabel u_icon;
-    private javax.swing.JTextField unf;
+    public javax.swing.JTextField unf;
     private javax.swing.JLabel username_error;
     // End of variables declaration//GEN-END:variables
 }
