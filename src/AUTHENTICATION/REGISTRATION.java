@@ -105,7 +105,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         u_icon = new javax.swing.JLabel();
         pass1_icon = new javax.swing.JLabel();
         pass2_icon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        r_icon = new javax.swing.JLabel();
         name_error = new javax.swing.JLabel();
         lname_error = new javax.swing.JLabel();
         email_error = new javax.swing.JLabel();
@@ -126,6 +126,8 @@ public class REGISTRATION extends javax.swing.JFrame {
         confirmpass = new javax.swing.JPasswordField();
         showPass = new javax.swing.JLabel();
         createpass = new javax.swing.JPasswordField();
+        mini = new javax.swing.JLabel();
+        close = new javax.swing.JLabel();
         BG2 = new javax.swing.JLabel();
 
         System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
@@ -142,7 +144,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         Registration.setForeground(new java.awt.Color(250, 249, 190));
         Registration.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Registration.setText("Registration");
-        jPanel2.add(Registration, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 8, 220, 40));
+        jPanel2.add(Registration, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 8, 230, 40));
 
         Balbz_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logo1.png"))); // NOI18N
         jPanel2.add(Balbz_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 100, 120));
@@ -175,9 +177,9 @@ public class REGISTRATION extends javax.swing.JFrame {
         pass2_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/padlock.png"))); // NOI18N
         jPanel2.add(pass2_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 30, 50));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/setting.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 30, 40));
+        r_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        r_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/role-u.png"))); // NOI18N
+        jPanel2.add(r_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 30, 50));
 
         name_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         name_error.setForeground(new java.awt.Color(255, 51, 51));
@@ -432,6 +434,24 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(createpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 270, 60));
 
+        mini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/minimize.png"))); // NOI18N
+        mini.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miniMouseClicked(evt);
+            }
+        });
+        jPanel2.add(mini, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 40, 40));
+
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/close.png"))); // NOI18N
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        jPanel2.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
+
         BG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
         jPanel2.add(BG2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
@@ -559,7 +579,7 @@ public class REGISTRATION extends javax.swing.JFrame {
                 int result = pstmt.executeUpdate();
                 
                 if (result > 0) {
-                    JOptionPane.showMessageDialog(null, "User added successfully!");
+                    JOptionPane.showMessageDialog(null, "Registered successfully!");
                         new LOGIN().setVisible(true);
                         this.dispose();
                   
@@ -761,6 +781,15 @@ public class REGISTRATION extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showPass1MouseClicked
 
+    private void miniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniMouseClicked
+
+    }//GEN-LAST:event_miniMouseClicked
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        System.exit(0);
+        return;
+    }//GEN-LAST:event_closeMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -800,6 +829,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel System_Name;
     private javax.swing.JLabel acc;
     private javax.swing.JLabel c_icon;
+    private javax.swing.JLabel close;
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JLabel confirmpass_error;
     private javax.swing.JLabel contact_error;
@@ -810,15 +840,16 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel email_error;
     private javax.swing.JLabel fn_icon;
     public javax.swing.JTextField fnfield;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel ln_icon;
     private javax.swing.JLabel lname_error;
     public javax.swing.JTextField lnfield;
+    private javax.swing.JLabel mini;
     private javax.swing.JLabel name_error;
     private javax.swing.JLabel pass1_icon;
     private javax.swing.JLabel pass2_icon;
     public javax.swing.JTextField pfield;
+    private javax.swing.JLabel r_icon;
     private javax.swing.JComboBox<String> role;
     private javax.swing.JLabel showPass;
     private javax.swing.JLabel showPass1;

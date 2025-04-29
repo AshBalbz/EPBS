@@ -1,14 +1,13 @@
 
 package DASHBOARDS;
 
-import ADMIN_MANAGEMENT.PROFILE;
-import ADMIN_MANAGEMENT.USERS;
+import MANAGEMENT.Logs;
+import MANAGEMENT.Packages;
+import MANAGEMENT.Photographers;
+import MANAGEMENT.Users;
+import MANAGEMENT.Setting;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 
 public class Admin_Dashboard extends javax.swing.JFrame {
@@ -36,7 +35,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         packages = new javax.swing.JPanel();
         package_text = new javax.swing.JLabel();
         pp_icon = new javax.swing.JLabel();
-        booking1 = new javax.swing.JPanel();
+        log = new javax.swing.JPanel();
         booking_text2 = new javax.swing.JLabel();
         b_icon2 = new javax.swing.JLabel();
         booking = new javax.swing.JPanel();
@@ -45,19 +44,21 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         acc = new javax.swing.JPanel();
         booking_text1 = new javax.swing.JLabel();
         b_icon1 = new javax.swing.JLabel();
-        logout = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
         mainDesktop = new javax.swing.JDesktopPane();
+        close = new javax.swing.JLabel();
+        mini = new javax.swing.JLabel();
         ads_dash = new javax.swing.JPanel();
-        a_icon = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
+        a_icon = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/lg.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 180, 120));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 180, 120));
 
         jPanel3.setOpaque(false);
         jPanel3.setLayout(null);
@@ -171,31 +172,31 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         jPanel3.add(packages);
         packages.setBounds(0, 220, 180, 40);
 
-        booking1.setOpaque(false);
-        booking1.addMouseListener(new java.awt.event.MouseAdapter() {
+        log.setOpaque(false);
+        log.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                booking1MouseClicked(evt);
+                logMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                booking1MouseEntered(evt);
+                logMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                booking1MouseExited(evt);
+                logMouseExited(evt);
             }
         });
-        booking1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        log.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         booking_text2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         booking_text2.setForeground(new java.awt.Color(240, 240, 240));
         booking_text2.setText("Logs");
-        booking1.add(booking_text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 80, 40));
+        log.add(booking_text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 80, 40));
 
         b_icon2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b_icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/log-file.png"))); // NOI18N
-        booking1.add(b_icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
+        log.add(b_icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
-        jPanel3.add(booking1);
-        booking1.setBounds(0, 320, 180, 40);
+        jPanel3.add(log);
+        log.setBounds(0, 320, 180, 40);
 
         booking.setOpaque(false);
         booking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -249,33 +250,48 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         jPanel3.add(acc);
         acc.setBounds(0, 20, 180, 40);
 
-        logout.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        logout.setForeground(new java.awt.Color(240, 240, 240));
-        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/logout.png"))); // NOI18N
-        logout.setText("Logout");
-        jPanel3.add(logout);
-        logout.setBounds(50, 520, 80, 24);
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 180, 560));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 180, 560));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/Gradient.png"))); // NOI18N
-        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 180, -1));
-        getContentPane().add(mainDesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 820, 640));
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 180, 690));
+        getContentPane().add(mainDesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 820, 650));
+
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/close.png"))); // NOI18N
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
+
+        mini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/minimize.png"))); // NOI18N
+        mini.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miniMouseClicked(evt);
+            }
+        });
+        getContentPane().add(mini, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 40, 40));
 
         ads_dash.setBackground(new java.awt.Color(167, 134, 42));
         ads_dash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        a_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        a_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/ad.png"))); // NOI18N
-        ads_dash.add(a_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 60));
 
         title.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 20)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("ADMIN DASHBOARD");
-        ads_dash.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 690, 60));
+        ads_dash.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 470, 70));
 
-        getContentPane().add(ads_dash, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
+        a_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        a_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/ad.png"))); // NOI18N
+        ads_dash.add(a_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 70));
+
+        getContentPane().add(ads_dash, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 70));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 180, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -283,13 +299,13 @@ public class Admin_Dashboard extends javax.swing.JFrame {
 
   
     private void usersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseClicked
-        USERS us = new USERS();  // Instantiate the USERS internal frame
+        Users us = new Users();  // Instantiate the Users internal frame
         mainDesktop.add(us);     // Add it to the JDesktopPane
         us.setVisible(true);
     }//GEN-LAST:event_usersMouseClicked
 
     private void user_textMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_textMouseClicked
-    USERS us = new USERS();  // Instantiate the USERS internal frame
+    Users us = new Users();  // Instantiate the Users internal frame
         mainDesktop.add(us);     // Add it to the JDesktopPane
         us.setVisible(true);
     }//GEN-LAST:event_user_textMouseClicked
@@ -323,7 +339,9 @@ public class Admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_photographersMouseExited
 
     private void photographersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photographersMouseClicked
-        // TODO add your handling code here:
+        Photographers pt = new Photographers();
+        mainDesktop.add(pt);
+        pt.setVisible(true); 
     }//GEN-LAST:event_photographersMouseClicked
 
     private void packagesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_packagesMouseEntered
@@ -335,7 +353,10 @@ public class Admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_packagesMouseExited
 
     private void packagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_packagesMouseClicked
-        // TODO add your handling code here:
+        Packages pc = new Packages();
+        mainDesktop.add(pc);
+        pc.setVisible(true);
+
     }//GEN-LAST:event_packagesMouseClicked
 
     private void bookingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingMouseEntered
@@ -359,23 +380,34 @@ public class Admin_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_accMouseExited
 
     private void accMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accMouseClicked
-        PROFILE prof = new PROFILE();
-        mainDesktop.add(prof);
-        prof.setVisible(true);
+        Setting set = new Setting();
+        mainDesktop.add(set);
+        set.setVisible(true);
         
     }//GEN-LAST:event_accMouseClicked
 
-    private void booking1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booking1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_booking1MouseClicked
+    private void logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseClicked
+       Logs lg  = new Logs();
+       mainDesktop.add(lg);
+       lg.setVisible(true);
+    }//GEN-LAST:event_logMouseClicked
 
-    private void booking1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booking1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_booking1MouseEntered
+    private void logMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseEntered
+        log.setBorder(BorderFactory.createLineBorder(new Color(240, 240, 240)));
+    }//GEN-LAST:event_logMouseEntered
 
-    private void booking1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booking1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_booking1MouseExited
+    private void logMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseExited
+        log.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_logMouseExited
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        System.exit(0);
+        return;
+    }//GEN-LAST:event_closeMouseClicked
+
+    private void miniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniMouseClicked
+        
+    }//GEN-LAST:event_miniMouseClicked
 
     /**
      * @param args the command line arguments
@@ -425,17 +457,19 @@ public class Admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel b_icon1;
     private javax.swing.JLabel b_icon2;
     private javax.swing.JPanel booking;
-    private javax.swing.JPanel booking1;
     private javax.swing.JLabel booking_text;
     private javax.swing.JLabel booking_text1;
     private javax.swing.JLabel booking_text2;
+    private javax.swing.JLabel close;
     private javax.swing.JLabel h_icon;
     private javax.swing.JPanel home;
     private javax.swing.JLabel home_text;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel logout;
+    private javax.swing.JPanel log;
     private javax.swing.JDesktopPane mainDesktop;
+    private javax.swing.JLabel mini;
     private javax.swing.JLabel p_icon;
     private javax.swing.JLabel package_text;
     private javax.swing.JPanel packages;

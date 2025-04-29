@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ADMIN_MANAGEMENT;
+package CRUD;
 
 import AUTHENTICATION.REGISTRATION;
+import CONFIG.Session;
 import CONFIG.connectDB;
 import java.awt.Color;
-import static java.awt.Color.RED;
-import static java.awt.Color.YELLOW;
 import java.awt.Font;
-import java.awt.Point;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -28,18 +28,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author mikel
  */
-public class Edit_user extends javax.swing.JPanel {
+public class Edit_users extends javax.swing.JPanel {
  
     
     
-    public Edit_user() {
+    public Edit_users() {
         initComponents();
         
         
@@ -361,7 +360,7 @@ public class Edit_user extends javax.swing.JPanel {
         cancel.setBounds(40, 570, 52, 19);
 
         user_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        user_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/setting.png"))); // NOI18N
+        user_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/role-u.png"))); // NOI18N
         edit_user.add(user_icon);
         user_icon.setBounds(390, 140, 50, 40);
 
@@ -640,7 +639,7 @@ public class Edit_user extends javax.swing.JPanel {
         // Update user info if valid
         String updateSql = "UPDATE user SET u_fname = ?, u_lname = ?, email = ?, contact = ?, username = ?, role = ?, status = ? WHERE u_id = ?";
 
-        try (PreparedStatement pst = cn.prepareStatement(updateSql)) {
+          try (PreparedStatement pst = con.getConnection().prepareStatement(updateSql, Statement.RETURN_GENERATED_KEYS)) {
             pst.setString(1, fname);
             pst.setString(2, lname);
             pst.setString(3, email);
@@ -650,9 +649,19 @@ public class Edit_user extends javax.swing.JPanel {
             pst.setString(7, status);
             pst.setString(8, u_id);
 
-            int rowsUpdated = pst.executeUpdate();
-            if (rowsUpdated > 0) {
-                JOptionPane.showMessageDialog(null, "User updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            int result = pst.executeUpdate();
+                    
+            if (result > 0) {
+                ResultSet generatedKeys = pst.getGeneratedKeys();
+                int selectedUserId = 0;
+                if (generatedKeys.next()) {
+                    selectedUserId = generatedKeys.getInt(1);
+                }
+
+                // Logging the action
+                Session sess = Session.getInstance();
+                String action = "Edited user with ID " + selectedUserId;
+                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
 
                 // Close the JDialog if it's open
                 JDialog parentDialog = (JDialog) SwingUtilities.getWindowAncestor(this);

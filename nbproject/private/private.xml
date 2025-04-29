@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ASH/GUI/EPBS/src/ADMINISTRATOR/Add_user.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/ADMINISTRATOR/Users.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/ADMINISTRATOR/Edit_user.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/REGISTRATION.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/ADMINISTRATOR/Profile.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/Session.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/ADMINISTRATOR/Change_pass.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/DASHBOARDS/Admin_Dashboard.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Setting.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/forgotPassword.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Account.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/securityQuestion.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/SETTINGS/setupSecurityQuestion.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/LOGIN.java</file>
         </group>
     </open-files>
 </project-private>
