@@ -5,6 +5,13 @@
  */
 package AUTHENTICATION;
 
+import CONFIG.Session;
+import CONFIG.connectDB;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mikel
@@ -27,22 +34,119 @@ public class securityQuestion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        question2 = new javax.swing.JComboBox<>();
+        question1 = new javax.swing.JComboBox<>();
+        answerField2 = new javax.swing.JTextField();
+        answerField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        question2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What's the name of your mother?", "How old are you?" }));
+        jPanel1.add(question2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 390, 40));
+
+        question1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What's your favorite food?", "What's your middle name?" }));
+        jPanel1.add(question1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 390, 40));
+        jPanel1.add(answerField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 520, 50));
+        jPanel1.add(answerField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 510, 50));
+
+        jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 100, 40));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cancel");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 570, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Retrieve user details from session
+        Session sess = Session.getInstance();
+        String userId = sess.getUser_id();  // Get user_id from session
+
+        if (userId == null || userId.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Session expired. Please search for your account again.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String selectedQuestion1 = question1.getSelectedItem().toString(); 
+        String selectedQuestion2 = question2.getSelectedItem().toString();
+        String userAnswer1 = answerField1.getText().trim(); 
+        String userAnswer2 = answerField2.getText().trim(); 
+
+        if (userAnswer1.isEmpty() || userAnswer2.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter both answers.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Database connection
+            connectDB con = new connectDB();
+            Connection connection = con.getConnection();
+
+            // Fetch security questions and answers using user_id from session
+            String query = "SELECT question, answer FROM securityquestion WHERE user_id = ? AND question IN (?, ?)";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setString(1, userId);  // Using user_id from session
+            pst.setString(2, selectedQuestion1);
+            pst.setString(3, selectedQuestion2);
+            ResultSet rs = pst.executeQuery();
+
+            int correctAnswers = 0;
+
+            while (rs.next()) {
+                String storedQuestion = rs.getString("question").trim();
+                String correctAnswer = rs.getString("answer").trim(); 
+
+                if (storedQuestion.equals(selectedQuestion1) && correctAnswer.equalsIgnoreCase(userAnswer1.trim())) {
+                    correctAnswers++;
+                } else if (storedQuestion.equals(selectedQuestion2) && correctAnswer.equalsIgnoreCase(userAnswer2.trim())) {
+                    correctAnswers++;
+                }
+            }
+
+            if (correctAnswers == 2) {
+                JOptionPane.showMessageDialog(this, "Answers verified! Proceed to reset password.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                new resetPass().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Incorrect answer(s). Try again.", "Verification Failed", JOptionPane.ERROR_MESSAGE);
+            }
+
+            rs.close();
+            pst.close();
+            connection.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +185,12 @@ public class securityQuestion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField answerField1;
+    private javax.swing.JTextField answerField2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> question1;
+    private javax.swing.JComboBox<String> question2;
     // End of variables declaration//GEN-END:variables
 }
