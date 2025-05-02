@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -59,12 +60,12 @@ public class resetPass extends javax.swing.JFrame {
 
     public void setInvalidTitledBorder(JComponent component, String title) {
         TitledBorder titledBorder = BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(255, 105, 97)),  // Red border for invalid input
+            BorderFactory.createLineBorder(new Color(255, 0, 0)),  // Red border for invalid input
             title,
             TitledBorder.LEFT,
             TitledBorder.TOP,
             new Font("Franklin Gothic Medium", Font.PLAIN, 16),
-            new Color(255, 105, 97) // Red text color for the title
+            new Color(255, 0, 0) // Red text color for the title
         );
 
         component.setBorder(BorderFactory.createCompoundBorder(titledBorder, new EmptyBorder(0, 5, 0, 0)));
@@ -75,13 +76,13 @@ public class resetPass extends javax.swing.JFrame {
             textField.setOpaque(false); 
             textField.setBackground(new Color(0, 0, 0, 0)); 
             textField.setCaretColor(Color.WHITE); // Make sure cursor is visible
-            textField.setForeground(new Color(255, 105, 97));
+            textField.setForeground(new Color(255, 0, 0));
         }
     }
     
      private void displayError(JLabel field, String message) {
             field.setText(message);
-            field.setForeground(new Color(255, 105, 97));
+            field.setForeground(new Color(255, 0, 0));
         }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -89,75 +90,135 @@ public class resetPass extends javax.swing.JFrame {
 
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
-        n_pass = new javax.swing.JTextField();
-        v_pass = new javax.swing.JTextField();
-        vc = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        showPass = new javax.swing.JLabel();
+        showPass1 = new javax.swing.JLabel();
+        createpass = new javax.swing.JPasswordField();
+        confirmpass = new javax.swing.JPasswordField();
+        createpass_error = new javax.swing.JLabel();
+        confirmpass_error = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        light_Yellow1 = new ColorGrading.Light_Yellow();
 
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        n_pass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        n_pass.setForeground(new java.awt.Color(153, 153, 153));
-        n_pass.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "New Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16))); // NOI18N
-        n_pass.setCaretColor(new java.awt.Color(240, 240, 240));
-        n_pass.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        n_pass.setOpaque(false);
-        n_pass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                n_passFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                n_passFocusLost(evt);
-            }
-        });
-        n_pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                n_passActionPerformed(evt);
-            }
-        });
-        jPanel1.add(n_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 270, 60));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        v_pass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        v_pass.setForeground(new java.awt.Color(153, 153, 153));
-        v_pass.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Verify Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16))); // NOI18N
-        v_pass.setCaretColor(new java.awt.Color(240, 240, 240));
-        v_pass.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        v_pass.setOpaque(false);
-        v_pass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                v_passFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                v_passFocusLost(evt);
-            }
-        });
-        v_pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                v_passActionPerformed(evt);
-            }
-        });
-        jPanel1.add(v_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 270, 60));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        vc.setBackground(new java.awt.Color(51, 51, 51));
-        vc.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        vc.setForeground(new java.awt.Color(255, 255, 255));
-        vc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        vc.setText("Save");
-        vc.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Reset Password");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 23, 530, -1));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 70));
+
+        showPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hiddens.png"))); // NOI18N
+        showPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                vcMouseClicked(evt);
+                showPassMouseClicked(evt);
             }
         });
-        jPanel1.add(vc, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 76, 26));
+        jPanel2.add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 40, 50));
+
+        showPass1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        showPass1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/hiddens.png"))); // NOI18N
+        showPass1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPass1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(showPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 40, 50));
+
+        createpass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        createpass.setForeground(new java.awt.Color(153, 153, 153));
+        createpass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "New Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16))); // NOI18N
+        createpass.setEchoChar('\u0000');
+        createpass.setOpaque(false);
+        createpass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                createpassFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                createpassFocusLost(evt);
+            }
+        });
+        createpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createpassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(createpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 410, 60));
+
+        confirmpass.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        confirmpass.setForeground(new java.awt.Color(153, 153, 153));
+        confirmpass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Verify Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16))); // NOI18N
+        confirmpass.setEchoChar('\u0000');
+        confirmpass.setOpaque(false);
+        confirmpass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                confirmpassFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                confirmpassFocusLost(evt);
+            }
+        });
+        confirmpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmpassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 410, 60));
+
+        createpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        createpass_error.setForeground(new java.awt.Color(255, 51, 51));
+        createpass_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(createpass_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 410, 20));
+
+        confirmpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        confirmpass_error.setForeground(new java.awt.Color(255, 51, 51));
+        confirmpass_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(confirmpass_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 410, 20));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 580, 400));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/back-button.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 90));
+
+        javax.swing.GroupLayout light_Yellow1Layout = new javax.swing.GroupLayout(light_Yellow1);
+        light_Yellow1.setLayout(light_Yellow1Layout);
+        light_Yellow1Layout.setHorizontalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 910, Short.MAX_VALUE)
+        );
+        light_Yellow1Layout.setVerticalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(light_Yellow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,92 +228,81 @@ public class resetPass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void n_passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_n_passFocusGained
-        n_pass.setForeground(Color.WHITE);
-        setTitledBorder(n_pass, "New Password", Color.decode("#F5E196"));
-    }//GEN-LAST:event_n_passFocusGained
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        security in = new security();
+        in.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void n_passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_n_passFocusLost
-      
-    }//GEN-LAST:event_n_passFocusLost
+    private void confirmpassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmpassFocusGained
+        confirmpass.setEchoChar('•'); // Mask password
+        confirmpass.setForeground(Color.WHITE);
+        setTitledBorder(confirmpass, "Confirm Password", Color.decode("#F5E196"));
+    }//GEN-LAST:event_confirmpassFocusGained
 
-    private void n_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n_passActionPerformed
+    private void confirmpassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmpassFocusLost
+        setTitledBorder(confirmpass, "Confirm Password", Color.WHITE);
+        confirmpass.setForeground(Color.WHITE);
+        displayError(confirmpass_error, "");
+    }//GEN-LAST:event_confirmpassFocusLost
+
+    private void confirmpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmpassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_n_passActionPerformed
+    }//GEN-LAST:event_confirmpassActionPerformed
 
-    private void v_passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_v_passFocusGained
-        v_pass.setForeground(Color.WHITE);
-        setTitledBorder(v_pass, "Verify Password", Color.decode("#F5E196"));
-    }//GEN-LAST:event_v_passFocusGained
+    private void createpassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_createpassFocusGained
+        createpass.setEchoChar('•'); // Mask password
+        createpass.setForeground(Color.WHITE);
+        setTitledBorder(createpass, "Create Password", Color.decode("#F5E196"));
+    }//GEN-LAST:event_createpassFocusGained
 
-    private void v_passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_v_passFocusLost
+    private void createpassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_createpassFocusLost
+
+        setTitledBorder(createpass, "Create Password", Color.WHITE);
+        createpass.setForeground(Color.WHITE);
+        displayError(createpass_error, "");
+    }//GEN-LAST:event_createpassFocusLost
+
+    private void createpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createpassActionPerformed
+
+    private void showPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPass1MouseClicked
+        pass_visible = !pass_visible;
+        String currentText = confirmpass.getText().trim();
+
+        if (pass_visible) {
+            if (!currentText.equals("")) {
+                confirmpass.setEchoChar((char) 0);
+            }
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/show_password.png")));
+        } else {
+            if (!currentText.equals("")) {
+                confirmpass.setEchoChar('•');
+            }
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hide_password.png")));
+        }
+    }//GEN-LAST:event_showPass1MouseClicked
+
+    private void showPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMouseClicked
         
-    }//GEN-LAST:event_v_passFocusLost
+        pass_visible = !pass_visible;
+        String currentText = createpass.getText().trim();
 
-    private void v_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_v_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_v_passActionPerformed
-
-    private void vcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vcMouseClicked
-        // Get new password input
-        String newPassword = n_pass.getText().trim();
-        String confirmPassword = v_pass.getText().trim();
-
-        // Validate input fields
-        if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter and confirm your new password.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!newPassword.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match. Try again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            // Get the user ID from session
-            Session sess = Session.getInstance();
-            int userId = Integer.parseInt(sess.getUser_id());
-
-            if (userId == -1) {
-                JOptionPane.showMessageDialog(this, "Session expired. Please log in again.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+        if (pass_visible) {
+            if (!currentText.equals("")) {
+                createpass.setEchoChar((char) 0);
             }
-
-            // Hash the new password
-            String hashedPassword = Util.hashPassword(newPassword);
-
-            // Database connection
-            connectDB con = new connectDB();
-            Connection connection = con.getConnection();
-
-            // Update password query
-            String updateQuery = "UPDATE user SET password = ? WHERE u_id = ?";
-            PreparedStatement pst = connection.prepareStatement(updateQuery);
-            pst.setString(1, hashedPassword);
-            pst.setInt(2, userId);
-
-            int updated = pst.executeUpdate();
-
-            if (updated > 0) {
-                // **Clear the session before redirecting**
-                sess.setUser_id(null);
-
-                JOptionPane.showMessageDialog(this, "Password reset successful! Please log in with your new password.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                new LOGIN().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Password reset failed. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/show_password.png")));
+        } else {
+            if (!currentText.equals("")) {
+                createpass.setEchoChar('•');
             }
+            showPass.setIcon(new ImageIcon(getClass().getResource("/PHOTOS/hide_password.png")));
+        }   
+    }//GEN-LAST:event_showPassMouseClicked
 
-            pst.close();
-            connection.close();
-
-        } catch (HeadlessException | NumberFormatException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_vcMouseClicked
-
+    boolean pass_visible = true;
     /**
      * @param args the command line arguments
      */
@@ -289,10 +339,18 @@ public class resetPass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField confirmpass;
+    private javax.swing.JLabel confirmpass_error;
+    private javax.swing.JPasswordField createpass;
+    private javax.swing.JLabel createpass_error;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPasswordField1;
-    public javax.swing.JTextField n_pass;
-    public javax.swing.JTextField v_pass;
-    private javax.swing.JLabel vc;
+    private ColorGrading.Light_Yellow light_Yellow1;
+    private javax.swing.JLabel showPass;
+    private javax.swing.JLabel showPass1;
     // End of variables declaration//GEN-END:variables
 }

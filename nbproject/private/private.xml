@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/SETTINGS/Update_Acc.java</file>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/AUTHENTICATION/LOGIN.java</file>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/AUTHENTICATION/resetPass.java</file>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/SETTINGS/setupSecurityQuestion.java</file>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/AUTHENTICATION/securityQuestion.java</file>
-            <file>file:/C:/Users/HP/Desktop/John%20Docs/Java%20files/EPBS/src/AUTHENTICATION/REGISTRATION.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/REGISTRATION.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/forgotPassword.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/resetPass.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/securityQuestion.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/LOGIN.java</file>
         </group>
     </open-files>
 </project-private>

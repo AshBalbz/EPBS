@@ -30,6 +30,8 @@ public class LOGIN extends javax.swing.JFrame {
         
         unf.setBackground(new java.awt.Color(0, 0, 0, 1));
         psf.setBackground(new java.awt.Color(0, 0, 0, 1));
+        
+        log.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
     }
     
    
@@ -151,13 +153,12 @@ public class LOGIN extends javax.swing.JFrame {
         new_user = new javax.swing.JLabel();
         Click = new javax.swing.JLabel();
         error = new javax.swing.JLabel();
-        Login = new javax.swing.JPanel();
-        login = new javax.swing.JLabel();
         unf = new javax.swing.JTextField();
         showPass = new javax.swing.JLabel();
         psf = new javax.swing.JPasswordField();
         mini = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        log = new Swing.Button();
         BG1 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -247,29 +248,6 @@ public class LOGIN extends javax.swing.JFrame {
         error.setForeground(new java.awt.Color(255, 51, 51));
         LOGIN.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 270, 20));
 
-        Login.setLayout(new java.awt.BorderLayout());
-
-        login.setBackground(new java.awt.Color(153, 153, 153));
-        login.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        login.setText("Login");
-        login.setMaximumSize(new java.awt.Dimension(25, 19));
-        login.setMinimumSize(new java.awt.Dimension(25, 19));
-        login.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                loginMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                loginMouseExited(evt);
-            }
-        });
-        Login.add(login, java.awt.BorderLayout.CENTER);
-
-        LOGIN.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 90, 30));
-
         unf.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         unf.setForeground(new java.awt.Color(153, 153, 153));
         unf.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Username", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
@@ -339,6 +317,20 @@ public class LOGIN extends javax.swing.JFrame {
         });
         LOGIN.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
 
+        log.setText("Login");
+        log.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logMouseExited(evt);
+            }
+        });
+        LOGIN.add(log, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, 130, 40));
+
         BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
         BG1.setAutoscrolls(true);
         LOGIN.add(BG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -362,86 +354,6 @@ public class LOGIN extends javax.swing.JFrame {
        
 
     }//GEN-LAST:event_new_userMouseClicked
-
-    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-      
-    boolean valid = true;
-    
-    
-        String username = unf.getText().trim();
-        String password = new String(psf.getPassword()).trim();
-
-        if (username.isEmpty()) {
-            setInvalidTitledBorder(unf, "Username");
-            displayError(username_error, "Field cannot be empty!");
-            valid = false;
-        }
-
-        if (password.isEmpty()) {
-            setInvalidTitledBorder(psf, "Password");
-            displayError(password_error, "Field cannot be empty!");
-            valid = false;
-        }
-
-        if (!valid) {
-            return;
-        }
-
-        connectDB con = new connectDB();
-        Connection cn = con.getConnection();
-        
-        if (!con.fieldExists("username", username)){
-            setInvalidTitledBorder(unf, "Username");
-            displayError(username_error, "Invalid Username!");
-            return;
-        } 
-
-       if (loginAcc(username, password)) {
-            
-            Session sess = Session.getInstance();
-            String roleFromDB = sess.getRole();
-            String status = sess.getStatus();
-            String user = sess.getUser_id();
-
- 
-                String action = "User logged in with ID " + user;
-                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
-                
-                
-            if ("Pending".equalsIgnoreCase(status)) {
-                JOptionPane.showMessageDialog(this, "Your account is pending approval.", "Login Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Login successful! You are logged in as " + roleFromDB + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-               
-                if ("Admin".equalsIgnoreCase(roleFromDB)) {
-                    Admin_Dashboard admin = new Admin_Dashboard();
-                    admin.setVisible(true);
-                } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
-                    Staff_Dashboard staff = new Staff_Dashboard();
-                    staff.setVisible(true);
-                }
-
-                this.dispose();
-            }
-        } else{
-            setInvalidTitledBorder(psf, "Password");
-            displayError(password_error, "Password Incorrect!");
-        }   
-
-
-
-    }//GEN-LAST:event_loginMouseClicked
-
-    private void loginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseEntered
-         login.setBackground(defaultColor); 
-        
-    }//GEN-LAST:event_loginMouseEntered
-
-    private void loginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseExited
-         login.setOpaque(true); // Ensure background change is visible
-         login.setBorder(BorderFactory.createLineBorder(Color. BLACK, 1));
-         login.setBackground(hoverColor);    }//GEN-LAST:event_loginMouseExited
 
     private void ClickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickMouseClicked
        REGISTRATION reg = new REGISTRATION();
@@ -532,6 +444,80 @@ public class LOGIN extends javax.swing.JFrame {
         return;
     }//GEN-LAST:event_closeMouseClicked
 
+    private void logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseClicked
+         boolean valid = true;
+        
+        String username = unf.getText().trim();
+        String password = new String(psf.getPassword()).trim();
+
+        if (username.isEmpty()) {
+            setInvalidTitledBorder(unf, "Username");
+            displayError(username_error, "Field cannot be empty!");
+            valid = false;
+        }
+
+        if (password.isEmpty()) {
+            setInvalidTitledBorder(psf, "Password");
+            displayError(password_error, "Field cannot be empty!");
+            valid = false;
+        }
+
+        if (!valid) {
+            return;
+        }
+
+        connectDB con = new connectDB();
+        Connection cn = con.getConnection();
+        
+        if (!con.fieldExists("username", username)){
+            setInvalidTitledBorder(unf, "Username");
+            displayError(username_error, "Invalid Username!");
+            return;
+        } 
+
+       if (loginAcc(username, password)) {
+            
+            Session sess = Session.getInstance();
+            String roleFromDB = sess.getRole();
+            String status = sess.getStatus();
+            String user = sess.getUser_id();
+
+ 
+                String action = "User logged in with ID " + user;
+                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
+                
+                
+            if ("Pending".equalsIgnoreCase(status)) {
+                JOptionPane.showMessageDialog(this, "Your account is pending approval.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login successful! You are logged in as " + roleFromDB + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+               
+                if ("Admin".equalsIgnoreCase(roleFromDB)) {
+                    Admin_Dashboard admin = new Admin_Dashboard();
+                    admin.setVisible(true);
+                } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
+                    Staff_Dashboard staff = new Staff_Dashboard();
+                    staff.setVisible(true);
+                }
+
+                this.dispose();
+            }
+        } else{
+            setInvalidTitledBorder(psf, "Password");
+            displayError(password_error, "Password Incorrect!");
+        }   
+       
+    }//GEN-LAST:event_logMouseClicked
+
+    private void logMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseEntered
+       log.setBackground(defaultColor); 
+    }//GEN-LAST:event_logMouseEntered
+
+    private void logMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseExited
+       log.setBackground(hoverColor);
+    }//GEN-LAST:event_logMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -574,7 +560,6 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JLabel BG1;
     private javax.swing.JLabel Click;
     private javax.swing.JPanel LOGIN;
-    private javax.swing.JPanel Login;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel System_Name;
     private javax.swing.JLabel close;
@@ -582,7 +567,7 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JLabel forgot;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel login;
+    private Swing.Button log;
     private javax.swing.JLabel mini;
     private javax.swing.JLabel new_user;
     private javax.swing.JLabel p_icon;

@@ -12,6 +12,7 @@ public class forgotPassword extends javax.swing.JFrame {
 
     public forgotPassword() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -25,24 +26,33 @@ public class forgotPassword extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         searchbutton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        light_Yellow1 = new ColorGrading.Light_Yellow();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("Find your Account");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 23, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Find Your Account");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 23, 510, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 70));
-        jPanel2.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 520, 50));
 
+        searchField.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        searchField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 420, 50));
+
+        searchbutton.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         searchbutton.setText("Search");
         searchbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,20 +61,47 @@ public class forgotPassword extends javax.swing.JFrame {
         });
         jPanel2.add(searchbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, 40));
 
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel2.setText("Cancel");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 50, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 580, 360));
+        jLabel4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel4.setText("Email:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 50, 40));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 580, 360));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/back-button.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 90));
+
+        javax.swing.GroupLayout light_Yellow1Layout = new javax.swing.GroupLayout(light_Yellow1);
+        light_Yellow1.setLayout(light_Yellow1Layout);
+        light_Yellow1Layout.setHorizontalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 910, Short.MAX_VALUE)
+        );
+        light_Yellow1Layout.setVerticalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(light_Yellow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -110,7 +147,7 @@ public class forgotPassword extends javax.swing.JFrame {
                     "Success", JOptionPane.INFORMATION_MESSAGE);
 
                 // Open the security question page
-                securityQuestion sqp = new securityQuestion();
+                security sqp = new security();
                 sqp.setVisible(true);
                 this.dispose(); // Close search page
 
@@ -126,6 +163,12 @@ public class forgotPassword extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_searchbuttonActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        LOGIN in = new LOGIN();
+        in.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -162,9 +205,12 @@ public class forgotPassword extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private ColorGrading.Light_Yellow light_Yellow1;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton searchbutton;
     // End of variables declaration//GEN-END:variables

@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -35,6 +36,9 @@ public class REGISTRATION extends javax.swing.JFrame {
         ufield.setBackground(new java.awt.Color(0,0,0,1));
         createpass.setBackground(new java.awt.Color(0,0,0,1));
         confirmpass.setBackground(new java.awt.Color(0,0,0,1));
+        
+        sign.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
+
     }
     
           private void displayError(JLabel field, String message) {
@@ -114,7 +118,6 @@ public class REGISTRATION extends javax.swing.JFrame {
         createpass_error = new javax.swing.JLabel();
         confirmpass_error = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
-        sign_up = new javax.swing.JButton();
         acc = new javax.swing.JLabel();
         sign_in = new javax.swing.JLabel();
         fnfield = new javax.swing.JTextField();
@@ -128,6 +131,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         createpass = new javax.swing.JPasswordField();
         mini = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        sign = new Swing.Button();
         BG2 = new javax.swing.JLabel();
 
         System_Name.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 20)); // NOI18N
@@ -225,26 +229,6 @@ public class REGISTRATION extends javax.swing.JFrame {
             }
         });
         jPanel2.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, 100, 40));
-
-        sign_up.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        sign_up.setText("Sign Up");
-        sign_up.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sign_upMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                sign_upMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                sign_upMouseExited(evt);
-            }
-        });
-        sign_up.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sign_upActionPerformed(evt);
-            }
-        });
-        jPanel2.add(sign_up, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, -1, -1));
 
         acc.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         acc.setForeground(new java.awt.Color(255, 255, 240));
@@ -452,6 +436,25 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
 
+        sign.setText("Sign Up");
+        sign.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signMouseExited(evt);
+            }
+        });
+        sign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signActionPerformed(evt);
+            }
+        });
+        jPanel2.add(sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, 100, 30));
+
         BG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
         jPanel2.add(BG2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
@@ -460,142 +463,6 @@ public class REGISTRATION extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void sign_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upActionPerformed
-       
-    }//GEN-LAST:event_sign_upActionPerformed
-
-    private void sign_upMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upMouseClicked
-      boolean valid = true;
-
-
-       connectDB con = new connectDB();
-        Connection cn = con.getConnection();
-
-        String fname = fnfield.getText().trim();
-        String lname = lnfield.getText().trim();
-        String email = efield.getText().trim();
-        String contact = pfield.getText().trim();
-        String username = ufield.getText().trim();
-        String password = createpass.getText();
-        String password2 = confirmpass.getText();
-        String roleSelected = (role.getSelectedItem() != null) ? role.getSelectedItem().toString() : "";
-        String status = "Pending";
-
-        
-          String hashedPassword = Util.hashPassword(password);
-        // Input Validations
-        if (fname.isEmpty()){
-            setInvalidTitledBorder(fnfield, "First Name");
-            displayError(name_error, "Field cannot be empty!");
-            valid = false;
-        }
-
-        if (lname.isEmpty()) {
-            setInvalidTitledBorder(lnfield, "Last Name");
-            displayError(lname_error, "Field cannot be empty!");
-            valid = false;
-        }
-
-        if (email.isEmpty()) {
-            setInvalidTitledBorder(efield, "Email");
-            displayError(email_error, "Field cannot be empty!");
-            valid = false;
-        } else if (!isEmailValid(email)) {
-            setInvalidTitledBorder(efield, "Email");
-            displayError(email_error, "Invalid email!");
-            valid = false;
-        }
-
-        if (contact.isEmpty()) {
-            setInvalidTitledBorder(pfield, "Phone Number");
-            displayError(contact_error, "Field cannot be empty!");
-            valid = false;
-        } else if (!isPhoneNumberValid(contact)) {
-            setInvalidTitledBorder(pfield, "Phone Number");
-            displayError(contact_error, "Invalid phone number!");
-            valid = false;
-        }
-
-        if (username.isEmpty()) {
-            setInvalidTitledBorder(ufield, "Username");
-            displayError(username_error, "Field cannot be empty!");
-            valid = false;
-        }
-        
-        if (password.isEmpty()) {
-            setInvalidTitledBorder(createpass, "Create Password");
-            displayError(createpass_error, "Field cannot be empty!");
-            valid = false;
-        } else if (password.length() < 8) {
-            setInvalidTitledBorder(createpass, "Create Password");
-            displayError(createpass_error, "Password Too Short!");
-            valid = false;
-        }
-
-        if (password2.isEmpty()) {
-            setInvalidTitledBorder(confirmpass, "Confirm Password");
-            displayError(confirmpass_error, "Field cannot be empty!");
-            valid = false;
-        }
-
-        // Ensure both fields are not empty before checking for a match
-        if (!password.isEmpty() && !password2.isEmpty() && !Arrays.equals(createpass.getPassword(), confirmpass.getPassword())) {
-            setInvalidTitledBorder(createpass, "Create Password");
-            setInvalidTitledBorder(confirmpass, "Confirm Password");
-            displayError(confirmpass_error, "Passwords DO NOT Match!");
-            displayError(createpass_error, "Passwords DO NOT Match!");
-            valid = false;
-        }
-
-               
-        
-        // Check if email or username already exists
-        if (con.fieldExists("username", username) || con.fieldExists("email", email)) {
-            if (con.fieldExists("username", username)) {
-                setInvalidTitledBorder(ufield, "Username");
-                displayError(username_error, "Username Already Taken!");
-                valid = false;
-            }
-            if (con.fieldExists("email", email)) {
-                setInvalidTitledBorder(efield, "Username");
-                displayError(email_error, "Email Already Exist!");
-                valid = false;
-            }
-        } else {
-            if (valid) {
-                // Use PreparedStatement to prevent SQL injection
-                String sql = "INSERT INTO user (u_fname, u_lname, email, contact, username, password, role, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                try (java.sql.PreparedStatement pstmt = con.getConnection().prepareStatement(sql)) {
-                    pstmt.setString(1, fname);
-                    pstmt.setString(2, lname);
-                    pstmt.setString(3, email);
-                    pstmt.setString(4, contact);
-                    pstmt.setString(5, username);
-                    pstmt.setString(6, hashedPassword);
-                    pstmt.setString(7, roleSelected);
-                    pstmt.setString(8, status);
-                    
-                int result = pstmt.executeUpdate();
-                
-                if (result > 0) {
-                    JOptionPane.showMessageDialog(null, "Registered successfully!");
-                        new LOGIN().setVisible(true);
-                        this.dispose();
-                  
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }//GEN-LAST:event_sign_upMouseClicked
 
      private boolean isEmailValid(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -613,14 +480,6 @@ public class REGISTRATION extends javax.swing.JFrame {
         log.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_sign_inMouseClicked
-
-    private void sign_upMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upMouseEntered
-        sign_up.setBackground(defaultColor);
-    }//GEN-LAST:event_sign_upMouseEntered
-
-    private void sign_upMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upMouseExited
-        sign_up.setBackground(hoverColor);
-    }//GEN-LAST:event_sign_upMouseExited
     
     boolean pass_visible = false;    
     boolean pass_visible1 = false;
@@ -790,6 +649,150 @@ public class REGISTRATION extends javax.swing.JFrame {
         return;
     }//GEN-LAST:event_closeMouseClicked
 
+    private void signMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signMouseClicked
+       boolean valid = true;
+
+
+       connectDB con = new connectDB();
+        Connection cn = con.getConnection();
+
+        String fname = fnfield.getText().trim();
+        String lname = lnfield.getText().trim();
+        String email = efield.getText().trim();
+        String contact = pfield.getText().trim();
+        String username = ufield.getText().trim();
+        String password = createpass.getText();
+        String password2 = confirmpass.getText();
+        String roleSelected = (role.getSelectedItem() != null) ? role.getSelectedItem().toString() : "";
+        String status = "Pending";
+
+        
+          String hashedPassword = Util.hashPassword(password);
+        // Input Validations
+        if (fname.isEmpty()){
+            setInvalidTitledBorder(fnfield, "First Name");
+            displayError(name_error, "Field cannot be empty!");
+            valid = false;
+        }
+
+        if (lname.isEmpty()) {
+            setInvalidTitledBorder(lnfield, "Last Name");
+            displayError(lname_error, "Field cannot be empty!");
+            valid = false;
+        }
+
+        if (email.isEmpty()) {
+            setInvalidTitledBorder(efield, "Email");
+            displayError(email_error, "Field cannot be empty!");
+            valid = false;
+        } else if (!isEmailValid(email)) {
+            setInvalidTitledBorder(efield, "Email");
+            displayError(email_error, "Invalid email!");
+            valid = false;
+        }
+
+        if (contact.isEmpty()) {
+            setInvalidTitledBorder(pfield, "Phone Number");
+            displayError(contact_error, "Field cannot be empty!");
+            valid = false;
+        } else if (!isPhoneNumberValid(contact)) {
+            setInvalidTitledBorder(pfield, "Phone Number");
+            displayError(contact_error, "Invalid phone number!");
+            valid = false;
+        }
+
+        if (username.isEmpty()) {
+            setInvalidTitledBorder(ufield, "Username");
+            displayError(username_error, "Field cannot be empty!");
+            valid = false;
+        }
+        
+        if (password.isEmpty()) {
+            setInvalidTitledBorder(createpass, "Create Password");
+            displayError(createpass_error, "Field cannot be empty!");
+            valid = false;
+        } else if (password.length() < 8) {
+            setInvalidTitledBorder(createpass, "Create Password");
+            displayError(createpass_error, "Password Too Short!");
+            valid = false;
+        }
+
+        if (password2.isEmpty()) {
+            setInvalidTitledBorder(confirmpass, "Confirm Password");
+            displayError(confirmpass_error, "Field cannot be empty!");
+            valid = false;
+        }
+
+        // Ensure both fields are not empty before checking for a match
+        if (!password.isEmpty() && !password2.isEmpty() && !Arrays.equals(createpass.getPassword(), confirmpass.getPassword())) {
+            setInvalidTitledBorder(createpass, "Create Password");
+            setInvalidTitledBorder(confirmpass, "Confirm Password");
+            displayError(confirmpass_error, "Passwords DO NOT Match!");
+            displayError(createpass_error, "Passwords DO NOT Match!");
+            valid = false;
+        }
+
+               
+        
+        // Check if email or username already exists
+        if (con.fieldExists("username", username) || con.fieldExists("email", email)) {
+            if (con.fieldExists("username", username)) {
+                setInvalidTitledBorder(ufield, "Username");
+                displayError(username_error, "Username Already Taken!");
+                valid = false;
+            }
+            if (con.fieldExists("email", email)) {
+                setInvalidTitledBorder(efield, "Username");
+                displayError(email_error, "Email Already Exist!");
+                valid = false;
+            }
+        } else {
+            if (valid) {
+                // Use PreparedStatement to prevent SQL injection
+                String sql = "INSERT INTO user (u_fname, u_lname, email, contact, username, password, role, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                try (java.sql.PreparedStatement pstmt = con.getConnection().prepareStatement(sql)) {
+                    pstmt.setString(1, fname);
+                    pstmt.setString(2, lname);
+                    pstmt.setString(3, email);
+                    pstmt.setString(4, contact);
+                    pstmt.setString(5, username);
+                    pstmt.setString(6, hashedPassword);
+                    pstmt.setString(7, roleSelected);
+                    pstmt.setString(8, status);
+                    
+                int result = pstmt.executeUpdate();
+                
+                if (result > 0) {
+                    JOptionPane.showMessageDialog(null, "Registered successfully!");
+                   
+                    LOGIN in = new LOGIN();   
+                    in.setVisible(true);
+                    this.dispose();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+        }
+    }//GEN-LAST:event_signMouseClicked
+
+    private void signMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signMouseEntered
+        sign.setBackground(defaultColor);
+    }//GEN-LAST:event_signMouseEntered
+
+    private void signMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signMouseExited
+        sign.setBackground(hoverColor);
+    }//GEN-LAST:event_signMouseExited
+
+    private void signActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -853,8 +856,8 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> role;
     private javax.swing.JLabel showPass;
     private javax.swing.JLabel showPass1;
+    private Swing.Button sign;
     private javax.swing.JLabel sign_in;
-    private javax.swing.JButton sign_up;
     private javax.swing.JLabel u_icon;
     public javax.swing.JTextField ufield;
     private javax.swing.JLabel username_error;
