@@ -41,7 +41,7 @@ public class TextField extends JTextField {
     private boolean show;
     private boolean mouseOver = false;
     private String labelText = "Label";
-    private Color lineColor = new Color(3, 155, 216);
+    private Color lineColor = new Color(96, 92, 60);
 
     public TextField() {
         setBorder(new EmptyBorder(20, 3, 10, 3));
@@ -126,7 +126,7 @@ public class TextField extends JTextField {
         FontMetrics ft = g2.getFontMetrics();
         Rectangle2D r2 = ft.getStringBounds(labelText, g2);
         double height = getHeight() - in.top - in.bottom;
-        double textY = (height - r2.getHeight()) / 2;
+        double textY = (height - r2.getHeight()) / 5;
         double size;
         if (animateHinText) {
             if (show) {

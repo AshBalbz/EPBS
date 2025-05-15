@@ -38,6 +38,11 @@ public class REGISTRATION extends javax.swing.JFrame {
         confirmpass.setBackground(new java.awt.Color(0,0,0,1));
         
         sign.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
+        
+        
+        role.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
+        role.setForeground(Color.BLACK);
+        
 
     }
     
@@ -117,7 +122,6 @@ public class REGISTRATION extends javax.swing.JFrame {
         username_error = new javax.swing.JLabel();
         createpass_error = new javax.swing.JLabel();
         confirmpass_error = new javax.swing.JLabel();
-        role = new javax.swing.JComboBox<>();
         acc = new javax.swing.JLabel();
         sign_in = new javax.swing.JLabel();
         fnfield = new javax.swing.JTextField();
@@ -131,6 +135,7 @@ public class REGISTRATION extends javax.swing.JFrame {
         createpass = new javax.swing.JPasswordField();
         mini = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        role = new Swing.Combobox();
         sign = new Swing.Button();
         BG2 = new javax.swing.JLabel();
 
@@ -140,6 +145,8 @@ public class REGISTRATION extends javax.swing.JFrame {
         System_Name.setText("Event Photography Booking System");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1000, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,10 +155,10 @@ public class REGISTRATION extends javax.swing.JFrame {
         Registration.setForeground(new java.awt.Color(250, 249, 190));
         Registration.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Registration.setText("Registration");
-        jPanel2.add(Registration, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 8, 230, 40));
+        jPanel2.add(Registration, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 230, 80));
 
         Balbz_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logo1.png"))); // NOI18N
-        jPanel2.add(Balbz_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 100, 120));
+        jPanel2.add(Balbz_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 520, 100, 120));
 
         fn_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fn_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/information.png"))); // NOI18N
@@ -220,21 +227,11 @@ public class REGISTRATION extends javax.swing.JFrame {
         confirmpass_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(confirmpass_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 260, 20));
 
-        role.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        role.setForeground(new java.awt.Color(153, 153, 153));
-        role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff" }));
-        role.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleActionPerformed(evt);
-            }
-        });
-        jPanel2.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, 100, 40));
-
         acc.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         acc.setForeground(new java.awt.Color(255, 255, 240));
         acc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc.setText("Already have an account? ");
-        jPanel2.add(acc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, 190, 30));
+        jPanel2.add(acc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 670, 190, 30));
 
         sign_in.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         sign_in.setForeground(new java.awt.Color(255, 255, 51));
@@ -251,7 +248,7 @@ public class REGISTRATION extends javax.swing.JFrame {
                 sign_inMouseExited(evt);
             }
         });
-        jPanel2.add(sign_in, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 660, 190, 30));
+        jPanel2.add(sign_in, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 670, 190, 30));
 
         fnfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         fnfield.setForeground(new java.awt.Color(153, 153, 153));
@@ -436,6 +433,10 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 40, 40));
 
+        role.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "Staff" }));
+        role.setLabeText("");
+        jPanel2.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, 120, -1));
+
         sign.setText("Sign Up");
         sign.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -455,8 +456,8 @@ public class REGISTRATION extends javax.swing.JFrame {
         });
         jPanel2.add(sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, 100, 30));
 
-        BG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
-        jPanel2.add(BG2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
+        BG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/reg.png"))); // NOI18N
+        jPanel2.add(BG2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 720));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -491,10 +492,6 @@ public class REGISTRATION extends javax.swing.JFrame {
     private void sign_inMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_inMouseExited
             sign_in.setForeground(new Color(255,255,0));
     }//GEN-LAST:event_sign_inMouseExited
-
-    private void roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleActionPerformed
-
-    }//GEN-LAST:event_roleActionPerformed
 
     private void fnfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnfieldFocusGained
         fnfield.setForeground(Color.WHITE);
@@ -641,7 +638,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     }//GEN-LAST:event_showPass1MouseClicked
 
     private void miniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniMouseClicked
-
+        this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniMouseClicked
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
@@ -853,7 +850,7 @@ public class REGISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel pass2_icon;
     public javax.swing.JTextField pfield;
     private javax.swing.JLabel r_icon;
-    private javax.swing.JComboBox<String> role;
+    private Swing.Combobox role;
     private javax.swing.JLabel showPass;
     private javax.swing.JLabel showPass1;
     private Swing.Button sign;

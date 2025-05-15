@@ -4,9 +4,7 @@ package MANAGEMENT;
 import CONFIG.Session;
 import CONFIG.connectDB;
 import CRUD.Add_User;
-import CRUD.Add_users;
 import CRUD.Edit_User;
-import CRUD.Edit_users;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -16,8 +14,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -119,6 +115,7 @@ public class Users extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jMenu1 = new javax.swing.JMenu();
         jProgressBar1 = new javax.swing.JProgressBar();
+        approved = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         search_icon = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -131,13 +128,19 @@ public class Users extends javax.swing.JInternalFrame {
         d_user = new javax.swing.JLabel();
         refresh = new javax.swing.JLabel();
         approval = new javax.swing.JPanel();
-        approved = new javax.swing.JLabel();
+        approved1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jMenu1.setText("jMenu1");
+
+        approved.setBackground(new java.awt.Color(255, 251, 240));
+        approved.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        approved.setForeground(new java.awt.Color(255, 251, 240));
+        approved.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        approved.setText("Approved");
 
         setPreferredSize(new java.awt.Dimension(820, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -291,12 +294,12 @@ public class Users extends javax.swing.JInternalFrame {
         });
         approval.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        approved.setBackground(new java.awt.Color(255, 251, 240));
-        approved.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        approved.setForeground(new java.awt.Color(255, 251, 240));
-        approved.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        approved.setText("Approved");
-        approval.add(approved, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 10, 110, -1));
+        approved1.setBackground(new java.awt.Color(255, 251, 240));
+        approved1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        approved1.setForeground(new java.awt.Color(255, 251, 240));
+        approved1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        approved1.setText("Approved");
+        approval.add(approved1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 10, 110, -1));
 
         jPanel1.add(approval, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 590, 120, 40));
 
@@ -575,6 +578,7 @@ public class Users extends javax.swing.JInternalFrame {
     private javax.swing.JLabel a_user;
     private javax.swing.JPanel approval;
     private javax.swing.JLabel approved;
+    private javax.swing.JLabel approved1;
     private javax.swing.JLabel d_user;
     private javax.swing.JLabel e_user;
     private javax.swing.JLabel jLabel1;

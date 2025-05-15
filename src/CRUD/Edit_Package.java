@@ -36,7 +36,9 @@ public class Edit_Package extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         
-        
+        package_id.setBackground(new java.awt.Color(0,0,0,1));
+        package_id.setForeground(Color.WHITE);
+        package_id.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
         pnfield.setBackground(new java.awt.Color(0,0,0,1));
         pfield.setBackground(new java.awt.Color(0,0,0,1));
         dfield.setBackground(new java.awt.Color(0,0,0,1));
@@ -53,7 +55,7 @@ public class Edit_Package extends javax.swing.JInternalFrame {
 
          public void setTitledBorder(JComponent component, String title, Color color) {
            TitledBorder titledBorder = BorderFactory.createTitledBorder(
-               BorderFactory.createEmptyBorder(),  // Use given color
+               BorderFactory.createLineBorder(color, 1),  // Use given color
                title,  
                TitledBorder.LEFT,  
                TitledBorder.TOP,  
@@ -63,33 +65,32 @@ public class Edit_Package extends javax.swing.JInternalFrame {
 
            component.setBorder(BorderFactory.createCompoundBorder(titledBorder, new EmptyBorder(0, 5, 0, 0)));
 
-           
-           
-           // Make text field or text area background fully transparent
+           // Make text field background fully transparent
            if (component instanceof JTextField) {
                JTextField textField = (JTextField) component;
                textField.setOpaque(false); // Remove background fill
-               textField.setBackground(new Color(0, 0, 0, 0)); // Full transparency
+               textField.setBackground(new Color(0, 0, 0, 0)); // Ensure full transparency
                textField.setCaretColor(Color.WHITE); // Ensure cursor is visible
                textField.setForeground(Color.decode("#F5E196"));
-           }
-
+               
+               
+       }
+           
            if (component instanceof JTextArea) {
-               JTextArea area = (JTextArea) component;
-               area.setOpaque(false); // Remove background fill
-               area.setBackground(new Color(0, 0, 0, 0)); // Full transparency
-               area.setCaretColor(Color.WHITE);
-               area.setForeground(Color.decode("#F5E196"));
-           }
-
-       
-         }      
-
+               JTextArea field = (JTextArea) component;
+               field.setOpaque(false); // Remove background fill
+               field.setBackground(new Color(0, 0, 0, 0)); // Ensure full transparency
+               field.setCaretColor(Color.WHITE); // Ensure cursor is visible
+               field.setForeground(Color.decode("#F5E196"));
+               
+               
+       }
+         }
          
 
        public void setInvalidTitledBorder(JComponent component, String title) {
            TitledBorder titledBorder = BorderFactory.createTitledBorder(
-               BorderFactory.createEmptyBorder(),  // Red border for invalid input
+               BorderFactory.createLineBorder(new Color(255, 105, 97)),  // Red border for invalid input
                title,
                TitledBorder.LEFT,
                TitledBorder.TOP,
@@ -113,11 +114,6 @@ public class Edit_Package extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        pnfield = new javax.swing.JTextField();
-        pfield = new javax.swing.JTextField();
-        dfield = new javax.swing.JTextArea();
-        sfield = new javax.swing.JTextArea();
-        tfield = new javax.swing.JTextField();
         name_error = new javax.swing.JLabel();
         service_error = new javax.swing.JLabel();
         desc_error = new javax.swing.JLabel();
@@ -127,110 +123,29 @@ public class Edit_Package extends javax.swing.JInternalFrame {
         back = new javax.swing.JLabel();
         add_p = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        dfield = new javax.swing.JTextArea();
+        package_id_error = new javax.swing.JLabel();
+        dura_error1 = new javax.swing.JLabel();
+        service_error1 = new javax.swing.JLabel();
+        name_error1 = new javax.swing.JLabel();
+        tfield = new javax.swing.JTextField();
+        pfield = new javax.swing.JTextField();
+        price_error1 = new javax.swing.JLabel();
+        pnfield = new javax.swing.JTextField();
+        desc_error1 = new javax.swing.JLabel();
+        sfield = new javax.swing.JTextArea();
+        package_id = new javax.swing.JTextField();
+        user_ID = new javax.swing.JLabel();
+        light_Yellow1 = new ColorGrading.Light_Yellow();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(820, 640));
         jPanel1.setPreferredSize(new java.awt.Dimension(820, 640));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        pnfield.setForeground(new java.awt.Color(153, 153, 153));
-        pnfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Package Name", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
-        pnfield.setCaretColor(new java.awt.Color(240, 240, 240));
-        pnfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        pnfield.setOpaque(false);
-        pnfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pnfieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pnfieldFocusLost(evt);
-            }
-        });
-        pnfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pnfieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(pnfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 720, 50));
-
-        pfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        pfield.setForeground(new java.awt.Color(153, 153, 153));
-        pfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Price", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
-        pfield.setCaretColor(new java.awt.Color(240, 240, 240));
-        pfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        pfield.setOpaque(false);
-        pfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pfieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pfieldFocusLost(evt);
-            }
-        });
-        pfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pfieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 720, 50));
-
-        dfield.setColumns(20);
-        dfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        dfield.setForeground(new java.awt.Color(153, 153, 153));
-        dfield.setRows(5);
-        dfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Description", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
-        dfield.setOpaque(false);
-        dfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dfieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                dfieldFocusLost(evt);
-            }
-        });
-        jPanel1.add(dfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 720, 80));
-
-        sfield.setColumns(20);
-        sfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        sfield.setForeground(new java.awt.Color(153, 153, 153));
-        sfield.setRows(5);
-        sfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Included Services", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
-        sfield.setOpaque(false);
-        sfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                sfieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                sfieldFocusLost(evt);
-            }
-        });
-        jPanel1.add(sfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 720, 70));
-
-        tfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
-        tfield.setForeground(new java.awt.Color(153, 153, 153));
-        tfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Duration", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
-        tfield.setCaretColor(new java.awt.Color(240, 240, 240));
-        tfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        tfield.setOpaque(false);
-        tfield.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfieldFocusLost(evt);
-            }
-        });
-        tfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(tfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 720, 50));
-
         name_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         name_error.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel1.add(name_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 320, 20));
+        jPanel1.add(name_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 320, 20));
 
         service_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         service_error.setForeground(new java.awt.Color(255, 102, 102));
@@ -238,7 +153,7 @@ public class Edit_Package extends javax.swing.JInternalFrame {
 
         desc_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         desc_error.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel1.add(desc_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 320, 20));
+        jPanel1.add(desc_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 320, 20));
 
         price_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         price_error.setForeground(new java.awt.Color(255, 102, 102));
@@ -293,6 +208,170 @@ public class Edit_Package extends javax.swing.JInternalFrame {
 
         jPanel1.add(add_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 80, 30));
 
+        dfield.setColumns(20);
+        dfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        dfield.setForeground(new java.awt.Color(153, 153, 153));
+        dfield.setRows(5);
+        dfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Description", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        dfield.setOpaque(false);
+        dfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dfieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dfieldFocusLost(evt);
+            }
+        });
+        jPanel1.add(dfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, -1));
+
+        package_id_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        package_id_error.setForeground(new java.awt.Color(255, 102, 102));
+        package_id_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(package_id_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 310, 20));
+
+        dura_error1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        dura_error1.setForeground(new java.awt.Color(255, 102, 102));
+        dura_error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(dura_error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 320, 20));
+
+        service_error1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        service_error1.setForeground(new java.awt.Color(255, 102, 102));
+        service_error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(service_error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 320, 20));
+
+        name_error1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        name_error1.setForeground(new java.awt.Color(255, 102, 102));
+        name_error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(name_error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, 20));
+
+        tfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        tfield.setForeground(new java.awt.Color(153, 153, 153));
+        tfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Duration", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        tfield.setCaretColor(new java.awt.Color(240, 240, 240));
+        tfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        tfield.setOpaque(false);
+        tfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfieldFocusLost(evt);
+            }
+        });
+        tfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 320, 60));
+
+        pfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        pfield.setForeground(new java.awt.Color(153, 153, 153));
+        pfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Price", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        pfield.setCaretColor(new java.awt.Color(240, 240, 240));
+        pfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        pfield.setOpaque(false);
+        pfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pfieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pfieldFocusLost(evt);
+            }
+        });
+        pfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 320, 60));
+
+        price_error1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        price_error1.setForeground(new java.awt.Color(255, 102, 102));
+        price_error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(price_error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 320, 20));
+
+        pnfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        pnfield.setForeground(new java.awt.Color(153, 153, 153));
+        pnfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Package Name", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        pnfield.setCaretColor(new java.awt.Color(240, 240, 240));
+        pnfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        pnfield.setOpaque(false);
+        pnfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pnfieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pnfieldFocusLost(evt);
+            }
+        });
+        pnfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pnfieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pnfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, 60));
+
+        desc_error1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        desc_error1.setForeground(new java.awt.Color(255, 102, 102));
+        desc_error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(desc_error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 320, 20));
+
+        sfield.setColumns(20);
+        sfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
+        sfield.setForeground(new java.awt.Color(153, 153, 153));
+        sfield.setRows(5);
+        sfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Included Services", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        sfield.setOpaque(false);
+        sfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sfieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                sfieldFocusLost(evt);
+            }
+        });
+        jPanel1.add(sfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 320, -1));
+
+        package_id.setEditable(false);
+        package_id.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        package_id.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(240, 240, 240), 1, true));
+        package_id.setCaretColor(new java.awt.Color(240, 240, 240));
+        package_id.setOpaque(false);
+        package_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                package_idFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                package_idFocusLost(evt);
+            }
+        });
+        package_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                package_idActionPerformed(evt);
+            }
+        });
+        jPanel1.add(package_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 60, 40));
+
+        user_ID.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 16)); // NOI18N
+        user_ID.setForeground(new java.awt.Color(255, 255, 255));
+        user_ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user_ID.setText("ID");
+        jPanel1.add(user_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 50, 40));
+
+        javax.swing.GroupLayout light_Yellow1Layout = new javax.swing.GroupLayout(light_Yellow1);
+        light_Yellow1.setLayout(light_Yellow1Layout);
+        light_Yellow1Layout.setHorizontalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 820, Short.MAX_VALUE)
+        );
+        light_Yellow1Layout.setVerticalGroup(
+            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(light_Yellow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 650));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -307,6 +386,73 @@ public class Edit_Package extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sfieldFocusLost
+        displayError(service_error, "");
+        setTitledBorder(sfield, "Included Services", Color.WHITE);
+        sfield.setForeground(Color.WHITE);
+    }//GEN-LAST:event_sfieldFocusLost
+
+    private void sfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sfieldFocusGained
+        sfield.setForeground(Color.WHITE);
+        setTitledBorder(sfield, "Included Services", Color.decode("#F5E196"));
+    }//GEN-LAST:event_sfieldFocusGained
+
+    private void pnfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnfieldActionPerformed
+
+    }//GEN-LAST:event_pnfieldActionPerformed
+
+    private void pnfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnfieldFocusLost
+        displayError(name_error, "");
+        setTitledBorder(pnfield, "Package Name", Color.WHITE);
+        pnfield.setForeground(Color.WHITE);
+    }//GEN-LAST:event_pnfieldFocusLost
+
+    private void pnfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnfieldFocusGained
+        pnfield.setForeground(Color.WHITE);
+        setTitledBorder(pnfield, "Package Name", Color.decode("#F5E196"));
+    }//GEN-LAST:event_pnfieldFocusGained
+
+    private void pfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfieldActionPerformed
+
+    private void pfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfieldFocusLost
+        displayError(price_error, "");
+        setTitledBorder(pfield, "Price", Color.WHITE);
+        pfield.setForeground(Color.WHITE);
+    }//GEN-LAST:event_pfieldFocusLost
+
+    private void pfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfieldFocusGained
+        pfield.setForeground(Color.WHITE);
+        setTitledBorder(pfield, "Price", Color.decode("#F5E196"));
+    }//GEN-LAST:event_pfieldFocusGained
+
+    private void tfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfieldActionPerformed
+
+    private void tfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfieldFocusLost
+        displayError(dura_error, "");
+        setTitledBorder(tfield, "Duration", Color.WHITE);
+        tfield.setForeground(Color.WHITE);
+    }//GEN-LAST:event_tfieldFocusLost
+
+    private void tfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfieldFocusGained
+        tfield.setForeground(Color.WHITE);
+        setTitledBorder(tfield, "Duration", Color.decode("#F5E196"));
+    }//GEN-LAST:event_tfieldFocusGained
+
+    private void dfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dfieldFocusLost
+        displayError(desc_error, "");
+        setTitledBorder(dfield, "Description", Color.WHITE);
+        dfield.setForeground(Color.WHITE);
+    }//GEN-LAST:event_dfieldFocusLost
+
+    private void dfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dfieldFocusGained
+        dfield.setForeground(Color.WHITE);
+        setTitledBorder(dfield, "Description", Color.decode("#F5E196"));
+    }//GEN-LAST:event_dfieldFocusGained
+
     private void add_pMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_pMouseExited
         add_p.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_add_pMouseExited
@@ -316,20 +462,22 @@ public class Edit_Package extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_add_pMouseEntered
 
     private void add_pMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_pMouseClicked
-        boolean valid = true;
+       boolean valid = true;
         String error = "Field cannot be empty!";
 
-        connectDB con = new connectDB();
-        Connection conn = con.getConnection();
-
+        // Get and trim input values
         String pname = pnfield.getText().trim();
         String price = pfield.getText().trim();
         String desc = dfield.getText().trim();
         String service = sfield.getText().trim();
         String duration = tfield.getText().trim();
-       
+        String id = package_id.getText().trim();
 
-        // Validation checks
+        if (id.isEmpty()) {
+            displayError(package_id_error, "Package ID cannot be empty!");
+            valid = false;
+        }
+
         if (pname.isEmpty()) {
             setInvalidTitledBorder(pnfield, "Package Name");
             displayError(name_error, error);
@@ -340,9 +488,16 @@ public class Edit_Package extends javax.swing.JInternalFrame {
             setInvalidTitledBorder(pfield, "Price");
             displayError(price_error, error);
             valid = false;
+        } else {
+            try {
+                Double.parseDouble(price);  // Validate price is a number
+            } catch (NumberFormatException ex) {
+                setInvalidTitledBorder(pfield, "Price");
+                displayError(price_error, "Price must be a number!");
+                valid = false;
+            }
         }
 
-       
         if (desc.isEmpty()) {
             setInvalidTitledBorder(dfield, "Description");
             displayError(desc_error, error);
@@ -361,46 +516,58 @@ public class Edit_Package extends javax.swing.JInternalFrame {
             valid = false;
         }
 
-        // ❌ Stop execution if any validation fails
+        // Stop execution if validation failed
         if (!valid) {
             return;
         }
 
-        // ✅ Corrected SQL (no extra comma)
-       String sql = "UPDATE FROM package pp_name = ?, pp_price = ?, pp_desc = ?, pp_service = ? , pp_duration = ? WHERE pp_id = ?";
+        // Database connection - use try-with-resources to ensure closing
+        connectDB con = new connectDB();
 
-        try (PreparedStatement pstmt = con.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, pname);
-            pstmt.setString(2, price);
-            pstmt.setString(3, desc);
-            pstmt.setString(4, service);
-            pstmt.setString(5, duration);
-         
+        try (Connection conn = con.getConnection()) {
 
-            int result = pstmt.executeUpdate();
+            System.out.println("Editing package with ID: " + id);  // Debug print
 
-            if (result > 0) {
-                ResultSet generatedKeys = pstmt.getGeneratedKeys();
-                int selectedId = 1;
-                if (generatedKeys.next()) {
-                    selectedId = generatedKeys.getInt(1);
+            // SQL UPDATE query
+            String sql = "UPDATE package SET pp_name = ?, pp_price = ?, pp_desc = ?, pp_service = ?, pp_duration = ? WHERE pp_id = ?";
+
+            // Use the same connection instance here
+            try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                pstmt.setString(1, pname);
+                pstmt.setString(2, price);
+                pstmt.setString(3, desc);
+                pstmt.setString(4, service);
+                pstmt.setString(5, duration);
+                pstmt.setString(6, id);
+
+                int result = pstmt.executeUpdate();
+
+                if (result > 0) {
+                    // Log action using the same connection
+                    Session sess = Session.getInstance();
+                    String action = "Edited a package with ID " + id;
+
+                    String logSql = "INSERT INTO logs (u_id, action, date_time) VALUES (?, ?, ?)";
+                    try (PreparedStatement logStmt = conn.prepareStatement(logSql)) {
+                        logStmt.setString(1, sess.getUser_id());
+                        logStmt.setString(2, action);
+                        logStmt.setTimestamp(3, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+                        logStmt.executeUpdate();
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Edited a package with ID " + id + " successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Editing failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-                // Logging the action
-                Session sess = Session.getInstance();
-                String action = "Edited a package with ID " + selectedId;
-                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
-
-                JOptionPane.showMessageDialog(null, "Package edited successfully!");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Updating failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Package ID must be a number!", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+
     }//GEN-LAST:event_add_pMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
@@ -413,72 +580,17 @@ public class Edit_Package extends javax.swing.JInternalFrame {
         pack.setVisible(true); // instead of .show(), which is deprecated
     }//GEN-LAST:event_backMouseClicked
 
-    private void tfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfieldActionPerformed
-         // TODO add your handling code here:
-    }//GEN-LAST:event_tfieldActionPerformed
-
-    private void tfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfieldFocusLost
-        displayError(dura_error, "");
-        setTitledBorder(tfield, "Duration", Color.WHITE);
-        tfield.setForeground(Color.WHITE);
-    }//GEN-LAST:event_tfieldFocusLost
-
-    private void tfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfieldFocusGained
-        tfield.setForeground(Color.WHITE);
-        setTitledBorder(tfield, "Duration", Color.decode("#F5E196"));
-    }//GEN-LAST:event_tfieldFocusGained
-
-    private void pfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfieldActionPerformed
+    private void package_idFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_package_idFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_pfieldActionPerformed
+    }//GEN-LAST:event_package_idFocusGained
 
-    private void pfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfieldFocusLost
-        displayError(price_error, "");
-        setTitledBorder(pfield, "Price", Color.WHITE);
-        pfield.setForeground(Color.WHITE);
-    }//GEN-LAST:event_pfieldFocusLost
-
-    private void pfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfieldFocusGained
-        pfield.setForeground(Color.WHITE);
-        setTitledBorder(pfield, "Price", Color.decode("#F5E196"));
-    }//GEN-LAST:event_pfieldFocusGained
-
-    private void sfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sfieldFocusGained
-        sfield.setForeground(Color.WHITE);
-        setTitledBorder(sfield, "Included Services", Color.decode("#F5E196"));
-    }//GEN-LAST:event_sfieldFocusGained
-
-    private void sfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sfieldFocusLost
-        displayError(service_error, "");
-        setTitledBorder(sfield, "Included Services", Color.WHITE);
-        sfield.setForeground(Color.WHITE);
-    }//GEN-LAST:event_sfieldFocusLost
-
-    private void dfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dfieldFocusGained
-        dfield.setForeground(Color.WHITE);
-        setTitledBorder(dfield, "Description", Color.decode("#F5E196"));
-    }//GEN-LAST:event_dfieldFocusGained
-
-    private void dfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dfieldFocusLost
-        displayError(dura_error, "");
-        setTitledBorder(dfield, "Description", Color.WHITE);
-        dfield.setForeground(Color.WHITE);
-    }//GEN-LAST:event_dfieldFocusLost
-
-    private void pnfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnfieldFocusGained
-        pnfield.setForeground(Color.WHITE);
-        setTitledBorder(pnfield, "Package Name", Color.decode("#F5E196"));
-    }//GEN-LAST:event_pnfieldFocusGained
-
-    private void pnfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnfieldFocusLost
-        displayError(name_error, "");
-        setTitledBorder(pnfield, "Package Name", Color.WHITE);
-        pnfield.setForeground(Color.WHITE);
-    }//GEN-LAST:event_pnfieldFocusLost
-
-    private void pnfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnfieldActionPerformed
+    private void package_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_package_idFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnfieldActionPerformed
+    }//GEN-LAST:event_package_idFocusLost
+
+    private void package_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_package_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_package_idActionPerformed
 
    
     
@@ -487,17 +599,26 @@ public class Edit_Package extends javax.swing.JInternalFrame {
     private javax.swing.JPanel add_p;
     private javax.swing.JLabel back;
     private javax.swing.JLabel desc_error;
+    private javax.swing.JLabel desc_error1;
     private javax.swing.JLabel details;
-    private javax.swing.JTextArea dfield;
+    public javax.swing.JTextArea dfield;
     private javax.swing.JLabel dura_error;
+    private javax.swing.JLabel dura_error1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private ColorGrading.Light_Yellow light_Yellow1;
     private javax.swing.JLabel name_error;
+    private javax.swing.JLabel name_error1;
+    public javax.swing.JTextField package_id;
+    private javax.swing.JLabel package_id_error;
     public javax.swing.JTextField pfield;
     public javax.swing.JTextField pnfield;
     private javax.swing.JLabel price_error;
-    private javax.swing.JLabel service_error;
-    private javax.swing.JTextArea sfield;
+    private javax.swing.JLabel price_error1;
+    public javax.swing.JLabel service_error;
+    private javax.swing.JLabel service_error1;
+    public javax.swing.JTextArea sfield;
     public javax.swing.JTextField tfield;
+    private javax.swing.JLabel user_ID;
     // End of variables declaration//GEN-END:variables
 }

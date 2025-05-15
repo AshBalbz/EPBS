@@ -1,0 +1,446 @@
+
+package BOOKING;
+
+import CONFIG.BookingSession;
+import CONFIG.connectDB;
+import CRUD.Add_Photographer;
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.BorderFactory;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
+
+public class Photo extends javax.swing.JInternalFrame {
+
+    connectDB con = new connectDB();
+  
+    public Photo() {
+        initComponents();
+        displayData();
+        setBackground(new Color(0, 0, 0, 1));
+        
+        //remove border
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
+        
+       
+            photographer_tbl.getTableHeader().setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+            photographer_tbl.getTableHeader().setOpaque(false);
+            photographer_tbl.getTableHeader().setBorder(null);
+            photographer_tbl.getTableHeader().setForeground(new Color(0,0,0));
+            photographer_tbl.getTableHeader().setBackground(new Color(102,102,102));
+
+            photographer_tbl.setBackground(Color.WHITE); // Set table background to white
+            photographer_tbl.setForeground(Color.BLACK); // Set text color to black
+
+            photographer_tbl.setRowHeight(25);
+            photographer_tbl.setSelectionForeground(Color.WHITE);
+            photographer_tbl.setSelectionBackground(new Color(167, 134, 42)); // Selection background color
+
+            // Set column widths
+            photographer_tbl.getColumnModel().getColumn(0).setPreferredWidth(50);  // ID
+            photographer_tbl.getColumnModel().getColumn(1).setPreferredWidth(120); // First Name
+            photographer_tbl.getColumnModel().getColumn(2).setPreferredWidth(120); // Last Name
+            photographer_tbl.getColumnModel().getColumn(3).setPreferredWidth(220); // Email
+            photographer_tbl.getColumnModel().getColumn(4).setPreferredWidth(150); // Contact
+            photographer_tbl.getColumnModel().getColumn(5).setPreferredWidth(120); // Experience
+            photographer_tbl.getColumnModel().getColumn(6).setPreferredWidth(180); // Expertise
+            photographer_tbl.getColumnModel().getColumn(7).setPreferredWidth(80);  // Rate
+
+    }
+
+    private void resetBorder(JTextField field) {
+        field.setBorder(BorderFactory.createCompoundBorder(
+            new LineBorder(new Color(19,122,127), 1),
+            new EmptyBorder(0, 5, 0, 0) 
+        ));
+    }
+    
+    public void displayData(){
+        
+         try{
+           ResultSet rs = con.getData("SELECT * FROM photographer");         
+           DefaultTableModel model = (DefaultTableModel)photographer_tbl.getModel();
+           model.setRowCount(0);
+           
+           while(rs.next()){
+               model.addRow(new String[]{
+                   rs.getString(1), 
+                   rs.getString(2), 
+                   rs.getString(3), 
+                   rs.getString(4), 
+                   rs.getString(5), 
+                   rs.getString(6), 
+                   rs.getString(7),
+                   rs.getString(8)});             
+           }
+        }catch(SQLException ex){
+            System.out.println("Errors: "+ex.getMessage());
+        }
+    }
+        
+   
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jMenu1 = new javax.swing.JMenu();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
+        roundedPanel1 = new Swing.RoundedPanel();
+        Title = new javax.swing.JLabel();
+        search_icon = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        search_bar = new javax.swing.JTextField();
+        ScrollPane = new javax.swing.JScrollPane();
+        photographer_tbl = new javax.swing.JTable();
+        a_photo = new javax.swing.JLabel();
+        refresh = new javax.swing.JLabel();
+        bck = new javax.swing.JLabel();
+        Continue = new javax.swing.JLabel();
+        back = new Swing.Button();
+        cont = new Swing.Button();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jMenu1.setText("jMenu1");
+
+        setPreferredSize(new java.awt.Dimension(820, 650));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(840, 620));
+        jPanel1.setPreferredSize(new java.awt.Dimension(840, 620));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        roundedPanel1.setBackground(new java.awt.Color(167, 134, 42));
+        roundedPanel1.setPreferredSize(new java.awt.Dimension(100, 100));
+        roundedPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Title.setText("Select From Photographer Table:");
+        roundedPanel1.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 50));
+
+        jPanel1.add(roundedPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 390, 50));
+
+        search_icon.setBackground(new java.awt.Color(0, 0, 0));
+        search_icon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_icon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/search.png"))); // NOI18N
+        search_icon.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 30));
+
+        jPanel1.add(search_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 30, 30));
+
+        search_bar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        search_bar.setForeground(new java.awt.Color(153, 153, 153));
+        search_bar.setText(" Search...");
+        search_bar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(167, 134, 42)));
+        search_bar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                search_barFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                search_barFocusLost(evt);
+            }
+        });
+        search_bar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_barActionPerformed(evt);
+            }
+        });
+        search_bar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search_barKeyReleased(evt);
+            }
+        });
+        jPanel1.add(search_bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 210, 30));
+
+        ScrollPane.setBackground(new java.awt.Color(51, 255, 204));
+
+        photographer_tbl.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        photographer_tbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "First Name", "Last Name", "Email", "Contact", "Experience", "Expertise", "Rate"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        photographer_tbl.setGridColor(new java.awt.Color(102, 102, 102));
+        photographer_tbl.setOpaque(false);
+        ScrollPane.setViewportView(photographer_tbl);
+
+        jPanel1.add(ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 780, 450));
+
+        a_photo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        a_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/add.png"))); // NOI18N
+        a_photo.setText(" Add Photographer");
+        a_photo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_photoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                a_photoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                a_photoMouseExited(evt);
+            }
+        });
+        jPanel1.add(a_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 160, 40));
+
+        refresh.setBackground(new java.awt.Color(0, 0, 0));
+        refresh.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/refresh.png"))); // NOI18N
+        refresh.setText("Refresh");
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refreshMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshMouseExited(evt);
+            }
+        });
+        jPanel1.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 520, 90, 40));
+
+        bck.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        bck.setForeground(new java.awt.Color(255, 255, 255));
+        bck.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/bc.png"))); // NOI18N
+        bck.setText("  Back");
+        jPanel1.add(bck, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 80, 50));
+
+        Continue.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        Continue.setForeground(new java.awt.Color(255, 255, 255));
+        Continue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Continue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/next.png"))); // NOI18N
+        Continue.setText("  Continue");
+        jPanel1.add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 110, 50));
+
+        back.setBackground(new java.awt.Color(96, 92, 60));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backMouseExited(evt);
+            }
+        });
+        jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 140, 50));
+
+        cont.setBackground(new java.awt.Color(96, 92, 60));
+        cont.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                contMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                contMouseExited(evt);
+            }
+        });
+        jPanel1.add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 580, 140, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 830, 650));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+     
+    private void search_barFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_barFocusGained
+        if(search_bar.getText().equals(" Search...")){
+            search_bar.setText("");
+            search_bar.setForeground(Color.BLACK);
+            search_bar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        }
+    }//GEN-LAST:event_search_barFocusGained
+
+    private void search_barFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_barFocusLost
+         if(search_bar.getText().isEmpty()){
+            search_bar.setText(" Search...");
+            search_bar.setForeground(Color.GRAY);
+            search_bar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        }
+        resetBorder(search_bar);
+    }//GEN-LAST:event_search_barFocusLost
+
+    private void search_barActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_barActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_barActionPerformed
+
+    private void search_barKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_barKeyReleased
+       DefaultTableModel model = (DefaultTableModel)photographer_tbl.getModel();
+       TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) photographer_tbl.getModel());
+       photographer_tbl.setRowSorter(sorter);
+       sorter.setRowFilter(RowFilter.regexFilter(search_bar.getText()));
+
+    }//GEN-LAST:event_search_barKeyReleased
+
+    private void a_photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseClicked
+     Add_Photographer ad = new Add_Photographer();
+
+     JDesktopPane desktopPane = getDesktopPane(); 
+
+     desktopPane.add(ad);
+     ad.setVisible(true);
+    }//GEN-LAST:event_a_photoMouseClicked
+        
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+       displayData();
+    }//GEN-LAST:event_refreshMouseClicked
+
+    private void a_photoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseEntered
+        a_photo.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_a_photoMouseEntered
+
+    private void a_photoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseExited
+        a_photo.setForeground(Color.black);
+    }//GEN-LAST:event_a_photoMouseExited
+
+    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
+        refresh.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_refreshMouseEntered
+
+    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
+        refresh.setForeground(Color.black);
+    }//GEN-LAST:event_refreshMouseExited
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        Client bk = new Client();
+
+        JDesktopPane jd = getDesktopPane();
+        jd.add(bk);
+        bk.setVisible(true);
+    }//GEN-LAST:event_backMouseClicked
+
+    private void backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseEntered
+        back.setBackground(new Color(176, 172, 140));
+    }//GEN-LAST:event_backMouseEntered
+
+    private void backMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseExited
+        back.setBackground(new Color(96, 92, 60));
+    }//GEN-LAST:event_backMouseExited
+
+    private void contMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseClicked
+      int selectedRow = photographer_tbl.getSelectedRow();
+
+    if (selectedRow < 0) {
+        JOptionPane.showMessageDialog(null, "Please select a row!");
+    } else {
+        BookingSession session = BookingSession.getInstance();
+
+        // Get the number of columns in the table model
+        int columnCount = photographer_tbl.getColumnCount();
+
+        if (session != null) {
+            // It's crucial to check if the column index is within bounds BEFORE accessing the value.
+            // Assuming the columns are in the order: p_id, p_fname, p_lname, p_email, p_contact, p_experience, p_expertise, p_rate, p_status
+
+            if (columnCount > 0) {
+                session.setP_id(photographer_tbl.getValueAt(selectedRow, 0).toString());
+            }
+            if (columnCount > 1) {
+                session.setP_fname(photographer_tbl.getValueAt(selectedRow, 1).toString());
+            }
+            if (columnCount > 2) {
+                session.setP_lname(photographer_tbl.getValueAt(selectedRow, 2).toString());
+            }
+            if (columnCount > 3) {
+                session.setP_email(photographer_tbl.getValueAt(selectedRow, 3).toString());
+            }
+            if (columnCount > 4) {
+                session.setP_contact(photographer_tbl.getValueAt(selectedRow, 4).toString());
+            }
+            if (columnCount > 5) {
+                session.setP_experience(photographer_tbl.getValueAt(selectedRow, 5).toString());
+            }
+            if (columnCount > 6) {
+                session.setP_expertise(photographer_tbl.getValueAt(selectedRow, 6).toString());
+            }
+            if (columnCount > 7) {
+                session.setP_rate(photographer_tbl.getValueAt(selectedRow, 7).toString());
+            }
+            else {
+                // Handle the case where the table doesn't have the expected number of columns.
+                JOptionPane.showMessageDialog(null, "Error: Photographer table does not have the expected number of columns.");
+                return; // Exit the method to prevent further errors.
+            }
+
+            // Proceed to next internal frame (e.g., Package selection)
+            Pack pc = new Pack();
+            JDesktopPane pane = getDesktopPane();
+            pane.add(pc);
+            pc.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Session not initialized. Please go back to Client selection.");
+        }
+    }
+
+    }//GEN-LAST:event_contMouseClicked
+
+    private void contMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseEntered
+        cont.setBackground(new Color(176, 172, 140));
+    }//GEN-LAST:event_contMouseEntered
+
+    private void contMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseExited
+        cont.setBackground(new Color(96, 92, 60));
+    }//GEN-LAST:event_contMouseExited
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Continue;
+    private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel a_photo;
+    private Swing.Button back;
+    private javax.swing.JLabel bck;
+    private Swing.Button cont;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable photographer_tbl;
+    private javax.swing.JLabel refresh;
+    private Swing.RoundedPanel roundedPanel1;
+    private javax.swing.JTextField search_bar;
+    private javax.swing.JPanel search_icon;
+    // End of variables declaration//GEN-END:variables
+
+    
+}

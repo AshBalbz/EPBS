@@ -1,22 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MANAGEMENT;
 
-import AUTHENTICATION.Change_Pass;
 
 import AUTHENTICATION.LOGIN;
 import CONFIG.Session;
 import CONFIG.connectDB;
+import SETTINGS.ChangePassword;
 import SETTINGS.Update_Acc;
-import SETTINGS.setupSecurityQuestion;
+import SETTINGS.secQuest;
 import java.awt.Color;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -54,9 +49,9 @@ public class Setting extends javax.swing.JInternalFrame {
         security = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         update = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         settings = new javax.swing.JLabel();
         Acc_Panel = new javax.swing.JPanel();
-        acc = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         name_label = new javax.swing.JLabel();
         username_label = new javax.swing.JLabel();
@@ -64,6 +59,8 @@ public class Setting extends javax.swing.JInternalFrame {
         efield = new javax.swing.JTextField();
         c_icon = new javax.swing.JLabel();
         pfield = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        acc = new javax.swing.JLabel();
 
         setForeground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(840, 650));
@@ -94,7 +91,8 @@ public class Setting extends javax.swing.JInternalFrame {
         Acc_Panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         change_pass.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        change_pass.setText("Change Password");
+        change_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/lockxxx.png"))); // NOI18N
+        change_pass.setText(" Change Password");
         change_pass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 change_passMouseClicked(evt);
@@ -106,10 +104,10 @@ public class Setting extends javax.swing.JInternalFrame {
                 change_passMouseExited(evt);
             }
         });
-        Acc_Panel1.add(change_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 180, 30));
+        Acc_Panel1.add(change_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 30));
 
         security.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        security.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/set-up black.png"))); // NOI18N
+        security.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/settingsxx.png"))); // NOI18N
         security.setText("  Set Up Security Question");
         security.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,7 +123,8 @@ public class Setting extends javax.swing.JInternalFrame {
         Acc_Panel1.add(security, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 220, 30));
 
         logout.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        logout.setText("Logout");
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/logoutxxx.png"))); // NOI18N
+        logout.setText(" Logout");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
@@ -137,7 +136,7 @@ public class Setting extends javax.swing.JInternalFrame {
                 logoutMouseExited(evt);
             }
         });
-        Acc_Panel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 210, 30));
+        Acc_Panel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 210, 30));
 
         update.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/update_black.png"))); // NOI18N
@@ -155,36 +154,38 @@ public class Setting extends javax.swing.JInternalFrame {
         });
         Acc_Panel1.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 220, 30));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        settings.setBackground(new java.awt.Color(255, 255, 255));
         settings.setFont(new java.awt.Font("Britannic Bold", 0, 20)); // NOI18N
         settings.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         settings.setText("SETTINGS");
-        Acc_Panel1.add(settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 60));
+        jPanel2.add(settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 70));
+
+        Acc_Panel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 70));
 
         jPanel1.add(Acc_Panel1);
-        Acc_Panel1.setBounds(450, 150, 330, 450);
+        Acc_Panel1.setBounds(450, 130, 330, 450);
 
         Acc_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Acc_Panel.setOpaque(false);
         Acc_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        acc.setFont(new java.awt.Font("Britannic Bold", 0, 20)); // NOI18N
-        acc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc.setText("ACCOUNT DETAILS");
-        Acc_Panel.add(acc, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 330, 60));
-
         profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/prof.png"))); // NOI18N
-        Acc_Panel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 330, 130));
+        Acc_Panel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 330, 120));
 
         name_label.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         name_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name_label.setText("Name");
-        Acc_Panel.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 330, 30));
+        Acc_Panel.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 330, 30));
 
         username_label.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         username_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         username_label.setText("@username");
-        Acc_Panel.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 330, -1));
+        Acc_Panel.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, -1));
 
         e_icon.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         e_icon.setText("Email:");
@@ -238,6 +239,17 @@ public class Setting extends javax.swing.JInternalFrame {
         });
         Acc_Panel.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 260, 50));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        acc.setFont(new java.awt.Font("Britannic Bold", 0, 20)); // NOI18N
+        acc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        acc.setText("ACCOUNT DETAILS");
+        jPanel3.add(acc, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 70));
+
+        Acc_Panel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 70));
+
         jPanel1.add(Acc_Panel);
         Acc_Panel.setBounds(40, 20, 330, 450);
 
@@ -258,14 +270,11 @@ public class Setting extends javax.swing.JInternalFrame {
  
     
     private void change_passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_change_passMouseClicked
-        JDialog dialog = new JDialog(); // Create a floating window
-        Change_Pass newPanel = new Change_Pass();
-
-        dialog.add(newPanel); // Add add_user to the dialog
-        dialog.setSize(600, 410); // Set the size of the window
-        dialog.setLocationRelativeTo(null); // Center the window
-        dialog.setModal(true); // Prevent interactions with the main window until closed
-        dialog.setVisible(true); // Show the floating add_user
+        ChangePassword change = new ChangePassword();
+        
+        JDesktopPane pane = getDesktopPane();
+        pane.add(change);
+        change.setVisible(true);
     }//GEN-LAST:event_change_passMouseClicked
 
     private void change_passMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_change_passMouseEntered
@@ -314,7 +323,7 @@ public class Setting extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_efieldFocusGained
 
     private void securityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_securityMouseClicked
-        setupSecurityQuestion set = new setupSecurityQuestion();
+        secQuest set = new secQuest();
         JDesktopPane desk = getDesktopPane();
         desk.add(set);
         set.setVisible(true);
@@ -383,6 +392,8 @@ public class Setting extends javax.swing.JInternalFrame {
     private javax.swing.JLabel e_icon;
     public javax.swing.JTextField efield;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel name_label;
     public javax.swing.JTextField pfield;

@@ -169,7 +169,7 @@
                     <Column editable="false" title="Contact" type="java.lang.Object"/>
                     <Column editable="false" title="Experience" type="java.lang.Object"/>
                     <Column editable="false" title="Expertise" type="java.lang.Object"/>
-                    <Column editable="false" title="Rate" type="java.lang.Object"/>
+                    <Column editable="false" title="Rate Per Hour" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

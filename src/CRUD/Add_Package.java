@@ -45,7 +45,7 @@ public class Add_Package extends javax.swing.JInternalFrame {
        
     }
 
-        private void displayError(JLabel field, String message) {
+      private void displayError(JLabel field, String message) {
                field.setText(message);
                field.setForeground(new Color(255, 105, 97));
            }
@@ -53,7 +53,7 @@ public class Add_Package extends javax.swing.JInternalFrame {
 
          public void setTitledBorder(JComponent component, String title, Color color) {
            TitledBorder titledBorder = BorderFactory.createTitledBorder(
-               BorderFactory.createEmptyBorder(),  // Use given color
+               BorderFactory.createLineBorder(color, 1),  // Use given color
                title,  
                TitledBorder.LEFT,  
                TitledBorder.TOP,  
@@ -63,33 +63,20 @@ public class Add_Package extends javax.swing.JInternalFrame {
 
            component.setBorder(BorderFactory.createCompoundBorder(titledBorder, new EmptyBorder(0, 5, 0, 0)));
 
-           
-           
-           // Make text field or text area background fully transparent
+           // Make text field background fully transparent
            if (component instanceof JTextField) {
                JTextField textField = (JTextField) component;
                textField.setOpaque(false); // Remove background fill
-               textField.setBackground(new Color(0, 0, 0, 0)); // Full transparency
+               textField.setBackground(new Color(0, 0, 0, 0)); // Ensure full transparency
                textField.setCaretColor(Color.WHITE); // Ensure cursor is visible
                textField.setForeground(Color.decode("#F5E196"));
-           }
-
-           if (component instanceof JTextArea) {
-               JTextArea area = (JTextArea) component;
-               area.setOpaque(false); // Remove background fill
-               area.setBackground(new Color(0, 0, 0, 0)); // Full transparency
-               area.setCaretColor(Color.WHITE);
-               area.setForeground(Color.decode("#F5E196"));
-           }
-
-       
-         }      
-
+       }
+         }
          
 
        public void setInvalidTitledBorder(JComponent component, String title) {
            TitledBorder titledBorder = BorderFactory.createTitledBorder(
-               BorderFactory.createEmptyBorder(),  // Red border for invalid input
+               BorderFactory.createLineBorder(new Color(255, 105, 97)),  // Red border for invalid input
                title,
                TitledBorder.LEFT,
                TitledBorder.TOP,
@@ -127,7 +114,7 @@ public class Add_Package extends javax.swing.JInternalFrame {
         back = new javax.swing.JLabel();
         add_p = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        light_Yellow1 = new ColorGrading.Light_Yellow();
+        light_Yellow2 = new ColorGrading.Light_Yellow();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(820, 640));
@@ -136,7 +123,7 @@ public class Add_Package extends javax.swing.JInternalFrame {
 
         pnfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         pnfield.setForeground(new java.awt.Color(153, 153, 153));
-        pnfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Package Name", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        pnfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Package Name", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
         pnfield.setCaretColor(new java.awt.Color(240, 240, 240));
         pnfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         pnfield.setOpaque(false);
@@ -153,11 +140,11 @@ public class Add_Package extends javax.swing.JInternalFrame {
                 pnfieldActionPerformed(evt);
             }
         });
-        jPanel1.add(pnfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 320, 60));
+        jPanel1.add(pnfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 320, 60));
 
         pfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         pfield.setForeground(new java.awt.Color(153, 153, 153));
-        pfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Price", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        pfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Price", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
         pfield.setCaretColor(new java.awt.Color(240, 240, 240));
         pfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         pfield.setOpaque(false);
@@ -174,13 +161,13 @@ public class Add_Package extends javax.swing.JInternalFrame {
                 pfieldActionPerformed(evt);
             }
         });
-        jPanel1.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 320, 60));
+        jPanel1.add(pfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 320, 60));
 
         dfield.setColumns(20);
         dfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         dfield.setForeground(new java.awt.Color(153, 153, 153));
         dfield.setRows(5);
-        dfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Description", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        dfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Description", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         dfield.setOpaque(false);
         dfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -190,13 +177,13 @@ public class Add_Package extends javax.swing.JInternalFrame {
                 dfieldFocusLost(evt);
             }
         });
-        jPanel1.add(dfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 320, -1));
+        jPanel1.add(dfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 320, -1));
 
         sfield.setColumns(20);
         sfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         sfield.setForeground(new java.awt.Color(153, 153, 153));
         sfield.setRows(5);
-        sfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Included Services", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        sfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Included Services", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         sfield.setOpaque(false);
         sfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -206,11 +193,11 @@ public class Add_Package extends javax.swing.JInternalFrame {
                 sfieldFocusLost(evt);
             }
         });
-        jPanel1.add(sfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 320, -1));
+        jPanel1.add(sfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 320, -1));
 
         tfield.setFont(new java.awt.Font("Franklin Gothic Medium", 2, 16)); // NOI18N
         tfield.setForeground(new java.awt.Color(153, 153, 153));
-        tfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Duration", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
+        tfield.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Duration", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Franklin Gothic Medium", 0, 16), new java.awt.Color(240, 240, 240))); // NOI18N
         tfield.setCaretColor(new java.awt.Color(240, 240, 240));
         tfield.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         tfield.setOpaque(false);
@@ -227,32 +214,32 @@ public class Add_Package extends javax.swing.JInternalFrame {
                 tfieldActionPerformed(evt);
             }
         });
-        jPanel1.add(tfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 320, 60));
+        jPanel1.add(tfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 320, 60));
 
         name_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         name_error.setForeground(new java.awt.Color(255, 102, 102));
         name_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(name_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 310, 20));
+        jPanel1.add(name_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, 20));
 
         service_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         service_error.setForeground(new java.awt.Color(255, 102, 102));
         service_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(service_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 320, 20));
+        jPanel1.add(service_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 320, 20));
 
         desc_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         desc_error.setForeground(new java.awt.Color(255, 102, 102));
         desc_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(desc_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 320, 20));
+        jPanel1.add(desc_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 320, 20));
 
         price_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         price_error.setForeground(new java.awt.Color(255, 102, 102));
         price_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(price_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 310, 20));
+        jPanel1.add(price_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 320, 20));
 
         dura_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         dura_error.setForeground(new java.awt.Color(255, 102, 102));
         dura_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(dura_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 310, 20));
+        jPanel1.add(dura_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 320, 20));
 
         details.setBackground(new java.awt.Color(0, 0, 0));
         details.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 20)); // NOI18N
@@ -299,18 +286,18 @@ public class Add_Package extends javax.swing.JInternalFrame {
 
         jPanel1.add(add_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 80, 30));
 
-        javax.swing.GroupLayout light_Yellow1Layout = new javax.swing.GroupLayout(light_Yellow1);
-        light_Yellow1.setLayout(light_Yellow1Layout);
-        light_Yellow1Layout.setHorizontalGroup(
-            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout light_Yellow2Layout = new javax.swing.GroupLayout(light_Yellow2);
+        light_Yellow2.setLayout(light_Yellow2Layout);
+        light_Yellow2Layout.setHorizontalGroup(
+            light_Yellow2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 820, Short.MAX_VALUE)
         );
-        light_Yellow1Layout.setVerticalGroup(
-            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+        light_Yellow2Layout.setVerticalGroup(
+            light_Yellow2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
-        jPanel1.add(light_Yellow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 640));
+        jPanel1.add(light_Yellow2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -511,7 +498,7 @@ public class Add_Package extends javax.swing.JInternalFrame {
     private javax.swing.JLabel dura_error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private ColorGrading.Light_Yellow light_Yellow1;
+    private ColorGrading.Light_Yellow light_Yellow2;
     private javax.swing.JLabel name_error;
     public javax.swing.JTextField pfield;
     public javax.swing.JTextField pnfield;

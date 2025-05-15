@@ -134,6 +134,18 @@ public class LOGIN extends javax.swing.JFrame {
             return false;
         }
     }
+    
+    private void proceedToDashboard(String roleFromDB) {
+    JOptionPane.showMessageDialog(this, "Login successful! You are logged in as " + roleFromDB + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+    if ("Admin".equalsIgnoreCase(roleFromDB)) {
+        Admin_Dashboard admin = new Admin_Dashboard();
+        admin.setVisible(true);
+    } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
+        Staff_Dashboard staff = new Staff_Dashboard();
+        staff.setVisible(true);
+    }
+}
 
     
     @SuppressWarnings("unchecked")
@@ -331,7 +343,7 @@ public class LOGIN extends javax.swing.JFrame {
         });
         LOGIN.add(log, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, 130, 40));
 
-        BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/new.png"))); // NOI18N
+        BG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/Magazine.png"))); // NOI18N
         BG1.setAutoscrolls(true);
         LOGIN.add(BG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -436,7 +448,7 @@ public class LOGIN extends javax.swing.JFrame {
     }//GEN-LAST:event_forgotMouseExited
 
     private void miniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miniMouseClicked
-
+       this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_miniMouseClicked
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
@@ -468,46 +480,60 @@ public class LOGIN extends javax.swing.JFrame {
 
         connectDB con = new connectDB();
         Connection cn = con.getConnection();
-        
-        if (!con.fieldExists("username", username)){
+
+        if (!con.fieldExists("username", username)) {
             setInvalidTitledBorder(unf, "Username");
             displayError(username_error, "Invalid Username!");
             return;
-        } 
+        }
 
-       if (loginAcc(username, password)) {
-            
+        if (loginAcc(username, password)) {
+
             Session sess = Session.getInstance();
             String roleFromDB = sess.getRole();
             String status = sess.getStatus();
-            String user = sess.getUser_id();
+            String userId = sess.getUser_id();
 
- 
-                String action = "User logged in with ID " + user;
-                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
-                
-                
+            String action = "User logged in with ID " + userId;
+            con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + userId + "', '" + action + "', '" + LocalDateTime.now() + "')");
+
             if ("Pending".equalsIgnoreCase(status)) {
                 JOptionPane.showMessageDialog(this, "Your account is pending approval.", "Login Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Login successful! You are logged in as " + roleFromDB + ".", "Success", JOptionPane.INFORMATION_MESSAGE);
+                // SQL query to get the security question for the user
+                String sql = "SELECT question FROM securityQuestion WHERE user_id = ?";
+                String securityQuestion = con.getSingleData(sql, userId);
 
-               
-                if ("Admin".equalsIgnoreCase(roleFromDB)) {
-                    Admin_Dashboard admin = new Admin_Dashboard();
-                    admin.setVisible(true);
-                } else if ("Staff".equalsIgnoreCase(roleFromDB)) {
-                    Staff_Dashboard staff = new Staff_Dashboard();
-                    staff.setVisible(true);
+                if (securityQuestion == null || securityQuestion.trim().isEmpty()) {
+                    // Show JDialog asking if they want to set a security question
+                    int choice = JOptionPane.showConfirmDialog(
+                        this,
+                        "You have not set a security question yet. Do you want to set it now?",
+                        "Set Security Question",
+                        JOptionPane.YES_NO_OPTION
+                    );
+
+                    if (choice == JOptionPane.YES_OPTION) {
+                        // Show the panel to set the security question
+                        securityQuestion sqPanel = new securityQuestion();
+                        sqPanel.setVisible(true);
+                    } else {
+                        // Proceed to the appropriate dashboard if user skips
+                        proceedToDashboard(roleFromDB);
+                    }
+                } else {
+                    // Proceed to the appropriate dashboard if the security question is set
+                    proceedToDashboard(roleFromDB);
                 }
 
+                // Dispose the current login window (if necessary)
                 this.dispose();
             }
-        } else{
+        } else {
             setInvalidTitledBorder(psf, "Password");
             displayError(password_error, "Password Incorrect!");
-        }   
-       
+        }
+
     }//GEN-LAST:event_logMouseClicked
 
     private void logMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseEntered

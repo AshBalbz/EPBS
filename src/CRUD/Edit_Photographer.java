@@ -681,23 +681,18 @@ public class Edit_Photographer extends javax.swing.JInternalFrame {
             pstmt.setString(7, rate);
             pstmt.setString(8, p_id);
 
-            int result = pstmt.executeUpdate();
 
            
             
-            if (result > 0) {
-                ResultSet generatedKeys = pstmt.getGeneratedKeys();
-                int selectedPhotographerId = 0;
-              
+            int result = pstmt.executeUpdate();
 
-                // Logging the action
+            if (result > 0) {
+                // ✅ Log action with client ID directly
                 Session sess = Session.getInstance();
-                String action = "Edited photographer with ID " + selectedPhotographerId;
+                String action = "Edited photographer with ID " + p_id;
                 con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
 
-                JOptionPane.showMessageDialog(null, "Photographer edited successfully!");
-
-            
+                JOptionPane.showMessageDialog(null, "Photographer with ID " + p_id + " edited successfully!");
             } else {
                 JOptionPane.showMessageDialog(null, "Editing failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }

@@ -4,9 +4,7 @@ package MANAGEMENT;
 import CONFIG.Session;
 import CONFIG.connectDB;
 import CRUD.Add_Photographer;
-import CRUD.Add_users;
 import CRUD.Edit_Photographer;
-import CRUD.Edit_users;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -16,7 +14,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -186,7 +183,7 @@ public class Photographers extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "First Name", "Last Name", "Email", "Contact", "Experience", "Expertise", "Rate"
+                "ID", "First Name", "Last Name", "Email", "Contact", "Experience", "Expertise", "Rate Per Hour"
             }
         ) {
             boolean[] canEdit = new boolean [] {

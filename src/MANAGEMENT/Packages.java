@@ -5,6 +5,7 @@ import CONFIG.Session;
 import CONFIG.connectDB;
 import CRUD.Add_Package;
 import CRUD.Add_Photographer;
+import CRUD.Edit_Client;
 import CRUD.Edit_Package;
 import CRUD.Edit_Photographer;
 import java.awt.Color;
@@ -64,6 +65,8 @@ public class Packages extends javax.swing.JInternalFrame {
             package_tbl.getColumnModel().getColumn(3).setPreferredWidth(350); // Description
             package_tbl.getColumnModel().getColumn(4).setPreferredWidth(350); // Services
             package_tbl.getColumnModel().getColumn(5).setPreferredWidth(120); // Duration
+            
+            
            
 
     }
@@ -398,24 +401,29 @@ public class Packages extends javax.swing.JInternalFrame {
         if(rowIndex < 0){
             JOptionPane.showMessageDialog(null, " Please select a row! ");
         }else{
-            try{
+             try {
                 connectDB dbc = new connectDB();
                 TableModel tbl = package_tbl.getModel();
-                ResultSet rs = dbc.getData("SELECT * FROM package WHERE pp_id = '" + tbl.getValueAt(rowIndex, 0) + "'");
-                if(rs.next()){
-                     Edit_Package up = new Edit_Package();
-                        
-                       // Get the desktop pane (make sure this is a JDesktopPane)
-                       JDesktopPane desktopPane = getDesktopPane(); // assuming you're inside a JInternalFrame
+                Object selectedId = tbl.getValueAt(rowIndex, 0); // get id
 
-                       desktopPane.add(up);
-                       up.setVisible(true); // instead of .show(), which is deprecated
+                ResultSet rs = dbc.getData("SELECT * FROM package WHERE pp_id = '" + selectedId + "'");
 
-                    
-                  
-                    up.pnfield.setText(""+rs.getString("pp_name"));
-                    up.pfield.setText(""+rs.getString("pp_price"));
-                    up.tfield.setText(""+rs.getString("pp_duration"));
+                if (rs.next()) {
+                    Edit_Package up = new Edit_Package();
+
+                    // Get the desktop pane
+                    JDesktopPane desktopPane = getDesktopPane(); // works only inside JInternalFrame
+
+                    desktopPane.add(up);
+                    up.setVisible(true); // show the internal frame
+
+                    // Populate fields
+                    up.package_id.setText(rs.getString("pp_id"));
+                    up.pnfield.setText(rs.getString("pp_name"));
+                    up.pfield.setText(rs.getString("pp_price"));
+                    up.dfield.setText(rs.getString("pp_desc"));
+                    up.sfield.setText(rs.getString("pp_service"));
+                    up.tfield.setText(rs.getString("pp_duration"));
                     
                
                     
@@ -428,6 +436,12 @@ public class Packages extends javax.swing.JInternalFrame {
                     up.pfield.setFont(FrankFont);
                     up.pfield.setForeground(Color.WHITE);
 
+                    up.dfield.setFont(FrankFont);
+                    up.dfield.setForeground(Color.WHITE);
+                    
+                    up.sfield.setFont(FrankFont);
+                    up.sfield.setForeground(Color.WHITE);
+                    
                     up.tfield.setFont(FrankFont);
                     up.tfield.setForeground(Color.WHITE);
                     

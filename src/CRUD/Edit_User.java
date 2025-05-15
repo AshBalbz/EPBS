@@ -580,30 +580,22 @@ public class Edit_User extends javax.swing.JInternalFrame {
             pst.setString(7, status);
             pst.setString(8, u_id);
 
-            int result = pst.executeUpdate();
-                    
-            if (result > 0) {
-                ResultSet generatedKeys = pst.getGeneratedKeys();
-                int selectedUserId = 0;
-                if (generatedKeys.next()) {
-                    selectedUserId = generatedKeys.getInt(1);
-                }
+           int result = pst.executeUpdate();
 
-                // Logging the action
+            if (result > 0) {
+                // ✅ Log action with client ID directly
                 Session sess = Session.getInstance();
-                String action = "Edited user with ID " + selectedUserId;
+                String action = "Edited user with ID " + u_id;
                 con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
 
-                // Close the JDialog if it's open
-                JDialog parentDialog = (JDialog) SwingUtilities.getWindowAncestor(this);
-                if (parentDialog != null) {
-                    parentDialog.dispose();
-                }
+                JOptionPane.showMessageDialog(null, "User with ID " + u_id + " edited successfully!");
             } else {
-                JOptionPane.showMessageDialog(null, "No user found with the given ID!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Editing failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // Ensure connection is closed properly

@@ -25,6 +25,15 @@ public class Questions extends javax.swing.JFrame {
         combo1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
         combo2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
         
+        answerField1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN,16));
+        answerField2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN,16));
+        answerField1.setOpaque(false);
+        answerField2.setOpaque(false);
+        answerField1.setBackground(new Color(0,0,0,1));
+        answerField2.setBackground(new Color(0,0,0,1));
+        
+       
+
         sub.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
     }
 
@@ -41,13 +50,13 @@ public class Questions extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        combo1 = new Swing.Combobox();
         combo2 = new Swing.Combobox();
-        answerField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        answerField1 = new javax.swing.JTextField();
         sub = new Swing.Button();
+        answerField2 = new Swing.TextField();
+        answerField1 = new Swing.TextField();
+        combo1 = new Swing.Combobox();
         light_Yellow1 = new ColorGrading.Light_Yellow();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -76,9 +85,11 @@ public class Questions extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 90));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,29 +100,22 @@ public class Questions extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 70));
 
-        combo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What's your favorite food?", "What's your middle name?" }));
-        combo1.setLabeText("");
-        jPanel3.add(combo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 350, -1));
-
         combo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What's your favorite food? ", "What's your middle name?" }));
         combo2.setLabeText("");
+        combo2.setLineColor(new java.awt.Color(96, 92, 60));
         jPanel3.add(combo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 350, -1));
-
-        answerField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        jPanel3.add(answerField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 450, 50));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Answer: ");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 60, 50));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 70, 40));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Answer: ");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 60, 50));
-
-        answerField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        jPanel3.add(answerField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 450, 50));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 70, 40));
 
         sub.setBackground(new java.awt.Color(0, 0, 0));
         sub.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +137,23 @@ public class Questions extends javax.swing.JFrame {
             }
         });
         jPanel3.add(sub, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 110, 40));
+
+        answerField2.setLabelText("");
+        answerField2.setOpaque(false);
+        answerField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                answerField2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(answerField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 50));
+
+        answerField1.setLabelText("");
+        answerField1.setOpaque(false);
+        jPanel3.add(answerField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 450, 50));
+
+        combo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What's your favorite fruit?", "Who's your bff?" }));
+        combo1.setLabeText("");
+        jPanel3.add(combo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 350, 50));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 700, 490));
 
@@ -306,6 +327,10 @@ public class Questions extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void answerField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_answerField2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,8 +382,8 @@ public class Questions extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField answerField1;
-    private javax.swing.JTextField answerField2;
+    private Swing.TextField answerField1;
+    private Swing.TextField answerField2;
     private Swing.Combobox combo1;
     private Swing.Combobox combo2;
     private javax.swing.JLabel jLabel2;

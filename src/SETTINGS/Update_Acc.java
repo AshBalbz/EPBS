@@ -5,7 +5,6 @@
  */
 package SETTINGS;
 
-import AUTHENTICATION.Change_Pass;
 import AUTHENTICATION.REGISTRATION;
 import CONFIG.Session;
 import CONFIG.connectDB;
@@ -21,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -129,7 +127,8 @@ public class Update_Acc extends javax.swing.JInternalFrame {
         back = new javax.swing.JLabel();
         edit = new javax.swing.JPanel();
         update = new javax.swing.JLabel();
-        light_Yellow1 = new ColorGrading.Light_Yellow();
+        jLabel6 = new javax.swing.JLabel();
+        light_Yellow2 = new ColorGrading.Light_Yellow();
 
         setForeground(java.awt.Color.white);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -309,7 +308,7 @@ public class Update_Acc extends javax.swing.JInternalFrame {
         Acc_Panel.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 330, -1));
 
         jPanel1.add(Acc_Panel);
-        Acc_Panel.setBounds(240, 50, 330, 200);
+        Acc_Panel.setBounds(250, 80, 330, 200);
 
         username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         username_error.setForeground(new java.awt.Color(255, 102, 102));
@@ -384,19 +383,26 @@ public class Update_Acc extends javax.swing.JInternalFrame {
         jPanel1.add(edit);
         edit.setBounds(700, 590, 100, 40);
 
-        javax.swing.GroupLayout light_Yellow1Layout = new javax.swing.GroupLayout(light_Yellow1);
-        light_Yellow1.setLayout(light_Yellow1Layout);
-        light_Yellow1Layout.setHorizontalGroup(
-            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Update Account");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(60, 30, 140, 40);
+
+        javax.swing.GroupLayout light_Yellow2Layout = new javax.swing.GroupLayout(light_Yellow2);
+        light_Yellow2.setLayout(light_Yellow2Layout);
+        light_Yellow2Layout.setHorizontalGroup(
+            light_Yellow2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 830, Short.MAX_VALUE)
         );
-        light_Yellow1Layout.setVerticalGroup(
-            light_Yellow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        light_Yellow2Layout.setVerticalGroup(
+            light_Yellow2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        jPanel1.add(light_Yellow1);
-        light_Yellow1.setBounds(0, 0, 830, 660);
+        jPanel1.add(light_Yellow2);
+        light_Yellow2.setBounds(0, 0, 830, 660);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -406,7 +412,7 @@ public class Update_Acc extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
         );
 
         pack();
@@ -486,7 +492,8 @@ public class Update_Acc extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ufieldActionPerformed
 
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
- boolean valid = true;
+     boolean valid = true;
+     
             connectDB con = new connectDB();
             Connection conn = con.getConnection();
 
@@ -858,8 +865,9 @@ public class Update_Acc extends javax.swing.JInternalFrame {
     private javax.swing.JLabel email_error;
     private javax.swing.JLabel fn_icon;
     public javax.swing.JTextField fnfield;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private ColorGrading.Light_Yellow light_Yellow1;
+    private ColorGrading.Light_Yellow light_Yellow2;
     private javax.swing.JLabel ln_icon;
     private javax.swing.JLabel lname_error;
     public javax.swing.JTextField lnfield;

@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/BookingSession.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Client.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/REGISTRATION.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/forgotPassword.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/resetPass.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/securityQuestion.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Review.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Book.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/Session.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Receipt.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Book_Update.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Bookings.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/CRUD/Edit_Client.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/LOGIN.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/DASHBOARDS/Admin_Dashboard.java</file>
         </group>
     </open-files>
 </project-private>

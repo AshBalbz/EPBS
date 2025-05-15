@@ -51,7 +51,7 @@ public class Combobox<E> extends JComboBox<E> {
     }
 
     private String labeText = "Label";
-    private Color lineColor = new Color(3, 155, 216);
+    private Color lineColor = new Color(96, 92, 60);
     private boolean mouseOver;
 
     @Override
