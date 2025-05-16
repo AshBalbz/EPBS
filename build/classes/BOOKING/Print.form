@@ -99,7 +99,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="20" width="750" height="560"/>
+              <AbsoluteConstraints x="70" y="20" width="700" height="560"/>
             </Constraint>
           </Constraints>
 
@@ -108,7 +108,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
@@ -166,21 +166,8 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="rate" alignment="1" min="-2" pref="196" max="-2" attributes="0"/>
-                                      <Component id="roundedPanel2" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="client" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="roundedPanel3" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -198,41 +185,50 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel12" min="-2" pref="120" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="pack" min="-2" pref="210" max="-2" attributes="0"/>
+                                              <Component id="pack" min="-2" pref="175" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel18" min="-2" pref="110" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="dura" min="-2" pref="182" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel13" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="price" min="-2" pref="256" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel13" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="price" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel18" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="dura" min="-2" pref="182" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Component id="roundedPanel4" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="Balbz_logo" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="rate" alignment="1" min="-2" pref="196" max="-2" attributes="0"/>
+                                          <Component id="roundedPanel2" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                  <Component id="jLabel15" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="client" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="roundedPanel3" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="jLabel20" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="created" min="-2" pref="230" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="Title" min="-2" pref="380" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="Balbz_logo" min="-2" pref="121" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Component id="jLabel20" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="created" min="-2" pref="230" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="Title" alignment="0" min="-2" pref="463" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -253,8 +249,8 @@
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel16" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="eTime" min="-2" pref="30" max="-2" attributes="0"/>
@@ -291,7 +287,6 @@
                                   <Component id="jLabel22" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="bal" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="roundedPanel2" min="-2" pref="30" max="-2" attributes="0"/>
@@ -331,7 +326,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

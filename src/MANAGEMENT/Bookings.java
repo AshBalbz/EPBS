@@ -4,6 +4,7 @@ package MANAGEMENT;
 import BOOKING.Book_Update;
 import BOOKING.Client;
 import BOOKING.Print;
+import BOOKING.Receipt;
 import BOOKING.Review;
 import CONFIG.BookingSession;
 import CONFIG.Session;
@@ -20,6 +21,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -377,6 +379,11 @@ public class Bookings extends javax.swing.JInternalFrame {
         Continue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Continue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/printing.png"))); // NOI18N
         Continue.setText(" Print");
+        Continue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ContinueMouseClicked(evt);
+            }
+        });
         jPanel1.add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 90, 50));
 
         cont.setBackground(new java.awt.Color(96, 92, 60));
@@ -613,61 +620,87 @@ public class Bookings extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_refreshMouseExited
 
     private void contMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseClicked
-  int rowIndex = booking_tbl.getSelectedRow();
+        int rowIndex = booking_tbl.getSelectedRow(); 
 
-       if (rowIndex < 0) {
-           JOptionPane.showMessageDialog(null, "Please select a row!");
-       } else {
-           try {
-               connectDB dbc = new connectDB();
-               TableModel tbl = booking_tbl.getModel();
-               Object selectedId = tbl.getValueAt(rowIndex, 0); // booking ID
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row!");
+        } else {
+            try {
+                connectDB dbc = new connectDB();
+                TableModel tbl = booking_tbl.getModel();
+                Object selectedId = tbl.getValueAt(rowIndex, 0); // booking ID
 
-               String query = "SELECT " +
-                   "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
-                   "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
-                   "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
-                   "booking.event_date, booking.event_time, booking.reception, " +
-                   "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at " +
-                   "FROM booking " +
-                   "JOIN client ON booking.client_id = client.c_id " +
-                   "JOIN photographer ON booking.photographer_id = photographer.p_id " +
-                   "JOIN package ON booking.package_id = package.pp_id " +
-                   "WHERE booking.b_id = ?";
+                // Step 1: Check the booking status
+                String statusQuery = "SELECT status FROM booking WHERE b_id = ?";
+                PreparedStatement statusPs = dbc.getConnection().prepareStatement(statusQuery);
+                statusPs.setObject(1, selectedId);
+                ResultSet statusRs = statusPs.executeQuery();
 
-               PreparedStatement ps = dbc.getConnection().prepareStatement(query);
-               ps.setObject(1, selectedId);
-               ResultSet rs = ps.executeQuery();
+                if (statusRs.next()) {
+                    String status = statusRs.getString("status");
 
-               if (rs.next()) {
-                   Print up = new Print();
-                   JDesktopPane desktopPane = getDesktopPane();
-                   desktopPane.add(up);
-                   up.setVisible(true);
+                    if (status.equalsIgnoreCase("Pending") || status.equalsIgnoreCase("Cancelled")) {
+                        JOptionPane.showMessageDialog(null, "You cannot print bookings with status 'Pending' or 'Cancelled'.");
+                        return; // stop execution
+                    }
+                }
 
-                   up.client.setText(rs.getString("client_name"));
-                   up.photographer.setText(rs.getString("photographer_name"));
-                   up.rate.setText(rs.getString("p_rate"));
-                   up.pack.setText(rs.getString("pp_name"));
-                   up.price.setText(rs.getString("pp_price"));
-                   up.dura.setText(rs.getString("pp_duration"));
-                   up.eTime.setText(rs.getString("event_time"));
-                   up.reception.setText(rs.getString("reception"));
-                   up.eDate.setText(rs.getString("event_date"));
-                   up.method.setText(rs.getString("payment_method"));                       
-                   up.amount.setText(rs.getString("total_amount"));                      
-                   up.down_pay.setText(rs.getString("downpayment"));
-                   up.bal.setText(rs.getString("balance"));
-                   up.created.setText(rs.getString("created_at"));
-               }
+                statusRs.close();
+                statusPs.close();
 
-               rs.close();
-               ps.close();
+                // Step 2: Continue with print logic if status is allowed
+                String query = "SELECT " +
+                    "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
+                    "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
+                    "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
+                    "booking.event_date, booking.event_time, booking.reception, " +
+                    "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at " +
+                    "FROM booking " +
+                    "JOIN client ON booking.client_id = client.c_id " +
+                    "JOIN photographer ON booking.photographer_id = photographer.p_id " +
+                    "JOIN package ON booking.package_id = package.pp_id " +
+                    "WHERE booking.b_id = ?";
 
-           } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-           }
-       }
+                PreparedStatement ps = dbc.getConnection().prepareStatement(query);
+                ps.setObject(1, selectedId);
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                   JDialog dialog = new JDialog();
+                    Receipt up = new Receipt();
+
+
+                    up.client.setText(rs.getString("client_name"));
+                    up.photographer.setText(rs.getString("photographer_name"));
+                    up.rate.setText(rs.getString("p_rate"));
+                    up.pack.setText(rs.getString("pp_name"));
+                    up.price.setText(rs.getString("pp_price"));
+                    up.dura.setText(rs.getString("pp_duration"));
+                    up.eTime.setText(rs.getString("event_time"));
+                    up.reception.setText(rs.getString("reception"));
+                    up.eDate.setText(rs.getString("event_date"));
+                    up.method.setText(rs.getString("payment_method"));                       
+                    up.amount.setText(rs.getString("total_amount"));                      
+                    up.down_pay.setText(rs.getString("downpayment"));
+                    up.bal.setText(rs.getString("balance"));
+                    up.created.setText(rs.getString("created_at"));
+                    
+                    dialog.setSize(701, 631);
+                    dialog.add(up);
+                    dialog.pack();
+                    dialog.setLocationRelativeTo(null);
+                    dialog.setModal(true);
+                    dialog.setVisible(true);
+                }
+
+                rs.close();
+                ps.close();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            }
+        }
+
     
     }//GEN-LAST:event_contMouseClicked
 
@@ -917,6 +950,10 @@ if (rowIndex < 0) {
     private void cont3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cont3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cont3ActionPerformed
+
+    private void ContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContinueMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContinueMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
