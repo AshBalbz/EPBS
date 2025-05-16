@@ -20,11 +20,11 @@ public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws
     }
     Graphics2D g2d = (Graphics2D) graphics;
     // Set page format to bond paper (8.5 x 11 inches)
-    pageFormat.setOrientation(PageFormat.PORTRAIT);
+    pageFormat.setOrientation(PageFormat.LANDSCAPE);
     pageFormat.setPaper(new Paper());
     Paper paper = pageFormat.getPaper();
-    double width = 8.5 * 72; // 8.5 inches converted to points (1 inch = 72 points)
-    double height = 11 * 72; // 11 inches converted to points
+    double width = 11 * 72; 
+    double height = 8.5 * 72; // 8.5 inches converted to points (1 inch = 72 points)
     paper.setSize(width, height);
     paper.setImageableArea(0, 0, width, height);
     pageFormat.setPaper(paper);

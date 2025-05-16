@@ -749,61 +749,69 @@ public class Bookings extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cont1MouseExited
 
     private void cont2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont2MouseClicked
-        int rowIndex = booking_tbl.getSelectedRow();
+      int rowIndex = booking_tbl.getSelectedRow();
 
-       if (rowIndex < 0) {
-           JOptionPane.showMessageDialog(null, "Please select a row!");
-       } else {
-           try {
-               connectDB dbc = new connectDB();
-               TableModel tbl = booking_tbl.getModel();
-               Object selectedId = tbl.getValueAt(rowIndex, 0); // booking ID
+if (rowIndex < 0) {
+    JOptionPane.showMessageDialog(null, "Please select a row!");
+} else {
+    try {
+        connectDB dbc = new connectDB();
+        TableModel tbl = booking_tbl.getModel();
+        Object selectedId = tbl.getValueAt(rowIndex, 0); // booking ID
 
-               String query = "SELECT " +
-                   "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
-                   "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
-                   "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
-                   "booking.event_date, booking.event_time, booking.reception, " +
-                   "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at " +
-                   "FROM booking " +
-                   "JOIN client ON booking.client_id = client.c_id " +
-                   "JOIN photographer ON booking.photographer_id = photographer.p_id " +
-                   "JOIN package ON booking.package_id = package.pp_id " +
-                   "WHERE booking.b_id = ?";
+        String query = "SELECT " +
+            "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
+            "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
+            "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
+            "booking.event_date, booking.event_time, booking.reception, " +
+            "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, " +
+            "booking.status " + // include booking status
+            "FROM booking " +
+            "JOIN client ON booking.client_id = client.c_id " +
+            "JOIN photographer ON booking.photographer_id = photographer.p_id " +
+            "JOIN package ON booking.package_id = package.pp_id " +
+            "WHERE booking.b_id = ?";
 
-               PreparedStatement ps = dbc.getConnection().prepareStatement(query);
-               ps.setObject(1, selectedId);
-               ResultSet rs = ps.executeQuery();
+        PreparedStatement ps = dbc.getConnection().prepareStatement(query);
+        ps.setObject(1, selectedId);
+        ResultSet rs = ps.executeQuery();
 
-               if (rs.next()) {
-                   Review up = new Review();
-                   JDesktopPane desktopPane = getDesktopPane();
-                   desktopPane.add(up);
-                   up.setVisible(true);
+        if (rs.next()) {
+            String status = rs.getString("status");
 
-                   up.client.setText(rs.getString("client_name"));
-                   up.photographer.setText(rs.getString("photographer_name"));
-                   up.rate.setText(rs.getString("p_rate"));
-                   up.pack.setText(rs.getString("pp_name"));
-                   up.price.setText(rs.getString("pp_price"));
-                   up.dura.setText(rs.getString("pp_duration"));
-                   up.eTime.setText(rs.getString("event_time"));
-                   up.reception.setText(rs.getString("reception"));
-                   up.eDate.setText(rs.getString("event_date"));
-                   up.method.setText(rs.getString("payment_method"));                       
-                   up.amount.setText(rs.getString("total_amount"));                      
-                   up.down_pay.setText(rs.getString("downpayment"));
-                   up.bal.setText(rs.getString("balance"));
-                   up.created.setText(rs.getString("created_at"));
-               }
+            if ("Cancelled".equalsIgnoreCase(status)) {
+                JOptionPane.showMessageDialog(null, "Cannot print. This booking is cancelled.");
+            } else {
+                Review up = new Review();
+                JDesktopPane desktopPane = getDesktopPane();
+                desktopPane.add(up);
+                up.setVisible(true);
 
-               rs.close();
-               ps.close();
+                up.client.setText(rs.getString("client_name"));
+                up.photographer.setText(rs.getString("photographer_name"));
+                up.rate.setText(rs.getString("p_rate"));
+                up.pack.setText(rs.getString("pp_name"));
+                up.price.setText(rs.getString("pp_price"));
+                up.dura.setText(rs.getString("pp_duration"));
+                up.eTime.setText(rs.getString("event_time"));
+                up.reception.setText(rs.getString("reception"));
+                up.eDate.setText(rs.getString("event_date"));
+                up.method.setText(rs.getString("payment_method"));                       
+                up.amount.setText(rs.getString("total_amount"));                      
+                up.down_pay.setText(rs.getString("downpayment"));
+                up.bal.setText(rs.getString("balance"));
+                up.created.setText(rs.getString("created_at"));
+            }
+        }
 
-           } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-           }
-       }
+        rs.close();
+        ps.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+    }
+}
+
 
 
 
@@ -824,42 +832,78 @@ public class Bookings extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cont2ActionPerformed
 
     private void cont3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont3MouseClicked
-         int selectedBookingId = getSelectedBookingId(); // Get the selected user's ID
+         int rowIndex = booking_tbl.getSelectedRow();
 
-        if (selectedBookingId != -1) {
-            try {
-                connectDB db = new connectDB(); // Create an instance of dbConnector
-                Connection conn = db.getConnection(); // Get database connection
+if (rowIndex < 0) {
+    JOptionPane.showMessageDialog(null, "Please select a row!");
+} else {
+    try {
+        connectDB db = new connectDB();
+        Connection conn = db.getConnection();
+        TableModel tbl = booking_tbl.getModel();
+        int selectedBookingId = (int) tbl.getValueAt(rowIndex, 0); // Booking ID
 
-                String query = "UPDATE booking SET status = 'Cancelled' WHERE b_id = ?";
-                PreparedStatement pstmt = conn.prepareStatement(query);
-                    pstmt.setInt(1, selectedBookingId);
+        // Step 1: Update booking status to "Cancelled"
+        String updateQuery = "UPDATE booking SET status = 'Cancelled' WHERE b_id = ?";
+        PreparedStatement updateStmt = conn.prepareStatement(updateQuery);
+        updateStmt.setInt(1, selectedBookingId);
+        int affectedRows = updateStmt.executeUpdate();
+        updateStmt.close();
 
-                int affectedRows = pstmt.executeUpdate();
+        // Step 2: Fetch updated booking info
+        String query = "SELECT " +
+            "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
+            "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
+            "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
+            "booking.event_date, booking.event_time, booking.reception, " +
+            "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, " +
+            "booking.status " + // include booking status
+            "FROM booking " +
+            "JOIN client ON booking.client_id = client.c_id " +
+            "JOIN photographer ON booking.photographer_id = photographer.p_id " +
+            "JOIN package ON booking.package_id = package.pp_id " +
+            "WHERE booking.b_id = ?";
 
-                
-                
-                if (affectedRows > 0) {
-                    displayData(); // Refresh table data after deletion
-                    
-                     // Logging the action
-                    Session sess = Session.getInstance();
-                    String action = "Cancelled a booking with ID " + selectedBookingId;
-                    con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
-                    
-                
-                JOptionPane.showMessageDialog(this, "Booking cancelled successfully!");
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, selectedBookingId);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            String status = rs.getString("status");
+
+            if ("Cancelled".equalsIgnoreCase(status)) {
+                JOptionPane.showMessageDialog(null, "Cannot print. This booking is cancelled.");
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to cancel a booking.");
+                Review up = new Review();
+                JDesktopPane desktopPane = getDesktopPane();
+                desktopPane.add(up);
+                up.setVisible(true);
+
+                up.client.setText(rs.getString("client_name"));
+                up.photographer.setText(rs.getString("photographer_name"));
+                up.rate.setText(rs.getString("p_rate"));
+                up.pack.setText(rs.getString("pp_name"));
+                up.price.setText(rs.getString("pp_price"));
+                up.dura.setText(rs.getString("pp_duration"));
+                up.eTime.setText(rs.getString("event_time"));
+                up.reception.setText(rs.getString("reception"));
+                up.eDate.setText(rs.getString("event_date"));
+                up.method.setText(rs.getString("payment_method"));                       
+                up.amount.setText(rs.getString("total_amount"));                      
+                up.down_pay.setText(rs.getString("downpayment"));
+                up.bal.setText(rs.getString("balance"));
+                up.created.setText(rs.getString("created_at"));
             }
-                pstmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a booking to cancel.");
         }
+
+        rs.close();
+        ps.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+    }
+}
+
     }//GEN-LAST:event_cont3MouseClicked
 
     private void cont3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont3MouseEntered
