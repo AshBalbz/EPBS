@@ -4,9 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Print.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/connectDB.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Review.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Book.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Receipt.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Bookings.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/panelPrinter.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/DASHBOARDS/Staff_Dashboard.java</file>
         </group>
     </open-files>
 </project-private>

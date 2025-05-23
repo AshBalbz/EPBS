@@ -3,15 +3,10 @@ package MANAGEMENT;
 
 import BOOKING.Book_Update;
 import BOOKING.Client;
-import BOOKING.Print;
 import BOOKING.Receipt;
 import BOOKING.Review;
-import CONFIG.BookingSession;
 import CONFIG.Session;
 import CONFIG.connectDB;
-import CRUD.Edit_Client;
-import CRUD.Edit_Package;
-import CRUD.Edit_Photographer;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -535,7 +530,7 @@ public class Bookings extends javax.swing.JInternalFrame {
                         "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
                         "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
                         "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
-                        "booking.event_date, booking.event_time, booking.reception, " +
+                        "b_id, booking.event_date, booking.event_time, booking.reception, " +
                         "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance " +
                         "FROM booking " +
                         "JOIN client ON booking.client_id = client.c_id " +
@@ -553,6 +548,7 @@ public class Bookings extends javax.swing.JInternalFrame {
                         desktopPane.add(up);
                         up.setVisible(true);
 
+                        up.bid.setText(rs.getString("b_id"));
                         up.client.setText(rs.getString("client_name"));
                         up.photographer.setText(rs.getString("photographer_name"));
                         up.pack.setText(rs.getString("pp_name"));
@@ -649,17 +645,21 @@ public class Bookings extends javax.swing.JInternalFrame {
                 statusPs.close();
 
                 // Step 2: Continue with print logic if status is allowed
-                String query = "SELECT " +
-                    "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
-                    "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
-                    "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
-                    "booking.event_date, booking.event_time, booking.reception, " +
-                    "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at " +
-                    "FROM booking " +
-                    "JOIN client ON booking.client_id = client.c_id " +
-                    "JOIN photographer ON booking.photographer_id = photographer.p_id " +
-                    "JOIN package ON booking.package_id = package.pp_id " +
-                    "WHERE booking.b_id = ?";
+                    String query = "SELECT " +
+               "client.c_id, CONCAT(client.c_fname, ' ', client.c_lname) AS client_name, " +
+               "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
+               "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
+               "booking.event_date, booking.event_time, booking.reception, " +
+               "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, " +
+               "user.u_id AS users_id, CONCAT(user.u_fname, ' ', user.u_lname) AS created_by_name, " + // added this line
+               "booking.status " + // fixed: previously missing comma
+               "FROM booking " +
+               "JOIN client ON booking.client_id = client.c_id " +
+               "JOIN photographer ON booking.photographer_id = photographer.p_id " +
+               "JOIN package ON booking.package_id = package.pp_id " +
+               "JOIN user ON booking.users_id = user.u_id " + // join the user table
+               "WHERE booking.b_id = ?";
+
 
                 PreparedStatement ps = dbc.getConnection().prepareStatement(query);
                 ps.setObject(1, selectedId);
@@ -669,7 +669,7 @@ public class Bookings extends javax.swing.JInternalFrame {
                    JDialog dialog = new JDialog();
                     Receipt up = new Receipt();
 
-
+                    up.user.setText(rs.getString("users_id"));
                     up.client.setText(rs.getString("client_name"));
                     up.photographer.setText(rs.getString("photographer_name"));
                     up.rate.setText(rs.getString("p_rate"));
@@ -684,7 +684,8 @@ public class Bookings extends javax.swing.JInternalFrame {
                     up.down_pay.setText(rs.getString("downpayment"));
                     up.bal.setText(rs.getString("balance"));
                     up.created.setText(rs.getString("created_at"));
-                    
+                    up.user.setText(rs.getString("created_by_name"));
+                                        
                     dialog.setSize(701, 631);
                     dialog.add(up);
                     dialog.pack();
@@ -782,7 +783,7 @@ public class Bookings extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cont1MouseExited
 
     private void cont2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont2MouseClicked
-      int rowIndex = booking_tbl.getSelectedRow();
+    int rowIndex = booking_tbl.getSelectedRow();
 
 if (rowIndex < 0) {
     JOptionPane.showMessageDialog(null, "Please select a row!");
@@ -798,11 +799,13 @@ if (rowIndex < 0) {
             "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
             "booking.event_date, booking.event_time, booking.reception, " +
             "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, " +
-            "booking.status " + // include booking status
+            "user.u_id AS users_id, CONCAT(user.u_fname, ' ', user.u_lname) AS created_by_name, " + // added this line
+            "booking.status " + // fixed: previously missing comma
             "FROM booking " +
             "JOIN client ON booking.client_id = client.c_id " +
             "JOIN photographer ON booking.photographer_id = photographer.p_id " +
             "JOIN package ON booking.package_id = package.pp_id " +
+            "JOIN user ON booking.users_id = user.u_id " + // join the user table
             "WHERE booking.b_id = ?";
 
         PreparedStatement ps = dbc.getConnection().prepareStatement(query);
@@ -834,6 +837,7 @@ if (rowIndex < 0) {
                 up.down_pay.setText(rs.getString("downpayment"));
                 up.bal.setText(rs.getString("balance"));
                 up.created.setText(rs.getString("created_at"));
+                up.user.setText(rs.getString("created_by_name")); // ← Set the user's name here
             }
         }
 
@@ -844,6 +848,7 @@ if (rowIndex < 0) {
         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
     }
 }
+
 
 
 
@@ -889,7 +894,7 @@ if (rowIndex < 0) {
             "photographer.p_id, CONCAT(photographer.p_fname, ' ', photographer.p_lname) AS photographer_name, photographer.p_rate, " +
             "package.pp_id, package.pp_name, package.pp_price, package.pp_duration, " +
             "booking.event_date, booking.event_time, booking.reception, " +
-            "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, " +
+            "booking.total_amount, booking.payment_method, booking.downpayment, booking.sukli, booking.balance, booking.created_at, booking.user_id, " +
             "booking.status " + // include booking status
             "FROM booking " +
             "JOIN client ON booking.client_id = client.c_id " +
@@ -912,6 +917,7 @@ if (rowIndex < 0) {
                 desktopPane.add(up);
                 up.setVisible(true);
 
+                up.user.setText(rs.getString("user_id"));              
                 up.client.setText(rs.getString("client_name"));
                 up.photographer.setText(rs.getString("photographer_name"));
                 up.rate.setText(rs.getString("p_rate"));

@@ -196,7 +196,7 @@ public class LOGIN extends javax.swing.JFrame {
         System_Name.setText("System");
         LOGIN.add(System_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 840, 40));
 
-        username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         username_error.setForeground(new java.awt.Color(255, 51, 51));
         username_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LOGIN.add(username_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 280, 20));
@@ -221,7 +221,7 @@ public class LOGIN extends javax.swing.JFrame {
         });
         LOGIN.add(forgot, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 100, 30));
 
-        password_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        password_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         password_error.setForeground(new java.awt.Color(255, 51, 51));
         password_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LOGIN.add(password_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 280, 20));
@@ -498,7 +498,7 @@ public class LOGIN extends javax.swing.JFrame {
             con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + userId + "', '" + action + "', '" + LocalDateTime.now() + "')");
 
             if ("Pending".equalsIgnoreCase(status)) {
-                JOptionPane.showMessageDialog(this, "Your account is pending approval.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Your account is pending. Contact the admin.", "Login Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 // SQL query to get the security question for the user
                 String sql = "SELECT question FROM securityQuestion WHERE user_id = ?";

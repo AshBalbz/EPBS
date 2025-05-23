@@ -95,6 +95,8 @@ public class Review extends javax.swing.JInternalFrame {
         Continue = new javax.swing.JLabel();
         JPanel1 = new javax.swing.JPanel();
         JPanel4 = new javax.swing.JPanel();
+        user = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         roundedPanel1 = new Swing.RoundedPanel();
         Title = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -187,6 +189,13 @@ public class Review extends javax.swing.JInternalFrame {
         JPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        user.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        JPanel4.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 160, 30));
+
+        jLabel25.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel25.setText("Created by: ");
+        JPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, 30));
+
         roundedPanel1.setBackground(new java.awt.Color(167, 134, 42));
         roundedPanel1.setPreferredSize(new java.awt.Dimension(100, 100));
         roundedPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,21 +206,21 @@ public class Review extends javax.swing.JInternalFrame {
         Title.setText("Booking Detail Reviews:");
         roundedPanel1.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 240, 50));
 
-        JPanel4.add(roundedPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 280, 50));
+        JPanel4.add(roundedPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 280, 50));
 
         jLabel21.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel21.setText("Event Date:");
-        JPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, 90, 30));
+        JPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 90, 30));
 
         eDate.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(eDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 160, 30));
+        JPanel4.add(eDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 160, 30));
 
         jLabel17.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel17.setText("Reception:");
-        JPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 80, 30));
+        JPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 80, 30));
 
         reception.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(reception, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 170, 30));
+        JPanel4.add(reception, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 170, 30));
 
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel15.setText("Client Name:");
@@ -219,20 +228,20 @@ public class Review extends javax.swing.JInternalFrame {
 
         jLabel16.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel16.setText("Event Time:");
-        JPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 90, 30));
+        JPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 90, 30));
 
         eTime.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(eTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 160, 30));
+        JPanel4.add(eTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 160, 30));
 
         client.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         JPanel4.add(client, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 230, 30));
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel22.setText("Balance:");
-        JPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 70, 30));
+        JPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 70, 30));
 
         bal.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(bal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 180, 30));
+        JPanel4.add(bal, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 180, 30));
 
         photographer.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         JPanel4.add(photographer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 180, 30));
@@ -253,17 +262,17 @@ public class Review extends javax.swing.JInternalFrame {
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel23.setText("Payment Method: ");
-        JPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 130, 30));
+        JPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 130, 30));
 
         jLabel24.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel24.setText("Down Payment: ");
-        JPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 120, 30));
+        JPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 120, 30));
 
         down_pay.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(down_pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 130, 30));
+        JPanel4.add(down_pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 130, 30));
 
         method.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(method, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 120, 30));
+        JPanel4.add(method, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 120, 30));
 
         jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel12.setText("Package Name:");
@@ -278,20 +287,20 @@ public class Review extends javax.swing.JInternalFrame {
 
         jLabel20.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel20.setText("Date Created:");
-        JPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 110, 30));
+        JPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 110, 30));
 
         created.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(created, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 140, 30));
+        JPanel4.add(created, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 140, 30));
 
         amount.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        JPanel4.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 140, 30));
+        JPanel4.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 140, 30));
 
         dura.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         JPanel4.add(dura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 220, 30));
 
         jLabel19.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel19.setText("Total Amount:");
-        JPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 110, 30));
+        JPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 110, 30));
 
         jLabel18.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel18.setText("Duration (hrs):");
@@ -424,6 +433,7 @@ public class Review extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
@@ -441,6 +451,7 @@ public class Review extends javax.swing.JInternalFrame {
     private Swing.RoundedPanel roundedPanel4;
     private Swing.RoundedPanel roundedPanel5;
     private com.raven.datechooser.SelectedDate selectedDate1;
+    public javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
     

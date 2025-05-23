@@ -14,33 +14,34 @@ public class panelPrinter implements Printable {
     }
 
    @Override
-public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-    if (pageIndex > 0) {
-        return Printable.NO_SUCH_PAGE;
-    }
-    Graphics2D g2d = (Graphics2D) graphics;
-    // Set page format to bond paper (8.5 x 11 inches)
-    pageFormat.setOrientation(PageFormat.LANDSCAPE);
-    pageFormat.setPaper(new Paper());
-    Paper paper = pageFormat.getPaper();
-    double width = 11 * 72; 
-    double height = 8.5 * 72; // 8.5 inches converted to points (1 inch = 72 points)
-    paper.setSize(width, height);
-    paper.setImageableArea(0, 0, width, height);
-    pageFormat.setPaper(paper);
+        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+            if (pageIndex > 0) {
+                return Printable.NO_SUCH_PAGE;
+            }
 
-    // Translate graphics context to center of the page with one-inch top margin
-    double panelWidth = panelToPrint.getPreferredSize().getWidth();
-    double panelHeight = panelToPrint.getPreferredSize().getHeight();
-    double xOffset = (pageFormat.getImageableWidth() - panelWidth) / 2;
-    double yOffset = pageFormat.getImageableY() + 72; // One-inch margin at the top
-    g2d.translate(pageFormat.getImageableX() + xOffset, yOffset);
+            Graphics2D g2d = (Graphics2D) graphics;
 
-    // Make sure the panel is fully rendered before printing
-    panelToPrint.printAll(graphics);
+            // Do NOT modify pageFormat or paper here. Do that externally during job setup.
 
-    return Printable.PAGE_EXISTS;
-}
+            // Calculate offsets for centering and margins
+            double panelWidth = panelToPrint.getPreferredSize().getWidth();
+            double panelHeight = panelToPrint.getPreferredSize().getHeight();
+            double xOffset = (pageFormat.getImageableWidth() - panelWidth) / 2;
+            double yOffset = pageFormat.getImageableY() + 72; // One-inch margin
+            
+            
+            JPanel panel = new JPanel();
+               panel.setPreferredSize(new Dimension(700, 631)); // 5x7 inches in points
+
+
+            g2d.translate(pageFormat.getImageableX() + xOffset, yOffset);
+
+            // Print the panel using the translated graphics context
+            panelToPrint.printAll(g2d);
+
+            return Printable.PAGE_EXISTS;
+        }
+
 
 
     public void printPanel() {

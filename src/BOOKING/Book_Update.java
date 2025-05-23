@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -122,11 +123,11 @@ public class Book_Update extends javax.swing.JInternalFrame {
         total = new javax.swing.JTextField();
         JPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         eventTime = new Swing.TextField();
         reception = new Swing.TextField();
         error2 = new javax.swing.JLabel();
         error1 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         JPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -143,6 +144,9 @@ public class Book_Update extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         eventDate = new Swing.TextField();
         error3 = new javax.swing.JLabel();
+        bid = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        error5 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -314,11 +318,6 @@ public class Book_Update extends javax.swing.JInternalFrame {
         jLabel17.setText("Reception:");
         JPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 80, 40));
 
-        jLabel16.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("Event Time:");
-        JPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 40));
-
         eventTime.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         eventTime.setLabelText("");
         eventTime.setLineColor(new java.awt.Color(153, 102, 0));
@@ -365,6 +364,11 @@ public class Book_Update extends javax.swing.JInternalFrame {
         error1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         JPanel2.add(error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 230, 20));
 
+        jLabel19.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Event Time:");
+        JPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 40));
+
         jPanel1.add(JPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 360, 160));
 
         JPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -405,6 +409,7 @@ public class Book_Update extends javax.swing.JInternalFrame {
         });
         JPanel1.add(client, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 240, 30));
 
+        photographer.setEditable(false);
         photographer.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         photographer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         photographer.setOpaque(false);
@@ -415,6 +420,7 @@ public class Book_Update extends javax.swing.JInternalFrame {
         });
         JPanel1.add(photographer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 190, 30));
 
+        rate.setEditable(false);
         rate.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         rate.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         rate.setOpaque(false);
@@ -425,6 +431,7 @@ public class Book_Update extends javax.swing.JInternalFrame {
         });
         JPanel1.add(rate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 220, 30));
 
+        pack.setEditable(false);
         pack.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         pack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pack.setOpaque(false);
@@ -435,6 +442,7 @@ public class Book_Update extends javax.swing.JInternalFrame {
         });
         JPanel1.add(pack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 210, 30));
 
+        price.setEditable(false);
         price.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         price.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         price.setOpaque(false);
@@ -445,6 +453,7 @@ public class Book_Update extends javax.swing.JInternalFrame {
         });
         JPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 290, 30));
 
+        dura.setEditable(false);
         dura.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         dura.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         dura.setOpaque(false);
@@ -490,6 +499,26 @@ public class Book_Update extends javax.swing.JInternalFrame {
         error3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel1.add(error3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 240, 20));
 
+        bid.setEditable(false);
+        bid.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        bid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        bid.setOpaque(false);
+        bid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bidActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bid, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 60, 30));
+
+        jLabel16.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Booking ID: ");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, 30));
+
+        error5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
+        error5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(error5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 230, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 830, 650));
 
         pack();
@@ -499,183 +528,197 @@ public class Book_Update extends javax.swing.JInternalFrame {
  
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
            
-        boolean valid = true;
+   boolean valid = true;
+String error = "Field cannot be empty!";
 
-       // === SESSION CHECK ===
-       Session sess = Session.getInstance();
-       String userId = sess != null ? sess.getUser_id() : null;
+// === INPUT VALUES ===
+String bookingId = bid.getText().trim();
+String cli = client.getText().trim(); 
+String photo = photographer.getText().trim(); 
+String pac = pack.getText().trim(); 
+String prate = rate.getText().trim();
+String pri = price.getText().trim();
+String duration = dura.getText().trim();
+String total_amt = total.getText().trim();
+String chan = change.getText().trim();
+String bal = balance.getText().trim();
+String ev = eventTime.getText().trim();
+String re = reception.getText().trim();
+String evD = eventDate.getText().trim();
+String down = down_pay.getText().trim();
+String methodSelected = method.getSelectedItem() != null ? method.getSelectedItem().toString() : "";
 
-       BookingSession session = BookingSession.getInstance();
-       String b_id = session != null ? session.getB_id() : null;
-       String cfname = session != null ? session.getC_id() : null;
-       String photo = session != null ? session.getP_id() : null;
-       String packages = session != null ? session.getPp_id() : null;
-       String p_rate = session != null ? session.getP_rate() : null;
-       String pp_price = session != null ? session.getPp_price() : null;
-       String pp_duration = session != null ? session.getPp_duration() : null;
+// === Variable Declarations ===
+int clientId = 0, photographerId = 0, packageId = 0;
+double totalVal = 0.0, downVal = 0.0, calculatedChange = 0.0, calculatedBalance = 0.0;
 
-       // === SESSION VALIDATION ===
-       if (sess == null || isNullOrEmpty(userId)) {
-           JOptionPane.showMessageDialog(null, "Session expired. Please search for your account again.", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
-       }
+// === VALIDATE TOTAL AMOUNT FIRST ===
+if (total_amt.isEmpty()) {
+    if (error2 != null) displayError(error2, error);
+    valid = false;
+} else {
+    try {
+        totalVal = Double.parseDouble(total_amt);
+        if (totalVal < 0) {
+            if (error2 != null) displayError(error2, "Total amount cannot be negative.");
+            valid = false;
+        }
+    } catch (NumberFormatException e) {
+        if (error2 != null) displayError(error2, "Invalid number format for total amount.");
+        valid = false;
+    }
+}
 
-       if (session == null 
-           || isNullOrEmpty(b_id)
-           || isNullOrEmpty(cfname)
-           || isNullOrEmpty(photo)
-           || isNullOrEmpty(packages)
-           || isNullOrEmpty(p_rate)
-           || isNullOrEmpty(pp_price)
-           || isNullOrEmpty(pp_duration)) {
+// === VALIDATE DOWNPAYMENT ===
+if (down.isEmpty()) {
+    if (down_error != null) displayError(down_error, error);
+    valid = false;
+} else {
+    try {
+        downVal = Double.parseDouble(down);
+        if (downVal < 0) {
+            if (down_error != null) displayError(down_error, "Downpayment cannot be negative.");
+            valid = false;
+        }
+    } catch (NumberFormatException e) {
+        if (down_error != null) displayError(down_error, "Invalid number format for downpayment.");
+        valid = false;
+    }
+}
 
-           JOptionPane.showMessageDialog(null, "Session data missing. Please restart the booking process.", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
-       }
+// === FIELD VALIDATIONS ===
+String timeError = "Invalid time format. Use HH:mm (24-hour format).";
+if (cli.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
+if (pac.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
+if (prate.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
+if (ev.isEmpty()) {
+    if (error1 != null) displayError(error1, error);
+    valid = false;
+} else if (!ev.matches("^([01]\\d|2[0-3]):([0-5]\\d)$")) {
+    if (error1 != null) displayError(error1, timeError);
+    valid = false;
+}
+if (re.isEmpty()) { if (error2 != null) displayError(error2, error); valid = false; }
 
-       int userIdInt;
-       try {
-           userIdInt = Integer.parseInt(userId);
-       } catch (NumberFormatException e) {
-           JOptionPane.showMessageDialog(null, "Invalid user ID format.", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
-       }
+// === RESOLVE IDs FROM TEXT FIELDS ===
+connectDB con = new connectDB();
+try (Connection conn = con.getConnection()) {
+    // Client ID
+    try (PreparedStatement ps = conn.prepareStatement("SELECT c_id FROM client WHERE c_fname = ?")) {
+        ps.setString(1, cli);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            clientId = rs.getInt("c_id");
+        } else {
+            if (error5 != null) displayError(error5, "Client not found.");
+            valid = false;
+        }
+    }
 
-       if (session != null) {
-           rate.setText(p_rate);
-           price.setText(pp_price);
-           dura.setText(pp_duration);
-       }
+    // Photographer ID
+    try (PreparedStatement ps = conn.prepareStatement("SELECT p_id FROM photographer WHERE p_fname = ?")) {
+        ps.setString(1, photo);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            photographerId = rs.getInt("p_id");
+        } else {
+            if (error5 != null) displayError(error5, "Photographer not found.");
+            valid = false;
+        }
+    }
 
-       // === INPUT VALUES ===
-       String total_amt = total.getText().trim();
-       String chan = change.getText().trim();
-       String bal = balance.getText().trim();
-       String ev = eventTime.getText().trim();
-       String re = reception.getText().trim();
-       String evD = eventDate.getText().trim();
-       String down = down_pay.getText().trim();
-       String methodSelected = method.getSelectedItem() != null ? method.getSelectedItem().toString() : "";
+    // Package ID
+    try (PreparedStatement ps = conn.prepareStatement("SELECT pp_id FROM package WHERE pp_name = ?")) {
+        ps.setString(1, pac);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            packageId = rs.getInt("pp_id");
+        } else {
+            if (error5 != null) displayError(error5, "Package not found.");
+            valid = false;
+        }
+    }
 
-       String error = "Field cannot be empty!";
-       String timeError = "Invalid time format. Use HH:mm (24-hour format).";
+    // === EVENT DATE VALIDATION & PHOTOGRAPHER AVAILABILITY ===
+    if (evD.isEmpty()) {
+        if (error3 != null) displayError(error3, error);
+        valid = false;
+    } else {
+        try {
+            LocalDate inputDate = LocalDate.parse(evD);
+            if (inputDate.isBefore(LocalDate.now())) {
+                if (error3 != null) displayError(error3, "Event date cannot be in the past.");
+                valid = false;
+            } else {
+                String checkSql = "SELECT 1 FROM booking WHERE photographer_id = ? AND event_date = ?";
+                try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                    checkStmt.setInt(1, photographerId);
+                    checkStmt.setDate(2, java.sql.Date.valueOf(evD));
+                    ResultSet rs = checkStmt.executeQuery();
+                    if (rs.next()) {
+                        if (error3 != null) displayError(error3, "Photographer is already booked on this date.");
+                        valid = false;
+                    }
+                }
+            }
+        } catch (DateTimeParseException ex) {
+            if (error3 != null) displayError(error3, "Invalid date format. Use yyyy-MM-dd.");
+            valid = false;
+        }
+    }
 
-       // === TIME VALIDATION ===
-       if (ev.isEmpty()) {
-           if (error1 != null) displayError(error1, error);
-           valid = false;
-       } else if (!ev.matches("^([01]\\d|2[0-3]):([0-5]\\d)$")) {
-           if (error1 != null) displayError(error1, timeError);
-           valid = false;
-       }
+    // === CALCULATE CHANGE AND BALANCE ===
+    if (valid) {
+        if (downVal >= totalVal) {
+            calculatedChange = downVal - totalVal;
+            calculatedBalance = 0.0;
+        } else {
+            calculatedChange = 0.0;
+            calculatedBalance = totalVal - downVal;
+        }
+        change.setText(String.format("%.2f", calculatedChange));
+        balance.setText(String.format("%.2f", calculatedBalance));
+    }
 
-       // === RECEPTION VALIDATION ===
-       if (re.isEmpty()) {
-           if (error2 != null) displayError(error2, error);
-           valid = false;
-       }
+    // === FINAL UPDATE ===
+    if (valid) {
+        String status = balance.getText().trim().equals("0.00") ? "Confirmed" : "Pending";
+        String sql = "UPDATE booking SET client_id = ?, photographer_id = ?, package_id = ?, event_time = ?, reception = ?, event_date = ?, payment_method = ?, total_amount = ?, downpayment = ?, sukli = ?, balance = ?, status = ? WHERE b_id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, clientId);
+            pstmt.setInt(2, photographerId);
+            pstmt.setInt(3, packageId);
+            pstmt.setString(4, ev);
+            pstmt.setString(5, re);
+            pstmt.setDate(6, java.sql.Date.valueOf(evD));
+            pstmt.setString(7, methodSelected);
+            pstmt.setDouble(8, totalVal);
+            pstmt.setDouble(9, downVal);
+            pstmt.setDouble(10, calculatedChange);
+            pstmt.setDouble(11, calculatedBalance);
+            pstmt.setString(12, status);
+            pstmt.setInt(13, Integer.parseInt(bookingId));
 
-       // === EVENT DATE VALIDATION ===
-       if (evD.isEmpty()) {
-           if (error3 != null) displayError(error3, error);
-           valid = false;
-       } else {
-           try {
-               LocalDate inputDate = LocalDate.parse(evD);
-               if (inputDate.isBefore(LocalDate.now())) {
-                   if (error3 != null) displayError(error3, "Event date cannot be in the past.");
-                   valid = false;
-               } else {
-                   connectDB con = new connectDB();
-                   try (Connection conn = con.getConnection()) {
-                       String checkSql = "SELECT 1 FROM booking WHERE photographer_id = ? AND event_date = ?";
-                       try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                           checkStmt.setInt(1, Integer.parseInt(photo));
-                           checkStmt.setDate(2, java.sql.Date.valueOf(evD));
-                           ResultSet rs = checkStmt.executeQuery();
-                           if (rs.next()) {
-                               if (error3 != null) displayError(error3, "Photographer is already booked on this date.");
-                               valid = false;
-                           }
-                       }
-                   }
-               }
-           } catch (DateTimeParseException ex) {
-               if (error3 != null) displayError(error3, "Invalid date format. Use yyyy-MM-dd.");
-               valid = false;
-           } catch (SQLException ex) {
-               if (error3 != null) displayError(error3, "Error checking photographer availability.");
-               valid = false;
-           }
-       }
+            int result = pstmt.executeUpdate();
+            if (result > 0) {
+                Session sess = Session.getInstance();
+                String action = "Edited booking with ID " + bookingId;
+                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
+                JOptionPane.showMessageDialog(null, "Booking with ID " + bookingId + " edited successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Editing failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
-       // === DOWNPAYMENT VALIDATION ===
-       if (down.isEmpty()) {
-           if (down_error != null) displayError(down_error, error);
-           valid = false;
-       } else {
-           try {
-               double downVal = Double.parseDouble(down);
-               if (downVal < 0) {
-                   if (down_error != null) displayError(down_error, "Downpayment cannot be negative.");
-                   valid = false;
-               }
-           } catch (NumberFormatException e) {
-               if (down_error != null) displayError(down_error, "Invalid number format for downpayment.");
-               valid = false;
-           }
-       }
+} catch (SQLException e) {
+    JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    e.printStackTrace();
+}
 
-       if (!valid) return;
 
-       // === STATUS BASED ON BALANCE ===
-       String status = balance.getText().trim().equals("0.00") ? "Confirmed" : "Pending";
 
-       // === UPDATE BOOKING ===
-       connectDB con = new connectDB();
-       try (Connection conn = con.getConnection()) {
-           String sql = "UPDATE booking SET client_id = ?, photographer_id = ?, package_id = ?, event_time = ?, reception = ?, event_date = ?, payment_method = ?, total_amount = ?, downpayment = ?, sukli = ?, balance = ?, status = ? WHERE b_id = ?";
 
-           try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-               pstmt.setInt(1, Integer.parseInt(cfname));
-               pstmt.setInt(2, Integer.parseInt(photo));
-               pstmt.setInt(3, Integer.parseInt(packages));
-               pstmt.setString(4, ev);
-               pstmt.setString(5, re);
-               pstmt.setDate(6, java.sql.Date.valueOf(evD));
-               pstmt.setString(7, methodSelected);
-               pstmt.setDouble(8, Double.parseDouble(total.getText().trim()));
-               pstmt.setDouble(9, Double.parseDouble(down));
-               pstmt.setDouble(10, Double.parseDouble(change.getText().trim()));
-               pstmt.setDouble(11, Double.parseDouble(balance.getText().trim()));
-               pstmt.setString(12, status);
-               pstmt.setInt(13, Integer.parseInt(b_id));
-
-               int rowsUpdated = pstmt.executeUpdate();
-               if (rowsUpdated > 0) {
-                   JOptionPane.showMessageDialog(null, "Booking successfully updated!", "Success", JOptionPane.INFORMATION_MESSAGE);
-               } else {
-                   JOptionPane.showMessageDialog(null, "No booking was updated. Please check the booking ID.", "Warning", JOptionPane.WARNING_MESSAGE);
-               }
-
-               // === LOGGING ===
-               String action = "Updated booking with ID " + b_id;
-               String logQuery = "INSERT INTO logs (u_id, action, date_time) VALUES (?, ?, ?)";
-
-               try (PreparedStatement logStmt = conn.prepareStatement(logQuery)) {
-                   logStmt.setInt(1, userIdInt);
-                   logStmt.setString(2, action);
-                   logStmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
-                   logStmt.executeUpdate();
-               }
-           }
-
-       } catch (SQLException | NumberFormatException e) {
-           JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-           e.printStackTrace();
-       }
-
-      
     }//GEN-LAST:event_submitMouseClicked
 
     
@@ -716,113 +759,7 @@ private boolean isNullOrEmpty(String str) {
     private BookingSession BookingSession;
    
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-    BookingSession session = BookingSession.getInstance();
-
-    if (session != null) {
-        // Set GUI labels from session data
-        client.setText(session.getC_fname() + " " + session.getC_lname());
-        photographer.setText(session.getP_fname() + " " + session.getP_lname());
-        rate.setText(session.getP_rate());
-        pack.setText(session.getPp_name());
-        price.setText(session.getPp_price());
-        dura.setText(session.getPp_duration());
-
-        // Get values from session
-        String rateStr = session.getP_rate();
-        String durationStr = session.getPp_duration();
-        String priceStr = session.getPp_price();
-
-        if (rateStr == null || durationStr == null || priceStr == null ||
-            rateStr.isEmpty() || durationStr.isEmpty() || priceStr.isEmpty()) {
-            down_error.setText("Missing rate, duration, or price in session.");
-            total.setText("");
-            return;
-        }
-
-        try {
-            // Calculate total amount
-            double rateValue = Double.parseDouble(rateStr);
-            double duration = Double.parseDouble(durationStr);
-            double packagePrice = Double.parseDouble(priceStr);
-
-            double totalAmount = (rateValue * duration) + packagePrice;
-            total.setText(String.format("%.2f", totalAmount));
-
-            // === Add real-time listener for downpayment ===
-            down_pay.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                private void updateBalanceAndChange() {
-                    String downText = down_pay.getText().trim();
-
-                    if (downText.isEmpty()) {
-                        change.setText("");
-                        balance.setText("");
-                        down_error.setText("Enter a downpayment amount.");
-                        session.setStatus("Pending");
-                        return;
-                    }
-
-                    try {
-                        double downpayment = Double.parseDouble(downText);
-
-                        if (downpayment < 0) {
-                            down_error.setText("Downpayment cannot be negative.");
-                            change.setText("");
-                            balance.setText("");
-                            session.setStatus("Pending");
-                            return;
-                        }
-
-                        if (downpayment >= totalAmount) {
-                            double sukli = downpayment - totalAmount;
-                            change.setText(String.format("%.2f", sukli));
-                            balance.setText("0.00");
-                            session.setStatus("Confirmed");
-                        } else {
-                            double remaining = totalAmount - downpayment;
-                            change.setText("0.00");
-                            balance.setText(String.format("%.2f", remaining));
-                            session.setStatus("Pending");
-                        }
-
-                        down_error.setText("");
-
-                    } catch (NumberFormatException e) {
-                        change.setText("");
-                        balance.setText("");
-                        down_error.setText("Please enter a valid number.");
-                        session.setStatus("Pending");
-                    }
-                }
-
-                public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                    updateBalanceAndChange();
-                }
-
-                public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                    updateBalanceAndChange();
-                }
-
-                public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                    updateBalanceAndChange();
-                }
-            });
-
-        } catch (NumberFormatException e) {
-            total.setText("");
-            down_error.setText("Session data invalid.");
-            e.printStackTrace();
-        }
-
-    } else {
-        JOptionPane.showMessageDialog(null, "Session is not initialized.");
-    }
-
-
-
-
-
-
-
+   
   
     }//GEN-LAST:event_formInternalFrameActivated
 
@@ -897,6 +834,10 @@ private boolean isNullOrEmpty(String str) {
         // TODO add your handling code here:
     }//GEN-LAST:event_duraActionPerformed
 
+    private void bidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bidActionPerformed
+
              
       
 
@@ -915,6 +856,7 @@ private boolean isNullOrEmpty(String str) {
     private Swing.Button back;
     public javax.swing.JLabel balance;
     private javax.swing.JLabel bck;
+    public javax.swing.JTextField bid;
     public javax.swing.JLabel change;
     public javax.swing.JTextField client;
     private com.raven.datechooser.DateChooser dateChooser1;
@@ -924,6 +866,7 @@ private boolean isNullOrEmpty(String str) {
     public javax.swing.JLabel error1;
     public javax.swing.JLabel error2;
     public javax.swing.JLabel error3;
+    public javax.swing.JLabel error5;
     public Swing.TextField eventDate;
     public Swing.TextField eventTime;
     private javax.swing.JLabel jLabel10;
@@ -935,6 +878,7 @@ private boolean isNullOrEmpty(String str) {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

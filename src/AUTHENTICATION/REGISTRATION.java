@@ -146,7 +146,6 @@ public class REGISTRATION extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -192,37 +191,37 @@ public class REGISTRATION extends javax.swing.JFrame {
         r_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/role-u.png"))); // NOI18N
         jPanel2.add(r_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 30, 50));
 
-        name_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        name_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         name_error.setForeground(new java.awt.Color(255, 51, 51));
         name_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(name_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 260, 20));
 
-        lname_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        lname_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         lname_error.setForeground(new java.awt.Color(255, 51, 51));
         lname_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(lname_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 260, 20));
 
-        email_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        email_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         email_error.setForeground(new java.awt.Color(255, 51, 51));
         email_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(email_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 260, 20));
 
-        contact_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        contact_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         contact_error.setForeground(new java.awt.Color(255, 51, 51));
         contact_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(contact_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, 260, 20));
 
-        username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        username_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         username_error.setForeground(new java.awt.Color(255, 51, 51));
         username_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(username_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 260, 20));
 
-        createpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        createpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         createpass_error.setForeground(new java.awt.Color(255, 51, 51));
         createpass_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(createpass_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 260, 20));
 
-        confirmpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        confirmpass_error.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         confirmpass_error.setForeground(new java.awt.Color(255, 51, 51));
         confirmpass_error.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(confirmpass_error, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, 260, 20));

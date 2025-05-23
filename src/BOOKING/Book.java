@@ -576,9 +576,10 @@ public class Book extends javax.swing.JInternalFrame {
             return;
         }
 
-        // === INSERT INTO DATABASE ===
-        String sql = "INSERT INTO booking (client_id, photographer_id, package_id, event_time, reception, event_date, payment_method, total_amount, downpayment, sukli, balance, status) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         // === INSERT INTO DATABASE ===
+       String sql = "INSERT INTO booking (client_id, photographer_id, package_id, event_time, reception, event_date, payment_method, total_amount, downpayment, sukli, balance, status, users_id) "
+           + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, Integer.parseInt(cfname));
@@ -593,6 +594,7 @@ public class Book extends javax.swing.JInternalFrame {
             pstmt.setDouble(10, Double.parseDouble(chan));
             pstmt.setDouble(11, Double.parseDouble(bal));
             pstmt.setString(12, stat);
+            pstmt.setInt(13, userIdInt); // Set the user ID who created the booking
 
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
