@@ -373,25 +373,6 @@ public class Photographers extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_d_photoMouseClicked
         
-      private int getLoggedInUserId() {
-            Session sess = Session.getInstance();
-            String userId = sess.getUser_id(); // Retrieve the user ID from the session
-
-            if (userId == null || userId.trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Error: User session ID is missing!", "Error", JOptionPane.ERROR_MESSAGE);
-                return -1; // Return -1 to indicate an error
-            }
-
-            try {
-                return Integer.parseInt(userId); // Convert to integer if applicable
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid user ID in session.", "Error", JOptionPane.ERROR_MESSAGE);
-                return -1; // Return -1 to indicate an error
-            }
-        }
-
-    
-    
     private void e_photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_e_photoMouseClicked
     int rowIndex = photographer_tbl.getSelectedRow();
         

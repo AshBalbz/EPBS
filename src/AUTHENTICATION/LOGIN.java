@@ -498,7 +498,11 @@ public class LOGIN extends javax.swing.JFrame {
             con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + userId + "', '" + action + "', '" + LocalDateTime.now() + "')");
 
             if ("Pending".equalsIgnoreCase(status)) {
-                JOptionPane.showMessageDialog(this, "Your account is pending. Contact the admin.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Your account is Pending. Contact the admin.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                
+            }  else if ("Inactive".equalsIgnoreCase(status)) {
+                JOptionPane.showMessageDialog(this, "Your account is Inactive. Contact the admin.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            
             } else {
                 // SQL query to get the security question for the user
                 String sql = "SELECT question FROM securityQuestion WHERE user_id = ?";

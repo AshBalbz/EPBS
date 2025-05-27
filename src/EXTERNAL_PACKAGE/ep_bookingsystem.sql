@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2025 at 07:12 PM
+-- Generation Time: May 27, 2025 at 06:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,18 +42,19 @@ CREATE TABLE `booking` (
   `balance` decimal(10,2) NOT NULL,
   `status` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `users_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`b_id`, `client_id`, `photographer_id`, `package_id`, `event_time`, `reception`, `event_date`, `payment_method`, `total_amount`, `downpayment`, `sukli`, `balance`, `status`, `created_at`, `updated_at`) VALUES
-(5, 1, 5, 2, '10:00:00', 'Bayawan city', '2025-12-30', 'Cash', 6800.00, 6500.00, 0.00, 300.00, 'Cancelled', '2025-05-14 20:32:09', '2025-05-15 04:55:59'),
-(6, 2, 1, 3, '10:30:00', 'Candiis, Badian', '2025-12-27', 'Cash', 6500.00, 6500.00, 0.00, 0.00, 'Approved', '2025-05-15 09:01:44', '2025-05-15 15:18:46'),
-(7, 3, 5, 3, '11:00:00', 'Inoburan, City of Naga', '2025-12-27', 'Cash', 7500.00, 7000.00, 0.00, 500.00, 'Approved', '2025-05-15 09:05:18', '2025-05-15 15:19:35'),
-(8, 1, 5, 3, '01:00:00', 'Cebu', '2025-12-31', 'Cash', 7500.00, 7500.00, 0.00, 0.00, 'Pending', '2025-05-15 15:16:05', '2025-05-15 15:16:05');
+INSERT INTO `booking` (`b_id`, `client_id`, `photographer_id`, `package_id`, `event_time`, `reception`, `event_date`, `payment_method`, `total_amount`, `downpayment`, `sukli`, `balance`, `status`, `created_at`, `updated_at`, `users_id`) VALUES
+(9, 3, 5, 3, '10:30:00', 'Lapay', '2025-12-10', 'Cash', 7500.00, 500.00, 0.00, 7000.00, 'Approved', '2025-05-16 06:14:55', '2025-05-16 06:29:17', 122),
+(10, 3, 5, 3, '10:30:00', 'Negros', '2025-12-26', 'Cash', 7500.00, 7000.00, 0.00, 500.00, 'Approved', '2025-05-16 06:30:08', '2025-05-16 07:23:51', 122),
+(11, 1, 2, 2, '11:00:00', 'Bayawan City', '2025-12-31', 'Cash', 6500.00, 6000.00, 0.00, 500.00, 'Approved', '2025-05-16 06:40:35', '2025-05-16 06:40:41', 122),
+(12, 2, 5, 2, '10:35:00', 'SCC', '2025-05-31', 'Cash', 6800.00, 6800.00, 0.00, 0.00, 'Approved', '2025-05-16 07:29:11', '2025-05-25 04:52:03', 122);
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,8 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`c_id`, `c_fname`, `c_lname`, `c_address`, `c_email`, `c_contact`) VALUES
 (1, 'Ashuri', 'Balbon', 'Lapay, Bayawan City', 'ashuri@gmail.com', '09051361453'),
 (2, 'John', 'Gomez', 'Badian', 'john@gmail.com', '09874518523'),
-(3, 'Queny', 'Waskin', 'Asturias', 'quen@gmail.com', '09874581234');
+(3, 'Queny', 'Waskin', 'Asturias', 'quen@gmail.com', '09874581234'),
+(4, 'Clair', 'Cabusog', 'Lapay, Negros Oriental', 'clair@gmail.com', '09874512365');
 
 -- --------------------------------------------------------
 
@@ -262,7 +264,115 @@ INSERT INTO `logs` (`l_id`, `u_id`, `action`, `date_time`) VALUES
 (164, 122, 'User logged in with ID 122', '2025-05-15 16:12:33'),
 (165, 122, 'User logged in with ID 122', '2025-05-15 16:47:15'),
 (166, 122, 'User logged in with ID 122', '2025-05-15 16:53:18'),
-(167, 122, 'User logged in with ID 122', '2025-05-15 16:59:20');
+(167, 122, 'User logged in with ID 122', '2025-05-15 16:59:20'),
+(168, 122, 'User logged in with ID 122', '2025-05-15 17:16:23'),
+(169, 122, 'User logged in with ID 122', '2025-05-15 17:23:07'),
+(170, 122, 'User logged in with ID 122', '2025-05-15 17:32:00'),
+(171, 122, 'User logged in with ID 122', '2025-05-15 17:39:06'),
+(172, 122, 'User logged in with ID 122', '2025-05-16 00:54:12'),
+(173, 122, 'User logged in with ID 122', '2025-05-16 01:14:36'),
+(174, 122, 'User logged in with ID 122', '2025-05-16 01:27:38'),
+(175, 122, 'User logged in with ID 122', '2025-05-16 01:30:23'),
+(176, 122, 'User logged in with ID 122', '2025-05-16 04:04:24'),
+(177, 122, 'User logged in with ID 122', '2025-05-16 04:06:28'),
+(178, 122, 'User logged in with ID 122', '2025-05-16 04:07:03'),
+(179, 122, 'User logged in with ID 122', '2025-05-16 04:08:54'),
+(180, 122, 'User logged in with ID 122', '2025-05-16 04:19:58'),
+(181, 122, 'User logged in with ID 122', '2025-05-16 04:25:58'),
+(182, 122, 'User logged in with ID 122', '2025-05-16 04:27:16'),
+(183, 122, 'User logged in with ID 122', '2025-05-16 04:29:47'),
+(184, 122, 'User logged in with ID 122', '2025-05-16 04:32:59'),
+(185, 126, 'User logged in with ID 126', '2025-05-16 05:19:48'),
+(186, 122, 'User logged in with ID 122', '2025-05-16 05:41:50'),
+(187, 122, 'User logged in with ID 122', '2025-05-16 05:45:26'),
+(188, 122, 'User logged in with ID 122', '2025-05-16 05:49:01'),
+(189, 122, 'User logged in with ID 122', '2025-05-16 05:50:12'),
+(190, 122, 'User logged in with ID 122', '2025-05-16 05:50:40'),
+(191, 122, 'User logged in with ID 122', '2025-05-16 05:51:51'),
+(192, 122, 'User logged in with ID 122', '2025-05-16 05:53:33'),
+(193, 122, 'User logged in with ID 122', '2025-05-16 05:54:50'),
+(194, 122, 'User logged in with ID 122', '2025-05-16 06:01:37'),
+(195, 122, 'User logged in with ID 122', '2025-05-16 06:12:23'),
+(196, 122, 'User logged in with ID 122', '2025-05-16 06:14:29'),
+(197, 122, 'Created a booking with ID: 9', '2025-05-16 06:14:56'),
+(198, 122, 'User logged in with ID 122', '2025-05-16 06:22:23'),
+(199, 122, 'User logged in with ID 122', '2025-05-16 06:24:26'),
+(200, 122, 'User logged in with ID 122', '2025-05-16 06:28:49'),
+(201, 122, 'Approved booking ID 9', '2025-05-16 06:29:17'),
+(202, 122, 'User logged in with ID 122', '2025-05-16 06:29:37'),
+(203, 122, 'Created a booking with ID: 10', '2025-05-16 06:30:10'),
+(204, 122, 'User logged in with ID 122', '2025-05-16 06:33:36'),
+(205, 122, 'User logged in with ID 122', '2025-05-16 06:34:41'),
+(206, 122, 'User logged in with ID 122', '2025-05-16 06:36:14'),
+(207, 122, 'User logged in with ID 122', '2025-05-16 06:36:39'),
+(208, 122, 'User logged in with ID 122', '2025-05-16 06:38:34'),
+(209, 122, 'User logged in with ID 122', '2025-05-16 06:39:38'),
+(210, 122, 'Created a booking with ID: 11', '2025-05-16 06:40:36'),
+(211, 122, 'Approved booking ID 11', '2025-05-16 06:40:41'),
+(212, 122, 'User logged in with ID 122', '2025-05-16 06:50:16'),
+(213, 122, 'User logged in with ID 122', '2025-05-16 07:21:15'),
+(214, 122, 'Approved booking ID 10', '2025-05-16 07:23:51'),
+(215, 122, 'Created a booking with ID: 12', '2025-05-16 07:29:13'),
+(216, 122, 'User logged in with ID 122', '2025-05-16 07:34:27'),
+(217, 122, 'User logged out with ID 122', '2025-05-16 07:34:52'),
+(218, 122, 'User logged in with ID 122', '2025-05-21 05:46:29'),
+(219, 122, 'User logged in with ID 122', '2025-05-22 00:50:11'),
+(220, 122, 'User logged in with ID 122', '2025-05-22 00:57:33'),
+(221, 122, 'User logged in with ID 122', '2025-05-22 01:00:00'),
+(222, 122, 'User logged in with ID 122', '2025-05-22 01:34:08'),
+(223, 122, 'User logged in with ID 122', '2025-05-22 01:35:07'),
+(224, 122, 'User logged in with ID 122', '2025-05-22 01:37:55'),
+(225, 122, 'User logged in with ID 122', '2025-05-22 01:39:06'),
+(226, 122, 'User logged in with ID 122', '2025-05-22 01:40:19'),
+(227, 122, 'User logged in with ID 122', '2025-05-22 01:43:37'),
+(228, 122, 'Created a booking with ID: 13', '2025-05-22 01:46:16'),
+(229, 122, 'User logged in with ID 122', '2025-05-22 02:51:53'),
+(230, 122, 'User logged in with ID 122', '2025-05-22 03:08:24'),
+(231, 122, 'User logged in with ID 122', '2025-05-22 03:13:40'),
+(232, 127, 'User logged in with ID 127', '2025-05-25 03:26:15'),
+(233, 127, 'User logged in with ID 127', '2025-05-25 03:27:50'),
+(234, 127, 'User set up security questions with ID127', '2025-05-25 03:28:31'),
+(235, 127, 'User logged in with ID 127', '2025-05-25 03:45:23'),
+(236, 127, 'User logged in with ID 127', '2025-05-25 03:46:56'),
+(237, 127, 'User logged in with ID 127', '2025-05-25 04:02:19'),
+(238, 127, 'User logged in with ID 127', '2025-05-25 04:32:19'),
+(239, 127, 'User logged in with ID 127', '2025-05-25 04:38:48'),
+(240, 127, 'User logged in with ID 127', '2025-05-25 04:44:13'),
+(241, 127, 'User logged in with ID 127', '2025-05-25 04:48:45'),
+(242, 127, 'Edited booking with ID 12', '2025-05-25 04:49:13'),
+(243, 127, 'Edited booking with ID 12', '2025-05-25 04:49:42'),
+(244, 127, 'Approved booking ID 13', '2025-05-25 04:50:38'),
+(245, 127, 'Deleted booking with ID 13', '2025-05-25 04:50:46'),
+(246, 127, 'Approved booking ID 12', '2025-05-25 04:52:03'),
+(247, 127, 'User logged out with ID 127', '2025-05-25 04:52:42'),
+(248, 127, 'User logged in with ID 127', '2025-05-25 05:02:39'),
+(249, 127, 'User logged in with ID 127', '2025-05-25 05:03:09'),
+(250, 127, 'User logged in with ID 127', '2025-05-25 05:03:48'),
+(251, 127, 'User logged in with ID 127', '2025-05-25 05:06:44'),
+(252, 127, 'User logged in with ID 127', '2025-05-25 05:07:17'),
+(253, 127, 'User logged in with ID 127', '2025-05-25 05:07:49'),
+(254, 127, 'User logged in with ID 127', '2025-05-25 05:08:49'),
+(255, 122, 'User logged in with ID 122', '2025-05-25 05:13:48'),
+(256, 122, 'User logged out with ID 122', '2025-05-25 05:14:47'),
+(257, 127, 'User logged in with ID 127', '2025-05-25 06:29:51'),
+(258, 127, 'User logged out with ID 127', '2025-05-25 06:36:22'),
+(259, 122, 'User logged in with ID 122', '2025-05-25 06:36:33'),
+(260, 127, 'User logged in with ID 127', '2025-05-27 03:49:35'),
+(261, 126, 'User logged in with ID 126', '2025-05-27 03:54:30'),
+(262, 126, 'User logged in with ID 126', '2025-05-27 03:54:45'),
+(263, 126, 'User logged in with ID 126', '2025-05-27 04:01:06'),
+(264, 126, 'Added new client with ID 4', '2025-05-27 04:04:04'),
+(265, 126, 'User logged in with ID 126', '2025-05-27 04:10:57'),
+(266, 126, 'User logged in with ID 126', '2025-05-27 04:11:10'),
+(267, 126, 'User logged in with ID 126', '2025-05-27 04:20:55'),
+(268, 126, 'User logged in with ID 126', '2025-05-27 04:24:07'),
+(269, 126, 'User set up security questions with ID126', '2025-05-27 04:24:23'),
+(270, 126, 'Edited user with ID 126', '2025-05-27 04:25:09'),
+(271, 126, 'User logged out with ID 126', '2025-05-27 04:25:29'),
+(272, 126, 'User logged in with ID 126', '2025-05-27 04:25:39'),
+(273, 126, 'User logged in with ID 126', '2025-05-27 04:27:24'),
+(274, 126, 'User logged in with ID 126', '2025-05-27 04:30:48'),
+(275, 126, 'User logged in with ID 126', '2025-05-27 04:31:00');
 
 -- --------------------------------------------------------
 
@@ -334,7 +444,11 @@ INSERT INTO `securityquestion` (`id`, `user_id`, `question`, `answer`) VALUES
 (48, 125, 'Who\'s your bff?', '976d9dbc51bceef5054bad47e15df25b88d5b7ba564db3830b64b09e658d0627'),
 (49, 125, 'What\'s your middle name?', '933a37f4669734dd766168de429a12ef80ab6fd1731c59601a4c7b46f3a12d87'),
 (58, 122, 'What\'s your favorite fruit?', '6815f3c300383519de8e437497e2c3e97852fe8d717a5419d5aafb00cb43c494'),
-(59, 122, 'What\'s your favorite food?', '6815f3c300383519de8e437497e2c3e97852fe8d717a5419d5aafb00cb43c494');
+(59, 122, 'What\'s your favorite food?', '6815f3c300383519de8e437497e2c3e97852fe8d717a5419d5aafb00cb43c494'),
+(60, 127, 'What\'s your favorite fruit?', '4b4e11cc0735d5727305af841fd9095f63dab30ff512e7ee2f5797949f840b0a'),
+(61, 127, 'What\'s your middle name?', '3e68e7554f62b3f4de3d1db86f612d7f3dfa4dd686c550b15e442b013e83dabb'),
+(62, 126, 'What\'s your favorite fruit?', '4b4e11cc0735d5727305af841fd9095f63dab30ff512e7ee2f5797949f840b0a'),
+(63, 126, 'What\'s your favorite food?', '4b4e11cc0735d5727305af841fd9095f63dab30ff512e7ee2f5797949f840b0a');
 
 -- --------------------------------------------------------
 
@@ -351,21 +465,24 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` varchar(20) DEFAULT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `profile_pic` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `email`, `contact`, `username`, `password`, `role`, `status`) VALUES
-(118, 'John', 'Phil', 'johnny@gmail.com', '09784561258', 'johnny', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Inactive'),
-(119, 'Clair', 'Lagunday', 'clair@gmail.com', '09874562589', 'lita', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'Active'),
-(121, 'john', 'phil', 'John12@gmail.com', '09563215648', 'jampil', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Active'),
-(122, 'Aida', 'Minguito', 'aida@gmail.com', '09845712568', 'aida', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Admin', 'Active'),
-(123, 'Zehirah', 'Balbon', 'zee@gmail.com', '09874512365', 'zee', '8a9bcf1e51e812d0af8465a8dbcc9f741064bf0af3b3d08e6b0246437c19f7fb', 'Admin', 'Approved'),
-(124, 'test', 'test', 'test@gmail.com', '09896735467', 'test', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Admin', 'Approved'),
-(125, 'Mike', 'Balbon', 'mike@gmail.com', '09161430869', 'mike', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Admin', 'Active');
+INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `email`, `contact`, `username`, `password`, `role`, `status`, `profile_pic`) VALUES
+(118, 'John', 'Phil', 'johnny@gmail.com', '09784561258', 'johnny', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Inactive', ''),
+(119, 'Clair', 'Lagunday', 'clair@gmail.com', '09874562589', 'lita', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Admin', 'Active', ''),
+(121, 'john', 'phil', 'John12@gmail.com', '09563215648', 'jampil', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Active', ''),
+(122, 'Aida', 'Minguito', 'aida@gmail.com', '09845712568', 'aida', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Active', 'ProfilePics/1747806437900_jp.png'),
+(123, 'Zehirah', 'Balbon', 'zee@gmail.com', '09874512365', 'zee', '8a9bcf1e51e812d0af8465a8dbcc9f741064bf0af3b3d08e6b0246437c19f7fb', 'Admin', 'Active', ''),
+(124, 'test', 'test', 'test@gmail.com', '09896735467', 'test', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Admin', 'Pending', ''),
+(125, 'Mike', 'Balbon', 'mike@gmail.com', '09161430869', 'mike', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Admin', 'Active', ''),
+(126, 'Lenie', 'Salazar', 'lenie@gmail.com', '09168426351', 'lenie', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Admin', 'Inactive', 'ProfilePics/1748319132871_ashley.jpg'),
+(127, 'Ashuri', 'Balbon', 'ashley@gmail.com', '09874512351', 'ash', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Staff', 'Active', 'ProfilePics/1748145764478_ashley.jpg');
 
 --
 -- Indexes for dumped tables
@@ -378,7 +495,8 @@ ALTER TABLE `booking`
   ADD PRIMARY KEY (`b_id`),
   ADD KEY `client_id` (`client_id`),
   ADD KEY `photographer_id` (`photographer_id`),
-  ADD KEY `package_id` (`package_id`);
+  ADD KEY `package_id` (`package_id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `client`
@@ -426,19 +544,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `b_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `b_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `l_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `l_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
 
 --
 -- AUTO_INCREMENT for table `package`
@@ -456,13 +574,13 @@ ALTER TABLE `photographer`
 -- AUTO_INCREMENT for table `securityquestion`
 --
 ALTER TABLE `securityquestion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- Constraints for dumped tables
@@ -474,7 +592,20 @@ ALTER TABLE `user`
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`c_id`),
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`photographer_id`) REFERENCES `photographer` (`p_id`),
-  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`package_id`) REFERENCES `package` (`pp_id`);
+  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`package_id`) REFERENCES `package` (`pp_id`),
+  ADD CONSTRAINT `booking_ibfk_4` FOREIGN KEY (`users_id`) REFERENCES `user` (`u_id`);
+
+--
+-- Constraints for table `logs`
+--
+ALTER TABLE `logs`
+  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`);
+
+--
+-- Constraints for table `securityquestion`
+--
+ALTER TABLE `securityquestion`
+  ADD CONSTRAINT `securityquestion_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`u_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

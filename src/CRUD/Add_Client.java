@@ -4,6 +4,7 @@ package CRUD;
 import BOOKING.Client;
 import CONFIG.Session;
 import CONFIG.connectDB;
+import MANAGEMENT.Clients;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -240,7 +241,7 @@ public class Add_Client extends javax.swing.JInternalFrame {
     
     
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        Client pack = new Client();
+        Clients pack = new Clients();
 
         // Get the desktop pane (make sure this is a JDesktopPane)
         JDesktopPane desktopPane = getDesktopPane(); // assuming you're inside a JInternalFrame

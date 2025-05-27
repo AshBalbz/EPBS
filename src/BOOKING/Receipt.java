@@ -75,7 +75,7 @@ public class Receipt extends javax.swing.JPanel {
         user = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         Continue2 = new javax.swing.JLabel();
-        cont1 = new Swing.Button();
+        print = new Swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -407,34 +407,34 @@ public class Receipt extends javax.swing.JPanel {
         Continue2.setText(" Print");
         add(Continue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, 90, 40));
 
-        cont1.setBackground(new java.awt.Color(96, 92, 60));
-        cont1.addMouseListener(new java.awt.event.MouseAdapter() {
+        print.setBackground(new java.awt.Color(96, 92, 60));
+        print.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cont1MouseClicked(evt);
+                printMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cont1MouseEntered(evt);
+                printMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cont1MouseExited(evt);
+                printMouseExited(evt);
             }
         });
-        add(cont1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 130, 40));
+        add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cont1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseClicked
+    private void printMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseClicked
         JPanel  newpanel = new JPanel();
         panelPrinter panelprint = new panelPrinter(receipt);
         panelprint.printPanel();
-    }//GEN-LAST:event_cont1MouseClicked
+    }//GEN-LAST:event_printMouseClicked
 
-    private void cont1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseEntered
-        cont1.setBackground(new Color(176, 172, 140));
-    }//GEN-LAST:event_cont1MouseEntered
+    private void printMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseEntered
+        print.setBackground(new Color(176, 172, 140));
+    }//GEN-LAST:event_printMouseEntered
 
-    private void cont1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseExited
-        cont1.setBackground(new Color(96, 92, 60));
-    }//GEN-LAST:event_cont1MouseExited
+    private void printMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseExited
+        print.setBackground(new Color(96, 92, 60));
+    }//GEN-LAST:event_printMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -449,7 +449,6 @@ public class Receipt extends javax.swing.JPanel {
     public javax.swing.JLabel amount;
     public javax.swing.JLabel bal;
     public javax.swing.JLabel client;
-    public Swing.Button cont1;
     public javax.swing.JLabel created;
     public javax.swing.JLabel down_pay;
     public javax.swing.JLabel dura;
@@ -474,6 +473,7 @@ public class Receipt extends javax.swing.JPanel {
     public javax.swing.JLabel pack;
     public javax.swing.JLabel photographer;
     public javax.swing.JLabel price;
+    public Swing.Button print;
     public javax.swing.JLabel rate;
     public javax.swing.JPanel receipt;
     public javax.swing.JLabel reception;

@@ -86,7 +86,6 @@ public class security extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 720));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -101,6 +100,7 @@ public class security extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 90));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -163,7 +163,12 @@ public class security extends javax.swing.JFrame {
                 answerField2FocusLost(evt);
             }
         });
-        jPanel3.add(answerField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 50));
+        answerField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                answerField2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(answerField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 60));
 
         answerField1.setLabelText("");
         answerField1.setOpaque(false);
@@ -175,7 +180,7 @@ public class security extends javax.swing.JFrame {
                 answerField1FocusLost(evt);
             }
         });
-        jPanel3.add(answerField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 450, 50));
+        jPanel3.add(answerField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 450, 60));
 
         ans_error2.setBackground(new java.awt.Color(255, 255, 255));
         ans_error2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -398,6 +403,10 @@ public class security extends javax.swing.JFrame {
         displayError(ans_error2, "");
         answerField2.setForeground(Color.black);
     }//GEN-LAST:event_answerField2FocusLost
+
+    private void answerField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answerField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_answerField2ActionPerformed
 
     /**
      * @param args the command line arguments

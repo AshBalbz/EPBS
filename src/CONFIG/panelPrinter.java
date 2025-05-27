@@ -14,33 +14,49 @@ public class panelPrinter implements Printable {
     }
 
    @Override
-        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-            if (pageIndex > 0) {
-                return Printable.NO_SUCH_PAGE;
-            }
+            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+         if (pageIndex > 0) {
+             return NO_SUCH_PAGE;
+         }
 
-            Graphics2D g2d = (Graphics2D) graphics;
+         Graphics2D g2d = (Graphics2D) graphics;
 
-            // Do NOT modify pageFormat or paper here. Do that externally during job setup.
+         // Set up 4R paper size (6x4 inches in portrait mode)
+         Paper paper = new Paper();
+         double width = 6 * 72;   // 432 points
+         double height = 4 * 72;  // 288 points
+         paper.setSize(width, height);
 
-            // Calculate offsets for centering and margins
-            double panelWidth = panelToPrint.getPreferredSize().getWidth();
-            double panelHeight = panelToPrint.getPreferredSize().getHeight();
-            double xOffset = (pageFormat.getImageableWidth() - panelWidth) / 2;
-            double yOffset = pageFormat.getImageableY() + 72; // One-inch margin
-            
-            
-            JPanel panel = new JPanel();
-               panel.setPreferredSize(new Dimension(700, 631)); // 5x7 inches in points
+         // Set margins (e.g., 0.25 inch margins = 18 points)
+         double margin = 18;
+         paper.setImageableArea(margin, margin, width - 2 * margin, height - 2 * margin);
+         pageFormat.setPaper(paper);
 
+         // Get the printable area
+         double imageableX = pageFormat.getImageableX();
+         double imageableY = pageFormat.getImageableY();
+         double imageableWidth = pageFormat.getImageableWidth();
+         double imageableHeight = pageFormat.getImageableHeight();
 
-            g2d.translate(pageFormat.getImageableX() + xOffset, yOffset);
+         // Get panel size
+         double panelWidth = panelToPrint.getWidth();
+         double panelHeight = panelToPrint.getHeight();
 
-            // Print the panel using the translated graphics context
-            panelToPrint.printAll(g2d);
+         // Calculate scale to fit panel within printable area
+         double scaleX = imageableWidth / panelWidth;
+         double scaleY = imageableHeight / panelHeight;
+         double scale = Math.min(scaleX, scaleY); // Keep aspect ratio
 
-            return Printable.PAGE_EXISTS;
-        }
+         // Translate and scale graphics context
+         g2d.translate(imageableX, imageableY);
+         g2d.scale(scale, scale);
+
+         // Print panel
+         panelToPrint.printAll(g2d);
+
+         return PAGE_EXISTS;
+     }
+
 
 
 

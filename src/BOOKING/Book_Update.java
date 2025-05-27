@@ -528,193 +528,214 @@ public class Book_Update extends javax.swing.JInternalFrame {
  
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
            
-   boolean valid = true;
-String error = "Field cannot be empty!";
+        boolean valid = true;
+           String error = "Field cannot be empty!";
 
-// === INPUT VALUES ===
-String bookingId = bid.getText().trim();
-String cli = client.getText().trim(); 
-String photo = photographer.getText().trim(); 
-String pac = pack.getText().trim(); 
-String prate = rate.getText().trim();
-String pri = price.getText().trim();
-String duration = dura.getText().trim();
-String total_amt = total.getText().trim();
-String chan = change.getText().trim();
-String bal = balance.getText().trim();
-String ev = eventTime.getText().trim();
-String re = reception.getText().trim();
-String evD = eventDate.getText().trim();
-String down = down_pay.getText().trim();
-String methodSelected = method.getSelectedItem() != null ? method.getSelectedItem().toString() : "";
+           // === INPUT VALUES ===
+           String cli = client.getText().trim();
+           String photo = photographer.getText().trim();
+           String pac = pack.getText().trim();
+           String prate = rate.getText().trim();
+           String pri = price.getText().trim();
+           String duration = dura.getText().trim();
+           String total_amt = total.getText().trim();
+           String chan = change.getText().trim();
+           String bal = balance.getText().trim();
+           String ev = eventTime.getText().trim();
+           String re = reception.getText().trim();
+           String evD = eventDate.getText().trim();
+           String down = down_pay.getText().trim();
+           String methodSelected = method.getSelectedItem() != null ? method.getSelectedItem().toString() : "";
 
-// === Variable Declarations ===
-int clientId = 0, photographerId = 0, packageId = 0;
-double totalVal = 0.0, downVal = 0.0, calculatedChange = 0.0, calculatedBalance = 0.0;
+           String bookingIdText = bid.getText().trim();
+           int bookingId = 0;
 
-// === VALIDATE TOTAL AMOUNT FIRST ===
-if (total_amt.isEmpty()) {
-    if (error2 != null) displayError(error2, error);
-    valid = false;
-} else {
-    try {
-        totalVal = Double.parseDouble(total_amt);
-        if (totalVal < 0) {
-            if (error2 != null) displayError(error2, "Total amount cannot be negative.");
-            valid = false;
-        }
-    } catch (NumberFormatException e) {
-        if (error2 != null) displayError(error2, "Invalid number format for total amount.");
-        valid = false;
-    }
-}
+           try {
+               bookingId = Integer.parseInt(bookingIdText);
+           } catch (NumberFormatException ex) {
+               JOptionPane.showMessageDialog(null, "Invalid Booking ID.");
+               return;
+           }
 
-// === VALIDATE DOWNPAYMENT ===
-if (down.isEmpty()) {
-    if (down_error != null) displayError(down_error, error);
-    valid = false;
-} else {
-    try {
-        downVal = Double.parseDouble(down);
-        if (downVal < 0) {
-            if (down_error != null) displayError(down_error, "Downpayment cannot be negative.");
-            valid = false;
-        }
-    } catch (NumberFormatException e) {
-        if (down_error != null) displayError(down_error, "Invalid number format for downpayment.");
-        valid = false;
-    }
-}
+           // === Variable Declarations ===
+           int clientId = 0, photographerId = 0, packageId = 0;
+           double totalVal = 0.0, downVal = 0.0, calculatedChange = 0.0, calculatedBalance = 0.0;
 
-// === FIELD VALIDATIONS ===
-String timeError = "Invalid time format. Use HH:mm (24-hour format).";
-if (cli.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
-if (pac.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
-if (prate.isEmpty()) { if (error5 != null) displayError(error5, error); valid = false; }
-if (ev.isEmpty()) {
-    if (error1 != null) displayError(error1, error);
-    valid = false;
-} else if (!ev.matches("^([01]\\d|2[0-3]):([0-5]\\d)$")) {
-    if (error1 != null) displayError(error1, timeError);
-    valid = false;
-}
-if (re.isEmpty()) { if (error2 != null) displayError(error2, error); valid = false; }
+           // === Validate total amount ===
+           if (total_amt.isEmpty()) {
+               if (error2 != null) displayError(error2, error);
+               valid = false;
+           } else {
+               try {
+                   totalVal = Double.parseDouble(total_amt);
+                   if (totalVal < 0) {
+                       if (error2 != null) displayError(error2, "Total amount cannot be negative.");
+                       valid = false;
+                   }
+               } catch (NumberFormatException e) {
+                   if (error2 != null) displayError(error2, "Invalid total amount format.");
+                   valid = false;
+               }
+           }
 
-// === RESOLVE IDs FROM TEXT FIELDS ===
-connectDB con = new connectDB();
-try (Connection conn = con.getConnection()) {
-    // Client ID
-    try (PreparedStatement ps = conn.prepareStatement("SELECT c_id FROM client WHERE c_fname = ?")) {
-        ps.setString(1, cli);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            clientId = rs.getInt("c_id");
-        } else {
-            if (error5 != null) displayError(error5, "Client not found.");
-            valid = false;
-        }
-    }
+           // === Validate downpayment ===
+           if (down.isEmpty()) {
+               if (down_error != null) displayError(down_error, error);
+               valid = false;
+           } else {
+               try {
+                   downVal = Double.parseDouble(down);
+                   if (downVal < 0) {
+                       if (down_error != null) displayError(down_error, "Downpayment cannot be negative.");
+                       valid = false;
+                   }
+               } catch (NumberFormatException e) {
+                   if (down_error != null) displayError(down_error, "Invalid downpayment format.");
+                   valid = false;
+               }
+           }
 
-    // Photographer ID
-    try (PreparedStatement ps = conn.prepareStatement("SELECT p_id FROM photographer WHERE p_fname = ?")) {
-        ps.setString(1, photo);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            photographerId = rs.getInt("p_id");
-        } else {
-            if (error5 != null) displayError(error5, "Photographer not found.");
-            valid = false;
-        }
-    }
+           // === Other Field Validations ===
+           String timeError = "Invalid time format. Use HH:mm (24-hour format).";
 
-    // Package ID
-    try (PreparedStatement ps = conn.prepareStatement("SELECT pp_id FROM package WHERE pp_name = ?")) {
-        ps.setString(1, pac);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            packageId = rs.getInt("pp_id");
-        } else {
-            if (error5 != null) displayError(error5, "Package not found.");
-            valid = false;
-        }
-    }
+           if (cli.isEmpty()) { if (error5 != null) displayError(error5, "Client is required."); valid = false; }
+           if (photo.isEmpty()) { if (error5 != null) displayError(error5, "Photographer is required."); valid = false; }
+           if (pac.isEmpty()) { if (error5 != null) displayError(error5, "Package is required."); valid = false; }
+           if (prate.isEmpty()) { if (error5 != null) displayError(error5, "Rate is required."); valid = false; }
 
-    // === EVENT DATE VALIDATION & PHOTOGRAPHER AVAILABILITY ===
-    if (evD.isEmpty()) {
-        if (error3 != null) displayError(error3, error);
-        valid = false;
-    } else {
-        try {
-            LocalDate inputDate = LocalDate.parse(evD);
-            if (inputDate.isBefore(LocalDate.now())) {
-                if (error3 != null) displayError(error3, "Event date cannot be in the past.");
-                valid = false;
-            } else {
-                String checkSql = "SELECT 1 FROM booking WHERE photographer_id = ? AND event_date = ?";
-                try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                    checkStmt.setInt(1, photographerId);
-                    checkStmt.setDate(2, java.sql.Date.valueOf(evD));
-                    ResultSet rs = checkStmt.executeQuery();
-                    if (rs.next()) {
-                        if (error3 != null) displayError(error3, "Photographer is already booked on this date.");
-                        valid = false;
-                    }
-                }
-            }
-        } catch (DateTimeParseException ex) {
-            if (error3 != null) displayError(error3, "Invalid date format. Use yyyy-MM-dd.");
-            valid = false;
-        }
-    }
+           if (ev.isEmpty()) {
+               if (error1 != null) displayError(error1, error);
+               valid = false;
+           } else if (!ev.matches("^([01]\\d|2[0-3]):([0-5]\\d)$")) {
+               if (error1 != null) displayError(error1, timeError);
+               valid = false;
+           }
 
-    // === CALCULATE CHANGE AND BALANCE ===
-    if (valid) {
-        if (downVal >= totalVal) {
-            calculatedChange = downVal - totalVal;
-            calculatedBalance = 0.0;
-        } else {
-            calculatedChange = 0.0;
-            calculatedBalance = totalVal - downVal;
-        }
-        change.setText(String.format("%.2f", calculatedChange));
-        balance.setText(String.format("%.2f", calculatedBalance));
-    }
+           if (re.isEmpty()) {
+               if (error2 != null) displayError(error2, error);
+               valid = false;
+           }
 
-    // === FINAL UPDATE ===
-    if (valid) {
-        String status = balance.getText().trim().equals("0.00") ? "Confirmed" : "Pending";
-        String sql = "UPDATE booking SET client_id = ?, photographer_id = ?, package_id = ?, event_time = ?, reception = ?, event_date = ?, payment_method = ?, total_amount = ?, downpayment = ?, sukli = ?, balance = ?, status = ? WHERE b_id = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, clientId);
-            pstmt.setInt(2, photographerId);
-            pstmt.setInt(3, packageId);
-            pstmt.setString(4, ev);
-            pstmt.setString(5, re);
-            pstmt.setDate(6, java.sql.Date.valueOf(evD));
-            pstmt.setString(7, methodSelected);
-            pstmt.setDouble(8, totalVal);
-            pstmt.setDouble(9, downVal);
-            pstmt.setDouble(10, calculatedChange);
-            pstmt.setDouble(11, calculatedBalance);
-            pstmt.setString(12, status);
-            pstmt.setInt(13, Integer.parseInt(bookingId));
+           // === Resolve IDs and validate event date ===
+           connectDB con = new connectDB();
+           try (Connection conn = con.getConnection()) {
 
-            int result = pstmt.executeUpdate();
-            if (result > 0) {
-                Session sess = Session.getInstance();
-                String action = "Edited booking with ID " + bookingId;
-                con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
-                JOptionPane.showMessageDialog(null, "Booking with ID " + bookingId + " edited successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Editing failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
+               // Client ID
+               try (PreparedStatement ps = conn.prepareStatement("SELECT c_id FROM client WHERE CONCAT(c_fname, ' ', c_lname) = ?")) {
+                   ps.setString(1, cli);
+                   ResultSet rs = ps.executeQuery();
+                   if (rs.next()) {
+                       clientId = rs.getInt("c_id");
+                   } else {
+                       if (error5 != null) displayError(error5, "Client not found.");
+                       valid = false;
+                   }
+               }
 
-} catch (SQLException e) {
-    JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    e.printStackTrace();
-}
+               // Photographer ID
+               try (PreparedStatement ps = conn.prepareStatement("SELECT p_id FROM photographer WHERE CONCAT(p_fname, ' ', p_lname) = ?")) {
+                   ps.setString(1, photo);
+                   ResultSet rs = ps.executeQuery();
+                   if (rs.next()) {
+                       photographerId = rs.getInt("p_id");
+                   } else {
+                       if (error5 != null) displayError(error5, "Photographer not found.");
+                       valid = false;
+                   }
+               }
+
+               // Package ID
+               try (PreparedStatement ps = conn.prepareStatement("SELECT pp_id FROM package WHERE pp_name = ?")) {
+                   ps.setString(1, pac);
+                   ResultSet rs = ps.executeQuery();
+                   if (rs.next()) {
+                       packageId = rs.getInt("pp_id");
+                   } else {
+                       if (error5 != null) displayError(error5, "Package not found.");
+                       valid = false;
+                   }
+               }
+
+               // Event Date & Photographer Availability
+               if (evD.isEmpty()) {
+                   if (error3 != null) displayError(error3, error);
+                   valid = false;
+               } else {
+                   try {
+                       LocalDate inputDate = LocalDate.parse(evD);
+                       if (inputDate.isBefore(LocalDate.now())) {
+                           if (error3 != null) displayError(error3, "Event date cannot be in the past.");
+                           valid = false;
+                       } else {
+                           String checkSql = "SELECT b_id FROM booking WHERE photographer_id = ? AND event_date = ?";
+                           try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                               checkStmt.setInt(1, photographerId);
+                               checkStmt.setDate(2, java.sql.Date.valueOf(evD));
+                               ResultSet rs = checkStmt.executeQuery();
+                               if (rs.next()) {
+                                   int existingBookingId = rs.getInt("b_id");
+                                   if (existingBookingId != bookingId) {
+                                       if (error3 != null) displayError(error3, "Photographer is already booked on this date.");
+                                       valid = false;
+                                   }
+                               }
+                           }
+                       }
+                   } catch (DateTimeParseException ex) {
+                       if (error3 != null) displayError(error3, "Invalid date format. Use yyyy-MM-dd.");
+                       valid = false;
+                   }
+               }
+
+               // === Calculate and set change & balance ===
+               if (valid) {
+                   if (downVal >= totalVal) {
+                       calculatedChange = downVal - totalVal;
+                       calculatedBalance = 0.0;
+                   } else {
+                       calculatedChange = 0.0;
+                       calculatedBalance = totalVal - downVal;
+                   }
+                   change.setText(String.format("%.2f", calculatedChange));
+                   balance.setText(String.format("%.2f", calculatedBalance));
+               }
+
+               // === Final Update ===
+               if (valid) {
+                   String status = balance.getText().trim().equals("0.00") ? "Confirmed" : "Pending";
+                   String sql = "UPDATE booking SET client_id = ?, photographer_id = ?, package_id = ?, event_time = ?, reception = ?, event_date = ?, payment_method = ?, total_amount = ?, downpayment = ?, sukli = ?, balance = ?, status = ? WHERE b_id = ?";
+                   try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                       pstmt.setInt(1, clientId);
+                       pstmt.setInt(2, photographerId);
+                       pstmt.setInt(3, packageId);
+                       pstmt.setString(4, ev);
+                       pstmt.setString(5, re);
+                       pstmt.setDate(6, java.sql.Date.valueOf(evD));
+                       pstmt.setString(7, methodSelected);
+                       pstmt.setDouble(8, totalVal);
+                       pstmt.setDouble(9, downVal);
+                       pstmt.setDouble(10, calculatedChange);
+                       pstmt.setDouble(11, calculatedBalance);
+                       pstmt.setString(12, status);
+                       pstmt.setInt(13, bookingId);
+
+                       int result = pstmt.executeUpdate();
+                       if (result > 0) {
+                           Session sess = Session.getInstance();
+                           String action = "Edited booking with ID " + bookingId;
+                           con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
+                           JOptionPane.showMessageDialog(null, "Booking updated successfully!");
+                       } else {
+                           JOptionPane.showMessageDialog(null, "Update failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                       }
+                   }
+               }
+
+           } catch (SQLException e) {
+               JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+               e.printStackTrace();
+           }
+
 
 
 

@@ -505,7 +505,7 @@ public class Users extends javax.swing.JInternalFrame {
                 connectDB db = new connectDB(); // Create an instance of dbConnector
                 Connection conn = db.getConnection(); // Get database connection
 
-                String query = "UPDATE user SET status = 'Approved' WHERE u_id = ?";
+                String query = "UPDATE user SET status = 'Active' WHERE u_id = ?";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                     pstmt.setInt(1, selectedUserId);
 

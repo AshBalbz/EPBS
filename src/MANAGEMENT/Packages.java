@@ -328,10 +328,10 @@ public class Packages extends javax.swing.JInternalFrame {
 
               // Retrieve the selected user's ID from the table
             String id = package_tbl.getValueAt(row, 0).toString();
-            int selectedPacakageId;
+            int selectedPackageId;
             
              try {
-                selectedPacakageId = Integer.parseInt(id); // Ensure correct integer conversion
+                selectedPackageId = Integer.parseInt(id); // Ensure correct integer conversion
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Invalid package ID format.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -349,7 +349,7 @@ public class Packages extends javax.swing.JInternalFrame {
             try (Connection conn = db.getConnection();
                  PreparedStatement stmt = conn.prepareStatement("DELETE FROM package WHERE pp_id = ?")) {
 
-                stmt.setInt(1, selectedPacakageId);
+                stmt.setInt(1, selectedPackageId);
                 int affectedRows = stmt.executeUpdate();
 
                 
@@ -359,12 +359,12 @@ public class Packages extends javax.swing.JInternalFrame {
                     
                      // Logging the action
                     Session sess = Session.getInstance();
-                    String action = "Deleted package with ID " + selectedPacakageId;
+                    String action = "Deleted package with ID " + selectedPackageId;
                     con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
                     
                     JOptionPane.showMessageDialog(this, "Package deleted successfully.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Failed to delete photographer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Failed to delete package.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

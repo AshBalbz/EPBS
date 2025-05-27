@@ -3,13 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Print.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/connectDB.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Review.java</file>
-            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Book.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Setting.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Receipt.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Clients.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/AUTHENTICATION/LOGIN.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/DASHBOARDS/Staff_Dashboard.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/AnswerHashing.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Bookings_Staff.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Client.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Pack.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/BOOKING/Book_Update.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Bookings.java</file>
             <file>file:/D:/ASH/GUI/EPBS/src/CONFIG/panelPrinter.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/DASHBOARDS/Admin_Dashboard.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/SETTINGS/Update_Acc.java</file>
+            <file>file:/D:/ASH/GUI/EPBS/src/MANAGEMENT/Logs.java</file>
         </group>
     </open-files>
 </project-private>

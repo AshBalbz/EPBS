@@ -93,14 +93,6 @@ public class Clients extends javax.swing.JInternalFrame {
         }
     }
         
-    public int getSelectedUserId() {
-        int selectedRow = client_tbl.getSelectedRow(); // Get the selected row index
-
-            if (selectedRow != -1) { // Check if a row is selected
-                return Integer.parseInt(client_tbl.getValueAt(selectedRow, 0).toString()); // Get user_id from the first column
-            }
-        return -1; // Return -1 if no row is selected
-    }
 
     
   

@@ -28,9 +28,6 @@ public class Admin_Dashboard extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        home = new javax.swing.JPanel();
-        home_text = new javax.swing.JLabel();
-        h_icon = new javax.swing.JLabel();
         client = new javax.swing.JPanel();
         user_text1 = new javax.swing.JLabel();
         u_icon1 = new javax.swing.JLabel();
@@ -72,32 +69,6 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         jPanel3.setOpaque(false);
         jPanel3.setLayout(null);
 
-        home.setOpaque(false);
-        home.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                homeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                homeMouseExited(evt);
-            }
-        });
-        home.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        home_text.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
-        home_text.setForeground(new java.awt.Color(240, 240, 240));
-        home_text.setText("Home");
-        home.add(home_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 60, 40));
-
-        h_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        h_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/home.png"))); // NOI18N
-        home.add(h_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
-
-        jPanel3.add(home);
-        home.setBounds(0, 70, 180, 40);
-
         client.setOpaque(false);
         client.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,7 +98,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         client.add(u_icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(client);
-        client.setBounds(0, 320, 180, 40);
+        client.setBounds(0, 130, 180, 40);
 
         users.setOpaque(false);
         users.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,7 +129,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         users.add(u_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(users);
-        users.setBounds(0, 120, 180, 40);
+        users.setBounds(0, 330, 180, 40);
 
         photographers.setOpaque(false);
         photographers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +155,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         photographers.add(p_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(photographers);
-        photographers.setBounds(0, 170, 180, 40);
+        photographers.setBounds(0, 280, 180, 40);
 
         packages.setOpaque(false);
         packages.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,7 +181,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         packages.add(pp_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(packages);
-        packages.setBounds(0, 220, 180, 40);
+        packages.setBounds(0, 230, 180, 40);
 
         log.setOpaque(false);
         log.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,7 +207,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         log.add(b_icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(log);
-        log.setBounds(0, 370, 180, 40);
+        log.setBounds(0, 180, 180, 40);
 
         booking.setOpaque(false);
         booking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,7 +233,7 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         booking.add(b_icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(booking);
-        booking.setBounds(0, 270, 180, 40);
+        booking.setBounds(0, 80, 180, 40);
 
         acc.setOpaque(false);
         acc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -288,9 +259,9 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         acc.add(b_icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jPanel3.add(acc);
-        acc.setBounds(0, 20, 180, 40);
+        acc.setBounds(0, 30, 180, 40);
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 180, 560));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 180, 560));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/Gradient.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 180, 690));
@@ -349,18 +320,6 @@ public class Admin_Dashboard extends javax.swing.JFrame {
         mainDesktop.add(us);     // Add it to the JDesktopPane
         us.setVisible(true);
     }//GEN-LAST:event_user_textMouseClicked
-
-    private void homeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseEntered
-        home.setBorder(BorderFactory.createLineBorder(new Color(240,240,240)));
-    }//GEN-LAST:event_homeMouseEntered
-
-    private void homeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseExited
-        home.setBorder(BorderFactory.createEmptyBorder());
-    }//GEN-LAST:event_homeMouseExited
-
-    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_homeMouseClicked
 
     private void usersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseEntered
         users.setBorder(BorderFactory.createLineBorder(new Color(240,240,240)));
@@ -525,9 +484,6 @@ public class Admin_Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel booking_text2;
     private javax.swing.JPanel client;
     private javax.swing.JLabel close;
-    private javax.swing.JLabel h_icon;
-    private javax.swing.JPanel home;
-    private javax.swing.JLabel home_text;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

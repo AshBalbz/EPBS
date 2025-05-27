@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -457,7 +458,7 @@ public class Setting extends javax.swing.JInternalFrame {
                  }
              }
 
-             displayProfilePicture();
+             displayProfilePicture(user_pic);
 
          } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "Error uploading profile picture: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -471,43 +472,44 @@ public class Setting extends javax.swing.JInternalFrame {
 }
 
 
-            private void displayProfilePicture() {
-            Connection cn = null;
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
+            private void displayProfilePicture(JLabel user_pic) {
+             Connection cn = null;
+                PreparedStatement stmt = null;
+                ResultSet rs = null;
 
-            try {
-                connectDB con = new connectDB();
-                cn = con.getConnection();
+                try {
+                    connectDB con = new connectDB();
+                    cn = con.getConnection();
 
-                String query = "SELECT profile_pic FROM user WHERE u_id = ?";
-                stmt = cn.prepareStatement(query);
-                stmt.setString(1, Session.getInstance().getUser_id());
+                    String query = "SELECT profile_pic FROM user WHERE u_id = ?";
+                    stmt = cn.prepareStatement(query);
+                    stmt.setString(1, Session.getInstance().getUser_id());
 
-                rs = stmt.executeQuery();
-                if (rs.next()) {
-                    String profilePicPath = rs.getString("profile_pic");
-                    if (profilePicPath == null || profilePicPath.isEmpty()) {
-                        profilePicPath = "ProfilePics/user_pic.jpg";
+                    rs = stmt.executeQuery();
+                    if (rs.next()) {
+                        String profilePicPath = rs.getString("profile_pic");
+                        if (profilePicPath == null || profilePicPath.isEmpty()) {
+                            profilePicPath = "ProfilePics/user_pic.jpg";
+                        }
+
+                        File imgFile = new File(profilePicPath);
+                        if (!imgFile.exists()) {
+                            imgFile = new File("ProfilePics/user_pic.jpg");
+                        }
+
+                        ImageIcon profilePic = new ImageIcon(imgFile.getAbsolutePath());
+                        Image image = profilePic.getImage().getScaledInstance(128, 128, Image.SCALE_SMOOTH);
+                        user_pic.setIcon(new ImageIcon(image)); // ✅ SET the icon to the JLabel
                     }
 
-                    File imgFile = new File(profilePicPath);
-                    if (!imgFile.exists()) {
-                        imgFile = new File("ProfilePics/user_pic.jpg");
-                    }
-
-                    ImageIcon profilePic = new ImageIcon(imgFile.getAbsolutePath());
-                    Image image = profilePic.getImage().getScaledInstance(128, 128, Image.SCALE_SMOOTH);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error loading profile picture: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                } finally {
+                    try { if (rs != null) rs.close(); } catch (SQLException ignored) {}
+                    try { if (stmt != null) stmt.close(); } catch (SQLException ignored) {}
+                    try { if (cn != null) cn.close(); } catch (SQLException ignored) {}
                 }
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error loading profile picture: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            } finally {
-                try { if (rs != null) rs.close(); } catch (SQLException ignored) {}
-                try { if (stmt != null) stmt.close(); } catch (SQLException ignored) {}
-                try { if (cn != null) cn.close(); } catch (SQLException ignored) {}
-            }
 }
 
 

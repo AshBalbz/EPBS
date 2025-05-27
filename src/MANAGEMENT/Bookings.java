@@ -135,22 +135,24 @@ public class Bookings extends javax.swing.JInternalFrame {
         search_icon = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Continue3 = new javax.swing.JLabel();
-        cont3 = new Swing.Button();
+        cancel = new Swing.Button();
         search_bar = new javax.swing.JTextField();
         Continue2 = new javax.swing.JLabel();
-        cont2 = new Swing.Button();
+        view = new Swing.Button();
         ScrollPane = new javax.swing.JScrollPane();
         booking_tbl = new javax.swing.JTable();
         Title = new javax.swing.JLabel();
-        a_photo = new javax.swing.JLabel();
-        e_photo = new javax.swing.JLabel();
-        d_photo = new javax.swing.JLabel();
+        add = new javax.swing.JLabel();
+        update = new javax.swing.JLabel();
+        delete = new javax.swing.JLabel();
         refresh = new javax.swing.JLabel();
         Continue1 = new javax.swing.JLabel();
-        cont1 = new Swing.Button();
+        approve = new Swing.Button();
         Continue = new javax.swing.JLabel();
-        cont = new Swing.Button();
+        print = new Swing.Button();
         approved = new javax.swing.JLabel();
+        number = new javax.swing.JLabel();
+        income = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -159,6 +161,23 @@ public class Bookings extends javax.swing.JInternalFrame {
         jMenu1.setText("jMenu1");
 
         setPreferredSize(new java.awt.Dimension(820, 650));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -183,24 +202,24 @@ public class Bookings extends javax.swing.JInternalFrame {
         Continue3.setText(" Cancel");
         jPanel1.add(Continue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, 80, 50));
 
-        cont3.setBackground(new java.awt.Color(96, 92, 60));
-        cont3.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setBackground(new java.awt.Color(96, 92, 60));
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cont3MouseClicked(evt);
+                cancelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cont3MouseEntered(evt);
+                cancelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cont3MouseExited(evt);
+                cancelMouseExited(evt);
             }
         });
-        cont3.addActionListener(new java.awt.event.ActionListener() {
+        cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cont3ActionPerformed(evt);
+                cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cont3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 130, 50));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 130, 50));
 
         search_bar.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 13)); // NOI18N
         search_bar.setForeground(new java.awt.Color(153, 153, 153));
@@ -231,26 +250,26 @@ public class Bookings extends javax.swing.JInternalFrame {
         Continue2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Continue2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/mata.png"))); // NOI18N
         Continue2.setText(" View");
-        jPanel1.add(Continue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 80, 50));
+        jPanel1.add(Continue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, 80, 50));
 
-        cont2.setBackground(new java.awt.Color(96, 92, 60));
-        cont2.addMouseListener(new java.awt.event.MouseAdapter() {
+        view.setBackground(new java.awt.Color(96, 92, 60));
+        view.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cont2MouseClicked(evt);
+                viewMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cont2MouseEntered(evt);
+                viewMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cont2MouseExited(evt);
+                viewMouseExited(evt);
             }
         });
-        cont2.addActionListener(new java.awt.event.ActionListener() {
+        view.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cont2ActionPerformed(evt);
+                viewActionPerformed(evt);
             }
         });
-        jPanel1.add(cont2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 130, 50));
+        jPanel1.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 130, 50));
 
         ScrollPane.setBackground(new java.awt.Color(51, 255, 204));
 
@@ -282,53 +301,53 @@ public class Bookings extends javax.swing.JInternalFrame {
         Title.setText("Bookings");
         jPanel1.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 130, 80));
 
-        a_photo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        a_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/add.png"))); // NOI18N
-        a_photo.setText(" Add Booking");
-        a_photo.addMouseListener(new java.awt.event.MouseAdapter() {
+        add.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/add.png"))); // NOI18N
+        add.setText(" Add Booking");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                a_photoMouseClicked(evt);
+                addMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                a_photoMouseEntered(evt);
+                addMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                a_photoMouseExited(evt);
+                addMouseExited(evt);
             }
         });
-        jPanel1.add(a_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 140, 30));
+        jPanel1.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 140, 30));
 
-        e_photo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        e_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/editing.png"))); // NOI18N
-        e_photo.setText(" Update Booking");
-        e_photo.addMouseListener(new java.awt.event.MouseAdapter() {
+        update.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/editing.png"))); // NOI18N
+        update.setText(" Update Booking");
+        update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                e_photoMouseClicked(evt);
+                updateMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                e_photoMouseEntered(evt);
+                updateMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                e_photoMouseExited(evt);
+                updateMouseExited(evt);
             }
         });
-        jPanel1.add(e_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 140, 30));
+        jPanel1.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 600, 140, 30));
 
-        d_photo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
-        d_photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/trash.png"))); // NOI18N
-        d_photo.setText(" Delete Booking");
-        d_photo.addMouseListener(new java.awt.event.MouseAdapter() {
+        delete.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PHOTOS/trash.png"))); // NOI18N
+        delete.setText(" Delete Booking");
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                d_photoMouseClicked(evt);
+                deleteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                d_photoMouseEntered(evt);
+                deleteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                d_photoMouseExited(evt);
+                deleteMouseExited(evt);
             }
         });
-        jPanel1.add(d_photo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 140, 30));
+        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, 140, 30));
 
         refresh.setBackground(new java.awt.Color(0, 0, 0));
         refresh.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
@@ -346,7 +365,7 @@ public class Bookings extends javax.swing.JInternalFrame {
                 refreshMouseExited(evt);
             }
         });
-        jPanel1.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, 80, 30));
+        jPanel1.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 600, 80, 30));
 
         Continue1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         Continue1.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,19 +374,19 @@ public class Bookings extends javax.swing.JInternalFrame {
         Continue1.setText(" Approve");
         jPanel1.add(Continue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, 90, 50));
 
-        cont1.setBackground(new java.awt.Color(96, 92, 60));
-        cont1.addMouseListener(new java.awt.event.MouseAdapter() {
+        approve.setBackground(new java.awt.Color(96, 92, 60));
+        approve.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cont1MouseClicked(evt);
+                approveMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cont1MouseEntered(evt);
+                approveMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cont1MouseExited(evt);
+                approveMouseExited(evt);
             }
         });
-        jPanel1.add(cont1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 520, 130, 50));
+        jPanel1.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 520, 130, 50));
 
         Continue.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         Continue.setForeground(new java.awt.Color(255, 255, 255));
@@ -379,21 +398,21 @@ public class Bookings extends javax.swing.JInternalFrame {
                 ContinueMouseClicked(evt);
             }
         });
-        jPanel1.add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 90, 50));
+        jPanel1.add(Continue, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 580, 90, 50));
 
-        cont.setBackground(new java.awt.Color(96, 92, 60));
-        cont.addMouseListener(new java.awt.event.MouseAdapter() {
+        print.setBackground(new java.awt.Color(96, 92, 60));
+        print.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contMouseClicked(evt);
+                printMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                contMouseEntered(evt);
+                printMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                contMouseExited(evt);
+                printMouseExited(evt);
             }
         });
-        jPanel1.add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 130, 50));
+        jPanel1.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 130, 50));
 
         approved.setBackground(new java.awt.Color(255, 251, 240));
         approved.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
@@ -401,6 +420,38 @@ public class Bookings extends javax.swing.JInternalFrame {
         approved.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         approved.setText("Approved");
         jPanel1.add(approved, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 10, 110, -1));
+
+        number.setBackground(new java.awt.Color(0, 0, 0));
+        number.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        number.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                numberMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                numberMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                numberMouseExited(evt);
+            }
+        });
+        jPanel1.add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 90, 40));
+
+        income.setBackground(new java.awt.Color(0, 0, 0));
+        income.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        income.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        income.setText("Total Income:");
+        income.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                incomeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                incomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                incomeMouseExited(evt);
+            }
+        });
+        jPanel1.add(income, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 100, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 830, 650));
 
@@ -437,7 +488,7 @@ public class Bookings extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_search_barKeyReleased
 
-    private void a_photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseClicked
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
      Client ad = new Client();
 
      // Get the desktop pane (make sure this is a JDesktopPane)
@@ -445,9 +496,9 @@ public class Bookings extends javax.swing.JInternalFrame {
 
      desktopPane.add(ad);
      ad.setVisible(true); // instead of .show(), which is deprecated
-    }//GEN-LAST:event_a_photoMouseClicked
+    }//GEN-LAST:event_addMouseClicked
 
-    private void d_photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d_photoMouseClicked
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
          int row = booking_tbl.getSelectedRow();
             if (row == -1) {
                 JOptionPane.showMessageDialog(this, "Please select a row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
@@ -456,17 +507,17 @@ public class Bookings extends javax.swing.JInternalFrame {
 
               // Retrieve the selected user's ID from the table
             String id = booking_tbl.getValueAt(row, 0).toString();
-            int selectedPacakageId;
+            int seledtedbookingId;
             
              try {
-                selectedPacakageId = Integer.parseInt(id); // Ensure correct integer conversion
+                seledtedbookingId = Integer.parseInt(id); // Ensure correct integer conversion
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Invalid package ID format.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid booking ID format.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Confirm deletion
-            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this package?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this booking?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
             if (confirm != JOptionPane.YES_OPTION) {
                 return;
             }
@@ -475,9 +526,9 @@ public class Bookings extends javax.swing.JInternalFrame {
             // Database connection
             connectDB db = new connectDB();
             try (Connection conn = db.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement("DELETE FROM package WHERE pp_id = ?")) {
+                 PreparedStatement stmt = conn.prepareStatement("DELETE FROM booking WHERE b_id = ?")) {
 
-                stmt.setInt(1, selectedPacakageId);
+                stmt.setInt(1, seledtedbookingId);
                 int affectedRows = stmt.executeUpdate();
 
                 
@@ -487,12 +538,12 @@ public class Bookings extends javax.swing.JInternalFrame {
                     
                      // Logging the action
                     Session sess = Session.getInstance();
-                    String action = "Deleted package with ID " + selectedPacakageId;
+                    String action = "Deleted booking with ID " + seledtedbookingId;
                     con.insertData("INSERT INTO logs (u_id, action, date_time) VALUES ('" + sess.getUser_id() + "', '" + action + "', '" + LocalDateTime.now() + "')");
                     
-                    JOptionPane.showMessageDialog(this, "Package deleted successfully.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Booking deleted successfully.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Failed to delete photographer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Failed to delete booking.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -502,7 +553,7 @@ public class Bookings extends javax.swing.JInternalFrame {
 
 
 
-    }//GEN-LAST:event_d_photoMouseClicked
+    }//GEN-LAST:event_deleteMouseClicked
         
        public int getSelectedBookingId() {
         int selectedRow = booking_tbl.getSelectedRow(); // Get the selected row index
@@ -515,7 +566,7 @@ public class Bookings extends javax.swing.JInternalFrame {
 
     
     
-    private void e_photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_e_photoMouseClicked
+    private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
        int rowIndex = booking_tbl.getSelectedRow();
 
             if (rowIndex < 0) {
@@ -575,7 +626,7 @@ public class Bookings extends javax.swing.JInternalFrame {
 
 
 
-    }//GEN-LAST:event_e_photoMouseClicked
+    }//GEN-LAST:event_updateMouseClicked
 
            
 
@@ -583,29 +634,29 @@ public class Bookings extends javax.swing.JInternalFrame {
        displayData();
     }//GEN-LAST:event_refreshMouseClicked
 
-    private void a_photoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseEntered
-        a_photo.setForeground(new Color(204,204,204));
-    }//GEN-LAST:event_a_photoMouseEntered
+    private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
+        add.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_addMouseEntered
 
-    private void a_photoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_photoMouseExited
-        a_photo.setForeground(Color.black);
-    }//GEN-LAST:event_a_photoMouseExited
+    private void addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseExited
+        add.setForeground(Color.black);
+    }//GEN-LAST:event_addMouseExited
 
-    private void e_photoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_e_photoMouseEntered
-        e_photo.setForeground(new Color(204,204,204));
-    }//GEN-LAST:event_e_photoMouseEntered
+    private void updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseEntered
+        update.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_updateMouseEntered
 
-    private void e_photoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_e_photoMouseExited
-       e_photo.setForeground(Color.black);
-    }//GEN-LAST:event_e_photoMouseExited
+    private void updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseExited
+       update.setForeground(Color.black);
+    }//GEN-LAST:event_updateMouseExited
 
-    private void d_photoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d_photoMouseEntered
-        d_photo.setForeground(new Color(204,204,204));
-    }//GEN-LAST:event_d_photoMouseEntered
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        delete.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_deleteMouseEntered
 
-    private void d_photoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d_photoMouseExited
-        d_photo.setForeground(Color.black);
-    }//GEN-LAST:event_d_photoMouseExited
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        delete.setForeground(Color.black);
+    }//GEN-LAST:event_deleteMouseExited
 
     private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
         refresh.setForeground(new Color(204,204,204));
@@ -615,7 +666,7 @@ public class Bookings extends javax.swing.JInternalFrame {
         refresh.setForeground(Color.black);
     }//GEN-LAST:event_refreshMouseExited
 
-    private void contMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseClicked
+    private void printMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseClicked
         int rowIndex = booking_tbl.getSelectedRow(); 
 
         if (rowIndex < 0) {
@@ -703,17 +754,17 @@ public class Bookings extends javax.swing.JInternalFrame {
         }
 
     
-    }//GEN-LAST:event_contMouseClicked
+    }//GEN-LAST:event_printMouseClicked
 
-    private void contMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseEntered
-        cont.setBackground(new Color(176, 172, 140));
-    }//GEN-LAST:event_contMouseEntered
+    private void printMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseEntered
+        print.setBackground(new Color(176, 172, 140));
+    }//GEN-LAST:event_printMouseEntered
 
-    private void contMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contMouseExited
-        cont.setBackground(new Color(96, 92, 60));
-    }//GEN-LAST:event_contMouseExited
+    private void printMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printMouseExited
+        print.setBackground(new Color(96, 92, 60));
+    }//GEN-LAST:event_printMouseExited
 
-    private void cont1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseClicked
+    private void approveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseClicked
      int selectedBookingId = getSelectedBookingId(); // Get the selected booking ID
 
         if (selectedBookingId != -1) {
@@ -771,18 +822,18 @@ public class Bookings extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Please select a booking to approve.");
         }
 
-    }//GEN-LAST:event_cont1MouseClicked
+    }//GEN-LAST:event_approveMouseClicked
 
-    private void cont1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseEntered
-              cont1.setForeground(new Color(204,204,204));
+    private void approveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseEntered
+              approve.setForeground(new Color(204,204,204));
 
-    }//GEN-LAST:event_cont1MouseEntered
+    }//GEN-LAST:event_approveMouseEntered
 
-    private void cont1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont1MouseExited
-          cont1.setForeground(Color.black);
-    }//GEN-LAST:event_cont1MouseExited
+    private void approveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseExited
+          approve.setForeground(Color.black);
+    }//GEN-LAST:event_approveMouseExited
 
-    private void cont2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont2MouseClicked
+    private void viewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMouseClicked
     int rowIndex = booking_tbl.getSelectedRow();
 
 if (rowIndex < 0) {
@@ -855,21 +906,21 @@ if (rowIndex < 0) {
 
 
 
-    }//GEN-LAST:event_cont2MouseClicked
+    }//GEN-LAST:event_viewMouseClicked
 
-    private void cont2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont2MouseEntered
-                cont2.setForeground(new Color(204,204,204));
-    }//GEN-LAST:event_cont2MouseEntered
+    private void viewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMouseEntered
+                view.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_viewMouseEntered
 
-    private void cont2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont2MouseExited
-             cont2.setForeground(Color.black);
-    }//GEN-LAST:event_cont2MouseExited
+    private void viewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMouseExited
+             view.setForeground(Color.black);
+    }//GEN-LAST:event_viewMouseExited
 
-    private void cont2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cont2ActionPerformed
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cont2ActionPerformed
+    }//GEN-LAST:event_viewActionPerformed
 
-    private void cont3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont3MouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
          int rowIndex = booking_tbl.getSelectedRow();
 
 if (rowIndex < 0) {
@@ -943,23 +994,70 @@ if (rowIndex < 0) {
     }
 }
 
-    }//GEN-LAST:event_cont3MouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
-    private void cont3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont3MouseEntered
-        cont3.setForeground(new Color(204,204,204));    }//GEN-LAST:event_cont3MouseEntered
+    private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
+        cancel.setForeground(new Color(204,204,204));    }//GEN-LAST:event_cancelMouseEntered
 
-    private void cont3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cont3MouseExited
-         cont3.setForeground(Color.black);
+    private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
+         cancel.setForeground(Color.black);
 
-    }//GEN-LAST:event_cont3MouseExited
+    }//GEN-LAST:event_cancelMouseExited
 
-    private void cont3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cont3ActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cont3ActionPerformed
+    }//GEN-LAST:event_cancelActionPerformed
 
     private void ContinueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContinueMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_ContinueMouseClicked
+
+    private void numberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberMouseClicked
+
+    private void numberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberMouseEntered
+
+    private void numberMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberMouseExited
+
+    private void incomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incomeMouseClicked
+
+    private void incomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incomeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incomeMouseEntered
+
+    private void incomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incomeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incomeMouseExited
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+            
+        String qry = "SELECT SUM(downpayment) AS total_income FROM booking";
+
+        connectDB con = new connectDB();
+        try (Connection conn = con.getConnection();
+             PreparedStatement ps = conn.prepareStatement(qry);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                double totalIncome = rs.getDouble("total_income");
+
+                // Example: set to a JLabel or JTextField
+                number.setFont(new Font("Arial", Font.PLAIN, 15));
+                number.setText(String.format("₱%.2f", totalIncome));
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error retrieving income: " + e.getMessage());
+            e.printStackTrace();
+        }        
+    }//GEN-LAST:event_formInternalFrameActivated
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -969,24 +1067,26 @@ if (rowIndex < 0) {
     private javax.swing.JLabel Continue3;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel Title;
-    private javax.swing.JLabel a_photo;
+    private javax.swing.JLabel add;
+    private Swing.Button approve;
     private javax.swing.JLabel approved;
     private javax.swing.JTable booking_tbl;
-    private Swing.Button cont;
-    private Swing.Button cont1;
-    private Swing.Button cont2;
-    private Swing.Button cont3;
-    private javax.swing.JLabel d_photo;
-    private javax.swing.JLabel e_photo;
+    private Swing.Button cancel;
+    private javax.swing.JLabel delete;
+    private javax.swing.JLabel income;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel number;
+    private Swing.Button print;
     private javax.swing.JLabel refresh;
     private javax.swing.JTextField search_bar;
     private javax.swing.JPanel search_icon;
+    private javax.swing.JLabel update;
+    private Swing.Button view;
     // End of variables declaration//GEN-END:variables
 
     
